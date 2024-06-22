@@ -1,0 +1,13 @@
+{
+    "outTemp": $span($day_delta=1).outTemp.series(time_series='start').round(2).json,
+    "outHumidity": $span($day_delta=1).outHumidity.series(time_series='start').round(2).json,
+    "dewpoint": $span($day_delta=1).dewpoint.series(time_series='start').round(2).json,
+    "barometer": $span($day_delta=1).barometer.series(time_series='start').round(2).json,
+    "windchill": $span($day_delta=1).windchill.series(time_series='start').round(2).json,
+    "heatindex": $span($day_delta=1).heatindex.series(time_series='start').round(2).json,
+    "rain": $span($day_delta=1).rain.series(time_series='start').round(2).json,
+    "rainrate": $span($day_delta=1).rainRate.series(time_series='start').round(2).json,
+    "windSpeed": $span($day_delta=1).windSpeed.series(time_series='start').round(2).json,
+    "gustSpeed": $span($day_delta=1).windGust.series(time_series='start').round(2).json,
+    "windDir": $span($day_delta=1).windvec.series(time_series='start').direction.json
+}

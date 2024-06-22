@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram</title>
+    <link href="/build.css" rel="stylesheet" />
+  </head>
+  <body class="tw-bg-gray-50">
+    <div class="tw-max-w-[400px] tw-m-10 tw-text-gray-950">
+      <h1 class="tw-text-3xl">MeteoCentroCadore.it</h1>
+      <p class="tw-text-xl tw-mb-5">
+        $current.dateTime $current.dateTime.format("%Z")
+      </p>
+
+      <p class="tw-text-lg">Temperatura esterna: $current.outTemp</p>
+      <p class="tw-text-lg">Umidità: $current.outHumidity</p>
+      <p class="tw-text-lg">Vento: $current.windSpeed</p>
+      <p class="tw-text-lg">Rain Rate: $current.rainRate</p>
+
+      <p class="tw-text-xl mt-3">Da mezzanotte</p>
+      <p class="tw-text-lg">
+        Temperatura max: $day.outTemp.max $day.outTemp.maxtime
+      </p>
+      <p class="tw-text-lg">
+        Temperatura min: $day.outTemp.min $day.outTemp.mintime
+      </p>
+      <p class="tw-text-lg">Vento max: $day.wind.max $day.wind.maxtime</p>
+      <p class="tw-text-lg">Pioggia totale: $day.rain.sum</p>
+      <div class="tw-my-7">
+        <?php require_once('./webcam_rename.php'); ?>
+      </div>
+    </div>
+  </body>
+</html>
+

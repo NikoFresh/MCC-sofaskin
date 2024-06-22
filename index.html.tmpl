@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Robot+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/qweather-icons@1.3.1/font/qweather-icons.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="./build.css?v1.131" rel="stylesheet" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"
+      type="text/javascript"
+    ></script>
+    <!-- echarts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="./js/forecast.js?v1.01"></script>
+    <script src="./js/liveUpdates.js?v1.05"></script>
+
+    <!-- Umami -->
+    <script async src="https://analytics.umami.is/script.js" data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"></script>
+
+    <!-- Mqtt status animation -->
+    <style>
+      div.online-indicator {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+
+        background-color: rgb(239 68 68);
+        border-radius: 50%;
+
+        position: relative;
+      }
+      span.blink {
+        display: block;
+        width: 15px;
+        height: 15px;
+
+        background-color: (239 68 68);
+        opacity: 0.7;
+        border-radius: 50%;
+      }
+
+      .animate {
+        animation: blink 1s linear;
+      }
+
+      /*Animations*/
+
+      @keyframes blink {
+        100% {
+          transform: scale(2, 2);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header" class="tw-px-8 tw-pt-8 tw-bg-cyan-200">
+      <div class="lg:tw-max-w-[75%] tw-mx-auto tw-text-left">
+        <h1 class="tw-text-4xl tw-text-gray-900">$station.location</h1>
+        <p
+          class="tw-text-xs tw-mt-1 tw-ml-1 tw-font-Robot-mono tw-text-gray-500"
+        >
+          > $station.latitude[0]&deg; $station.latitude[1]' $station.latitude[2]
+          / $station.longitude[0]&deg; $station.longitude[1]'
+          $station.longitude[2] / $station.altitude
+        </p>
+        <p class="tw-text-xl tw-mt-3 tw-text-gray-900">
+          Condizioni meteo attuali
+        </p>
+        <p class="tw-text-sm tw-text-gray-800 tw-font-Robot-mono">
+          $current.dateTime $current.dateTime.format("%Z")
+        </p>
+        <!-- navigation -->
+        <div class="tw-flex">
+          <!-- PC menu -->
+          <nav class="tw-mt-8">
+            <div class="tw-hidden md:tw-flex tw-flex-row">
+              <a
+                href="index.html"
+                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl tw-underline tw-decoration-4 tw-underline-offset-[11px] tw-decoration-cyan-400"
+                >Oggi</a
+              >
+              <a
+                href="week.html"
+                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                >Settimana</a
+              >
+              <a
+                href="month.html"
+                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                >Mese</a
+              >
+              <a
+                href="year.html"
+                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                >Anno</a
+              >
+              <a
+                href="summary.html"
+                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                >Storico</a
+              >
+              <a
+                href="vaia.html"
+                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                >Vaia</a
+              >
+            </div>
+            <!-- Mobile menu button -->
+            <div class="md:tw-hidden">
+              <button class="tw-outline-none mobile-menu-button">
+                <svg
+                  class="tw-w-5 tw-h-5 tw-mt-2 tw-mr-3 tw-text-gray-900"
+                  x-show="!showMenu"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+            </div>
+          </nav>
+          <a
+            href="https://www.instagram.com/meteocentrocadore/?hl=it"
+            class="tw-w-fit tw-mr-3 tw-mt-8 tw-py-1 tw-mb-1 tw-text-lg"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            data-umami-event="A due passi"
+            href="https://aduepassidallaciclabile.it"
+            class="tw-bg-lime-300 tw-w-fit tw-rounded-full tw-px-5 tw-mt-8 tw-py-1 tw-mb-1 tw-text-lg"
+          >
+            <i class="fa-brands fa-airbnb tw-mr-1"></i> A due passi dalla
+            ciclabile
+          </a>
+        </div>
+        <!-- Mobile menu -->
+        <div class="tw-hidden mobile-menu tw-mt-3">
+          <ul class="">
+            <li class="">
+              <a
+                href="index.html"
+                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-bg-cyan-100 tw-rounded-lg"
+                >Oggi</a
+              >
+            </li>
+            <li>
+              <a
+                href="week.html"
+                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                >Settimana</a
+              >
+            </li>
+            <li>
+              <a
+                href="month.html"
+                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                >Mese</a
+              >
+            </li>
+            <li>
+              <a
+                href="year.html"
+                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                >Anno</a
+              >
+            </li>
+            <li>
+              <a
+                href="summary.html"
+                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                >Storico</a
+              >
+            </li>
+            <li>
+              <a
+                href="vaia.html"
+                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                >Vaia</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End header -->
+    <div class="tw-container tw-mx-auto tw-mt-5"></div>
+    <div class="tw-container tw-mx-auto">
+      <!-- Mqtt -->
+      <div class="online-indicator tw-mx-7 tw-mt-1.5 md:tw-ml-0" id="indicator">
+        <span class="blink tw-block" id="indicator-1"></span>
+      </div>
+      <span id="mqttStatus" class="tw-inline-block tw-align-middle tw-mb-1"
+        >Connessione alla stazione meteo in corso...</span
+      >
+      <!-- Current data -->
+      <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-5">
+        <div
+          class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-4 tw-gap-7 tw-mx-7 tw-mb-4 md:tw-ml-0 tw-mt-4 tw-col-span-5 lg:tw-col-span-3"
+        >
+          <!-- current data -->
+          <div class="">
+            <h2 class="tw-text-gray-800">Temperatura esterna</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="outTemp"
+            >
+              $current.outTemp
+            </p>
+            <p class="tw-text-gray-900">
+              Massima $day.outTemp.max
+              <span class="tw-text-xs">($day.outTemp.maxtime)</span>
+            </p>
+            <p class="tw-text-gray-900">
+              Minima $day.outTemp.min
+              <span class="tw-text-xs">($day.outTemp.mintime)</span>
+            </p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Umidità</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="outHum"
+            >
+              $current.outHumidity
+            </p>
+            <p class="tw-text-gray-900">
+              Massima $day.outHumidity.max
+              <span class="tw-text-xs">($day.outHumidity.maxtime)</span>
+            </p>
+            <p class="tw-text-gray-900">
+              Minima $day.outHumidity.min
+              <span class="tw-text-xs">($day.outHumidity.mintime)</span>
+            </p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Pressione</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="pressure"
+            >
+              $current.barometer
+            </p>
+            <p class="tw-text-gray-900">
+              Massima $day.barometer.max
+              <span class="tw-text-xs">($day.barometer.maxtime)</span>
+            </p>
+            <p class="tw-text-gray-900">
+              Minima $day.barometer.min
+              <span class="tw-text-xs">($day.barometer.mintime)</span>
+            </p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Vento</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="windSpeed"
+            >
+              $current.windSpeed
+              <span class="tw-text-xs tw-font-normal"
+                >$current.windDir.ordinal_compass ($current.windDir)</span
+              >
+            </p>
+            <p class="tw-text-gray-900">
+              Massimo $day.wind.max $day.wind.gustdir
+              <span class="tw-text-xs">($day.wind.maxtime)</span>
+            </p>
+            <p class="tw-text-gray-900">Medio $day.wind.avg</p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Intensità di pioggia</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="rainRate"
+            >
+              $current.rainRate
+            </p>
+            <p class="tw-text-gray-900">
+              Massima $day.rainRate.max
+              <span class="tw-text-xs">($day.rainRate.maxtime)</span>
+            </p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Pioggia totale</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="rain"
+            >
+	      $day.rain.sum
+            </p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Punto di rugiada</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="dewPoint"
+            >
+              $current.dewpoint
+            </p>
+            <p class="tw-text-gray-900">
+              Massimo $day.dewpoint.max
+              <span class="tw-text-xs">($day.dewpoint.maxtime)</span>
+            </p>
+            <p class="tw-text-gray-900">
+              Minimo $day.dewpoint.min
+              <span class="tw-text-xs">($day.dewpoint.mintime)</span>
+            </p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Wind chill</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="windChill"
+            >
+              $current.windchill
+            </p>
+            <p class="tw-text-gray-900">
+              Massimo $day.windchill.max
+              <span class="tw-text-xs">($day.windchill.maxtime)</span>
+            </p>
+            <p class="tw-text-gray-900">
+              Minimo $day.windchill.min
+              <span class="tw-text-xs">($day.windchill.mintime)</span>
+            </p>
+          </div>
+          <div class="">
+            <h2 class="tw-text-gray-800">Indice di calore</h2>
+            <p
+              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
+              id="heatIndex"
+            >
+              $current.heatindex
+            </p>
+            <p class="tw-text-gray-900">
+              Massimo $day.heatindex.max
+              <span class="tw-text-xs">($day.heatindex.maxtime)</span>
+            </p>
+            <p class="tw-text-gray-900">
+              Minimo $day.heatindex.min
+              <span class="tw-text-xs">($day.heatindex.mintime)</span>
+            </p>
+          </div>
+        </div>
+        <!-- webcam -->
+        <div
+          class="md:tw-col-span-5 md:tw-mx-24 lg:tw-col-span-2 lg:tw-mt-8 lg:tw-mx-0 tw-m-8"
+        >
+          <!-- <img
+            src="http://www.meteocentrocadore.it/webcam_test/P23111914020910.jpg"
+            class="object-contain"
+          /> -->
+          <?php require_once('./webcam_rename.php'); ?>
+        </div>
+      </div>
+      <hr class="tw-h-px tw-mt-4 tw-bg-blue-200 tw-border-0" />
+      <!-- <div
+        class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-container tw-mb-8 tw-gap-8"
+      > -->
+
+      <div class="tw-flex tw-flex-wrap tw-justify-between tw-mt-8">
+        <div class="tw-p-8 md:tw-p-0 md:tw-col-span-1">
+          <!-- One year ago -->
+          <!--Leap Year Code -->
+            #set $yr = int($day.dateTime.format("%Y"))%4
+            #if $yr == 0
+              #if $yr % 100 == 0
+                #if $yr % 400 == 0
+                  #if $day.dateTime.format("%d-%b") == '29-Feb'
+                    #set $n = 1461
+                  #else if $day.dateTime.format("%d-%b") >= '01-Mar'
+                    #set $n = 366
+                  #else
+                    #set $n = 365
+                  #end if
+                #else
+                  #set $n = 365
+                #end if
+              #else
+                #if $day.dateTime.format("%d-%b") == '29-Feb'
+                  #set $n = 1461
+                #else if $day.dateTime.format("%d-%b") >= '01-Mar'
+                  #set $n = 366
+                #else
+                  #set $n = 365
+                #end if
+              #end if
+            #else
+              #set $yrNew = ($yr - 1)
+            #if $yrNew % 100 == 0
+              #if $yrNew % 400 == 0
+                #if $day.dateTime.format("%d-%b") < '01-Mar'
+                  #set $n = 366
+                #else
+                  #set $n = 365
+                #end if
+              #end if
+              #else
+                #set $n = 365
+              #end if
+            #end if
+          <h1 class="tw-text-xl">Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b (%Y)"))</h1>
+          <div class="tw-table tw-pt-2">
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10">Temperatura massima:</div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).outTemp.max $days_ago($days_ago=$n).outTemp.maxtime</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">
+                Temperatura minima:
+              </div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).outTemp.min $days_ago($days_ago=$n).outTemp.mintime</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">Umidità massima:</div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).outHumidity.max $days_ago($days_ago=$n).outHumidity.maxtime</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">Umidità minima:</div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).outHumidity.min $days_ago($days_ago=$n).outHumidity.mintime</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">
+                Pressione massima:
+              </div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).barometer.max $days_ago($days_ago=$n).barometer.maxtime</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">
+                Pressione minima:
+              </div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).barometer.min $days_ago($days_ago=$n).barometer.mintime</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">Pioggia:</div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).rain.sum</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">Rain Rate max:</div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).rainRate.max $days_ago($days_ago=$n).rainRate.maxtime</div>
+            </div>
+            <div class="tw-table-row">
+              <div class="tw-table-cell tw-pr-10 tw-pt-1">Vento massimo:</div>
+              <div class="tw-table-cell">$days_ago($days_ago=$n).wind.max $day.wind.gustdir $days_ago($days_ago=$n).wind.maxtime</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Almanac -->
+        #set $sun_altitude = $almanac.sun.alt
+        #if $sun_altitude < 0
+        #set $sun_None="<i>(Always down)</i>"
+        #else
+        #set $sun_None="<i>(Always up)</i>"
+        #end if
+        <div class="tw-p-8 md:tw-p-0 md:tw-col-span-1">
+          <h1 class="tw-text-xl tw-pb-4">Almanacco</h1>
+          <div class="tw-grid tw-grid-cols-2 tw-gap-x-4">
+            <div>
+              <h1 class="tw-text-lg">Sole</h1>
+              <div class="tw-table-row-group">
+                <div class="tw-table-row tw-pt-1">
+                  <div class="tw-table-cell tw-pt-1">
+                    Inizio crepuscolo civile
+                    $almanac(horizon=-6).sun(use_center=1).rise
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Alba $almanac.sun.rise.string($sun_None)
+                  </div>
+                </div>
+                <div class="tw-table-row tw-pt-1">
+                  <div class="tw-table-cell tw-pt-1">
+                    Transito: $almanac.sun.transit
+                  </div>
+                </div>
+                <div class="tw-table-row tw-pt-1">
+                  <div class="tw-table-cell tw-pt-1">
+                    Tramonto: $almanac.sun.set.string($sun_None)
+                  </div>
+                </div>
+                <div class="tw-table-row tw-pt-1">
+                  <div class="tw-table-cell tw-pt-1">
+                    Fine crepuscolo civile:
+                    $almanac(horizon=-6).sun(use_center=1).set
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Azimuth: $("%.1f&deg;" % $almanac.sun.az)
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Altitudine: $("%.1f&deg;" % $sun_altitude)
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Ascensione retta: $("%.1f&deg;" % $almanac.sun.ra)
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Inclinazione: $("%.1f&deg;" % $almanac.sun.dec)
+                  </div>
+                </div>
+                #if $almanac.next_equinox.raw > $almanac.next_solstice.raw
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Solstizio: $almanac.next_solstice</div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Equinozio: $almanac.next_equinox</div>
+                </div>
+                #else 
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Equinozio: $almanac.next_equinox</div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Solstizio: $almanac.next_solstice</div>
+                </div>
+                #end if
+              </div>
+            </div>
+
+            <div>
+              <h1 class="tw-text-lg">Luna</h1>
+              <div class="tw-table-row-group">
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Leva: $almanac.moon.rise
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Transito: $almanac.moon.transit
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Cala: $almanac.moon.set
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Azimut: $("%.1f&deg;" % $almanac.moon.az)
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Altitudine: $("%.1f&deg;" % $almanac.moon.alt)
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Ascensione retta: $("%.1f&deg;" % $almanac.moon.ra)
+                  </div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Inclinazione: $("%.1f&deg;" % $almanac.moon.dec)
+                  </div>
+                </div>
+                #if $almanac.next_full_moon.raw < $almanac.next_new_moon.raw
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Luna piena: $almanac.next_full_moon</div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Luna nuova: $almanac.next_new_moon</div>
+                </div>
+                #else
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Luna nuova: $almanac.next_new_moon</div>
+                </div>
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">Luna piena: $almanac.next_full_moon</div>
+                </div>
+                #end if
+                <div class="tw-table-row">
+                  <div class="tw-table-cell tw-pt-1">
+                    Fase: $almanac.moon_phase ($almanac.moon_fullness% full)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forecast -->
+        <div class="tw-p-8 md:tw-p-0 tw-max-w-full">
+          <h1 class="tw-text-xl">Radar</h1>
+          <img
+            src="https://meteo.arpa.veneto.it/meteo/radar/imgs/concordia/1_BASE.jpg?$current.dateTime.raw"
+            class="tw-max-h-[25rem]"
+          />
+        </div>
+      </div>
+
+      <hr class="tw-h-px tw-mt-4 tw-mb-8 tw-bg-blue-200 tw-border-0" />
+
+      <!-- Grafici -->
+      <div class="tw-p-8 md:tw-p-0 tw-mb-4">
+        <h1 class="tw-text-xl">
+          <i class="fa fa-line-chart m-gruen"></i> Grafici
+        </h1>
+        <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2">
+          <div id="outTempChart" class="tw-h-[40vh] tw-max-w-[70vw]"></div>
+          <div id="rainChart" class="tw-h-[40vh]"></div>
+          <div id="windChart" class="tw-h-[40vh]"></div>
+          <div id="windDirChart" class="tw-h-[40vh]"></div>
+          <div id="heatIndexChart" class="tw-h-[40vh]"></div>
+          <div id="barometerChart" class="tw-h-[40vh]"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="tw-bg-cyan-200 tw-p-8">
+      <div class="tw-container tw-mx-auto">
+        <div class="tw-table">
+          <div class="tw-table-row">
+            <div class="tw-table-cell tw-pr-2">Stazione:</div>
+            <div class="tw-table-cell tw-pr-2">$station.hardware</div>
+          </div>
+          <div class="tw-table-row">
+            <div class="tw-table-cell tw-pr-2">Software:</div>
+            <div class="tw-table-cell tw-pr-2">WeeWX v$station.version</div>
+          </div>
+          <div class="tw-table-row">
+            <div class="tw-table-cell tw-pr-2">Weewx uptime:</div>
+            <div class="tw-table-cell tw-pr-2">$station.uptime.long_form</div>
+          </div>
+          <div class="tw-table-row">
+            <div class="tw-table-cell tw-pr-2">Server uptime:</div>
+            <div class="tw-table-cell tw-pr-2">
+              $station.os_uptime.long_form
+            </div>
+          </div>
+        </div>
+        <hr class="tw-h-px tw-my-4 tw-bg-blue-200 tw-border-0" />
+        <div class="tw-flex tw-flex-row tw-flex-wrap">
+          <p class="tw-mr-2">
+            Powered by <a href="weewx.com" class="tw-underline">Weewx</a>.
+          </p>
+          <p class="tw-mr-2">
+            Non prendere decisioni importanti con le informazioni di questo
+            sito.
+          </p>
+          <p class="tw-mr-2">
+            © $latest.dateTime.format("%Y") meteocentrocadore.
+          </p>
+          <p class="tw-mr-2">
+            <a href="mailto:meteocentrocadore@gmail.com" class="tw-underline"
+              >Contattaci</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- End footer-->
+    <script>
+      const btn = document.querySelector("button.mobile-menu-button");
+      const menu = document.querySelector(".mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("tw-hidden");
+      });
+    </script>
+    <script src="./js/eplot.js"></script>
+  </body>
+</html>
+
