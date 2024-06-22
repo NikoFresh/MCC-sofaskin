@@ -1,3 +1,7 @@
+# TODO
+This is a custom WeeWX skin based on [Sofaskin-CW9009](https://github.com/weatherstorm/Sofaskin-CW9009)
+
+
 # Sofaskin-CW9009
 CW9009 Meridian code modifications to Sofaskin web page for Weewx originally developed by Sven at http://neoground.com/projects/weewx. Please see the readme for dependency requirements to use this skin. An Italian version of these directions are available at http://micae.it/2017/12/28/sofaskin-italiano/. 
 
@@ -93,5 +97,3 @@ You should update the variables in the EXTRA section of the skin.conf file to ma
     #CoCoRaHS
     #crahs = 
     #crahs_url = 
-
-If you have problems, you can email me at josh@cw9009.x10host.com  
