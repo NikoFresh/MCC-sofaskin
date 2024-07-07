@@ -22,7 +22,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link href="./build.css?v1.131" rel="stylesheet" />
+    <link href="./build.css?v1.145" rel="stylesheet" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"
       type="text/javascript"
@@ -33,7 +33,11 @@
     <script src="./js/liveUpdates.js?v1.05"></script>
 
     <!-- Umami -->
-    <script async src="https://analytics.umami.is/script.js" data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"></script>
+    <script
+      async
+      src="https://analytics.umami.is/script.js"
+      data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"
+    ></script>
 
     <!-- Mqtt status animation -->
     <style>
@@ -70,6 +74,21 @@
           opacity: 0;
         }
       }
+
+      /* tooltip */
+      .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s, margin-bottom 0.3s;
+      }
+
+      .tw-group:hover .tooltip-text,
+      .tw-group:focus .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        margin-bottom: 10px;
+      }
+
     </style>
   </head>
   <body>
@@ -310,15 +329,23 @@
               class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
               id="rain"
             >
-	      $day.rain.sum
+              $day.rain.sum
             </p>
           </div>
           <div class="">
-            <h2 class="tw-text-gray-800">Punto di rugiada</h2>
-            <p
-              class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
-              id="dewPoint"
-            >
+            <div class="tw-flex tw-items-center">
+              <h2 class="tw-text-gray-800 tw-flex tw-items-center">
+                Punto di rugiada
+                <span class="tw-relative tw-ml-2 tw-group">
+                  <i class="fas fa-question-circle tw-text-gray-600"></i>
+                  <span class="tw-absolute tw-w-56 tw-bg-gray-800 tw-text-white tw-text-center tw-rounded tw-py-2 tw-px-3 tw-bottom-full tw-left-1/2 tw-transform tw--translate-x-1/2 tw-mb-2 tw-opacity-0 tw-transition-opacity tw-duration-300 tooltip-text">
+                    Temperatura alla quale l'aria deve deve raffreddarsi affinché 
+                    il vapore acqueo presente inizi a condensare.
+                  </span>
+                </span>
+              </h2>
+            </div>
+            <p class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1" id="dewPoint">
               $current.dewpoint
             </p>
             <p class="tw-text-gray-900">
@@ -331,7 +358,17 @@
             </p>
           </div>
           <div class="">
-            <h2 class="tw-text-gray-800">Wind chill</h2>
+            <div class="tw-flex tw-items-center">
+              <h2 class="tw-text-gray-800 tw-flex tw-items-center">
+                Wind Chill
+                <span class="tw-relative tw-ml-2 tw-group">
+                  <i class="fas fa-question-circle tw-text-gray-600"></i>
+                  <span class="tw-absolute tw-w-56 tw-bg-gray-800 tw-text-white tw-text-center tw-rounded tw-py-2 tw-px-3 tw-bottom-full tw-left-1/2 tw-transform tw--translate-x-1/2 tw-mb-2 tw-opacity-0 tw-transition-opacity tw-duration-300 tooltip-text">
+                    Temperatura percepita per effetto del vento sulla pelle.
+                  </span>
+                </span>
+              </h2>
+            </div>
             <p
               class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
               id="windChill"
@@ -348,7 +385,17 @@
             </p>
           </div>
           <div class="">
-            <h2 class="tw-text-gray-800">Indice di calore</h2>
+            <div class="tw-flex tw-items-center">
+              <h2 class="tw-text-gray-800 tw-flex tw-items-center">
+                Indice di calore
+                <span class="tw-relative tw-ml-2 tw-group">
+                  <i class="fas fa-question-circle tw-text-gray-600"></i>
+                  <span class="tw-absolute tw-w-56 tw-bg-gray-800 tw-text-white tw-text-center tw-rounded tw-py-2 tw-px-3 tw-bottom-full tw-left-1/2 tw-transform tw--translate-x-1/2 tw-mb-2 tw-opacity-0 tw-transition-opacity tw-duration-300 tooltip-text">
+                    Temperatura percepita per la combinazione di temperatura e umidità.
+                  </span>
+                </span>
+              </h2>
+            </div>
             <p
               class="tw-text-gray-900 tw-font-bold tw-text-2xl tw-my-1"
               id="heatIndex"
@@ -385,7 +432,7 @@
         <div class="tw-p-8 md:tw-p-0 md:tw-col-span-1">
           <!-- One year ago -->
           <!--Leap Year Code -->
-            #set $yr = int($day.dateTime.format("%Y"))%4
+          #set $yr = int($day.dateTime.format("%Y"))%4
             #if $yr == 0
               #if $yr % 100 == 0
                 #if $yr % 400 == 0
@@ -422,37 +469,57 @@
                 #set $n = 365
               #end if
             #end if
-          <h1 class="tw-text-xl">Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b (%Y)"))</h1>
+          <h1 class="tw-text-xl">
+            Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b (%Y)"))
+          </h1>
           <div class="tw-table tw-pt-2">
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10">Temperatura massima:</div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).outTemp.max $days_ago($days_ago=$n).outTemp.maxtime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).outTemp.max
+                $days_ago($days_ago=$n).outTemp.maxtime
+              </div>
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">
                 Temperatura minima:
               </div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).outTemp.min $days_ago($days_ago=$n).outTemp.mintime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).outTemp.min
+                $days_ago($days_ago=$n).outTemp.mintime
+              </div>
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">Umidità massima:</div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).outHumidity.max $days_ago($days_ago=$n).outHumidity.maxtime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).outHumidity.max
+                $days_ago($days_ago=$n).outHumidity.maxtime
+              </div>
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">Umidità minima:</div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).outHumidity.min $days_ago($days_ago=$n).outHumidity.mintime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).outHumidity.min
+                $days_ago($days_ago=$n).outHumidity.mintime
+              </div>
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">
                 Pressione massima:
               </div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).barometer.max $days_ago($days_ago=$n).barometer.maxtime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).barometer.max
+                $days_ago($days_ago=$n).barometer.maxtime
+              </div>
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">
                 Pressione minima:
               </div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).barometer.min $days_ago($days_ago=$n).barometer.mintime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).barometer.min
+                $days_ago($days_ago=$n).barometer.mintime
+              </div>
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">Pioggia:</div>
@@ -460,11 +527,17 @@
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">Rain Rate max:</div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).rainRate.max $days_ago($days_ago=$n).rainRate.maxtime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).rainRate.max
+                $days_ago($days_ago=$n).rainRate.maxtime
+              </div>
             </div>
             <div class="tw-table-row">
               <div class="tw-table-cell tw-pr-10 tw-pt-1">Vento massimo:</div>
-              <div class="tw-table-cell">$days_ago($days_ago=$n).wind.max $day.wind.gustdir $days_ago($days_ago=$n).wind.maxtime</div>
+              <div class="tw-table-cell">
+                $days_ago($days_ago=$n).wind.max $day.wind.gustdir
+                $days_ago($days_ago=$n).wind.maxtime
+              </div>
             </div>
           </div>
         </div>
@@ -531,17 +604,25 @@
                 </div>
                 #if $almanac.next_equinox.raw > $almanac.next_solstice.raw
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Solstizio: $almanac.next_solstice</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Solstizio: $almanac.next_solstice
+                  </div>
                 </div>
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Equinozio: $almanac.next_equinox</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Equinozio: $almanac.next_equinox
+                  </div>
                 </div>
-                #else 
+                #else
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Equinozio: $almanac.next_equinox</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Equinozio: $almanac.next_equinox
+                  </div>
                 </div>
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Solstizio: $almanac.next_solstice</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Solstizio: $almanac.next_solstice
+                  </div>
                 </div>
                 #end if
               </div>
@@ -587,17 +668,25 @@
                 </div>
                 #if $almanac.next_full_moon.raw < $almanac.next_new_moon.raw
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Luna piena: $almanac.next_full_moon</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Luna piena: $almanac.next_full_moon
+                  </div>
                 </div>
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Luna nuova: $almanac.next_new_moon</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Luna nuova: $almanac.next_new_moon
+                  </div>
                 </div>
                 #else
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Luna nuova: $almanac.next_new_moon</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Luna nuova: $almanac.next_new_moon
+                  </div>
                 </div>
                 <div class="tw-table-row">
-                  <div class="tw-table-cell tw-pt-1">Luna piena: $almanac.next_full_moon</div>
+                  <div class="tw-table-cell tw-pt-1">
+                    Luna piena: $almanac.next_full_moon
+                  </div>
                 </div>
                 #end if
                 <div class="tw-table-row">
@@ -692,4 +781,3 @@
     <script src="./js/eplot.js"></script>
   </body>
 </html>
-
