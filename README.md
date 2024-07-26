@@ -15,7 +15,7 @@ Features:
 You can see the live version on my website at [meteocentrocadore.it](https://meteocentrocadore.it)
 
 # Credits
-Thanks to neoground for the (original Sofaskin)[https://neoground.com/projects/sofaskin?lang=en] and to weatherstorm for the awesome (CW90009 version)[https://github.com/weatherstorm/Sofaskin-CW9009].
+Thanks to neoground for the [original Sofaskin](https://neoground.com/projects/sofaskin?lang=en) and to weatherstorm for the awesome [CW90009 version](https://github.com/weatherstorm/Sofaskin-CW9009).
 
 #
 
