@@ -1,366 +1,125 @@
-const globalTooltip = {
-  trigger: "axis",
-  axisPointer: {
-    type: "cross",
+// Configurazioni globali
+const globalConfig = {
+  tooltip: {
+    trigger: "axis",
+    axisPointer: { type: "cross" }
   },
+  dataZoom: [
+    { type: "inside", start: 0, end: 100 },
+    { type: "slider", start: 0, end: 100, height: 20 }
+  ],
+  grid: { containLabel: true, left: 10, right: 10, top: 30, bottom: 30 }
 };
 
-// Global DataZoom Configuration
-const globalDataZoom = [
-  {
-    type: "inside", // Enable inside zoom
-    start: 0, // Zoom start percentage
-    end: 100, // Zoom end percentage
-  },
-  {
-    type: "slider", // Enable slider zoom
-    start: 0, // Slider start percentage
-    end: 100, // Slider end percentage
-    height: 20, // Slider height
-  },
-];
+// Funzione per creare opzioni di base per i grafici
+function createBaseChartOption(legendData, yAxisFormatter) {
+  return {
+    ...globalConfig,
+    legend: { data: legendData },
+    xAxis: {
+      type: "time",
+      axisLabel: { formatter: "{HH}:{mm}" }
+    },
+    yAxis: {
+      type: "value",
+      scale: true,
+      axisLabel: { formatter: yAxisFormatter, margin: 12 }
+    }
+  };
+}
+
+// Funzione per creare una serie di dati
+function createSeries(name, data, color, type = "line") {
+  return {
+    name,
+    type,
+    data,
+    lineStyle: { color, width: 3 },
+    itemStyle: { color },
+    showSymbol: false,
+    ...(type === "scatter" && { symbolSize: 5 })
+  };
+}
+
+// Funzione per inizializzare un grafico
+function initChart(elementId, option) {
+  const chart = echarts.init(document.getElementById(elementId));
+  chart.setOption(option);
+}
 
 fetch("json/day.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const labels = data.outTemp.map((entry) => new Date(entry[0] * 1000));
+  .then(response => response.json())
+  .then(data => {
+    const labels = data.outTemp.map(entry => new Date(entry[0] * 1000));
 
-    const outTemp = data.outTemp.map((entry) => entry[1]);
-    const outHumidity = data.outHumidity.map((entry) => entry[1]);
-    const dewpoint = data.dewpoint.map((entry) => entry[1]);
-    const windChill = data.windchill.map((entry) => entry[1]);
-    const heatIndex = data.heatindex.map((entry) => entry[1]);
-    const windSpeed = data.windSpeed.map((entry) => entry[1]);
-    const gustSpeed = data.gustSpeed.map((entry) => entry[1]);
-    const windDir = data.windDir.map((entry) => entry[1]);
-    const barometer = data.barometer.map((entry) => entry[1]);
-    const rainRate = data.rainrate.map((entry) => entry[1]);
+    // Funzione per estrarre e formattare i dati
+    const extractData = key => data[key].map((entry, index) => [labels[index], entry[1]]);
 
-    const rain = data.rain;
-    const hourlyRain = [];
-    for (let i = 0; i < rain.length; i += 12) {
-      // Somma i dati ogni 12 punti (ogni ora)
-      const hourStart = rain[i][0];
-      let hourlyTotal = 0;
-      for (let j = i; j < i + 12 && j < rain.length; j++) {
-        hourlyTotal += rain[j][1];
+    const [outTemp, outHumidity, dewpoint, windChill, heatIndex, windSpeed, gustSpeed, windDir, barometer, rainRate] = 
+      ['outTemp', 'outHumidity', 'dewpoint', 'windchill', 'heatindex', 'windSpeed', 'gustSpeed', 'windDir', 'barometer', 'rainrate']
+        .map(extractData);
+
+    // Calcolo pioggia oraria
+    const hourlyRain = data.rain.reduce((acc, [time, value], index, arr) => {
+      if (index % 12 === 0) {
+        const hourlyTotal = arr.slice(index, index + 12).reduce((sum, [_, val]) => sum + val, 0);
+        acc.push([new Date(time * 1000), hourlyTotal]);
       }
-      hourlyRain.push([hourStart, hourlyTotal]);
-    }
-    console.log(hourlyRain);
+      return acc;
+    }, []);
 
-    // outtemp windchill
-    const outTempChart = echarts.init(document.getElementById("outTempChart"));
-    const outTempOption = {
-      legend: {
-        data: ["Temperatura", "Dew point"],
-      },
-      xAxis: {
-        type: "time",
-        axisLabel: {
-          formatter: "{HH}:{mm}",
-        },
-      },
-      yAxis: {
-        type: "value",
-        scale: true,
-        axisLabel: {
-          formatter: "{value} °C", // Format the y-axis label as needed
-          margin: 12, // Adjust the margin as needed
-        },
-      },
-      tooltip: globalTooltip,
-      dataZoom: globalDataZoom,
-      connectNulls: false,
+    // Inizializzazione dei grafici
+    initChart("outTempChart", {
+      ...createBaseChartOption(["Temperatura", "Dew point"], "{value} °C"),
       series: [
-        {
-          name: "Temperatura",
-          type: "line",
-          data: outTemp.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(75, 192, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(75, 192, 192)",
-          },
-          showSymbol: false,
-        },
-        {
-          name: "Dew point",
-          type: "line",
-          data: dewpoint.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(192, 75, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(192, 75, 192)",
-          },
-          showSymbol: false,
-        },
-        // Repeat for other datasets...
-      ],
-    };
-    outTempChart.setOption(outTempOption);
+        createSeries("Temperatura", outTemp, "rgb(75, 192, 192)"),
+        createSeries("Dew point", dewpoint, "rgb(192, 75, 192)")
+      ]
+    });
 
-    // rain rainrate
-    const rainChart = echarts.init(document.getElementById("rainChart"));
-    const rainOption = {
-      legend: {
-        data: ["Pioggia", "Rain rate"],
-      },
-      xAxis: {
-        type: "time",
-        boundaryGap: false,
-        axisLabel: {
-          formatter: "{HH}:{mm}",
-        },
-      },
+    initChart("rainChart", {
+      ...createBaseChartOption(["Pioggia", "Rain rate"], "{value} mm"),
       yAxis: [
-        {
-          type: "value", // Configurazione primo asse Y
-          position: "left", // Posizionamento a sinistra
-          axisLabel: {
-            formatter: "{value} mm", // Format the y-axis label as needed
-            margin: 12, // Adjust the margin as needed
-          },
-        },
-        {
-          type: "value", // Configurazione secondo asse Y
-          position: "right", // Posizionamento a destra
-          axisLabel: {
-            formatter: "{value} mm/h", // Format the y-axis label as needed
-            margin: 12, // Adjust the margin as needed
-          },
-        },
+        { type: "value", position: "left", axisLabel: { formatter: "{value} mm" } },
+        { type: "value", position: "right", axisLabel: { formatter: "{value} mm/h" } }
       ],
-      tooltip: globalTooltip,
-      dataZoom: globalDataZoom,
       series: [
         {
           name: "Pioggia",
           type: "bar",
           yAxisIndex: 0,
-          data: hourlyRain.map((entry) => [
-            new Date(entry[0] * 1000),
-            entry[1],
-          ]),
-          itemStyle: {
-            color: "rgb(75, 192, 192)",
-          },
-          barWidth: "95%",
+          data: hourlyRain,
+          itemStyle: { color: "rgb(75, 192, 192)" },
+          barWidth: "95%"
         },
-        {
-          name: "Rain rate",
-          type: "line",
-          yAxisIndex: 1,
-          data: rainRate.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(192, 75, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(192, 75, 192)",
-          },
-          showSymbol: false,
-        },
-      ],
-    };
-    rainChart.setOption(rainOption);
+        createSeries("Rain rate", rainRate, "rgb(192, 75, 192)")
+      ]
+    });
 
-    // wind windgust
-    const windChart = echarts.init(document.getElementById("windChart"));
-    const windOption = {
-      legend: {
-        data: ["Vento", "Raffica di vento"],
-      },
-      xAxis: {
-        type: "time",
-        axisLabel: {
-          formatter: "{HH}:{mm}",
-        },
-      },
-      yAxis: {
-        type: "value",
-        scale: true,
-        axisLabel: {
-          formatter: "{value} km/h", // Format the y-axis label as needed
-          margin: 12, // Adjust the margin as needed
-        },
-      },
-      tooltip: globalTooltip,
-      dataZoom: globalDataZoom,
+    initChart("windChart", {
+      ...createBaseChartOption(["Vento", "Raffica di vento"], "{value} km/h"),
       series: [
-        {
-          name: "Vento",
-          type: "line",
-          data: windSpeed.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(75, 192, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(75, 192, 192)",
-          },
-          showSymbol: false,
-        },
-        {
-          name: "Raffica di vento",
-          type: "scatter",
-          symbolSize: 5,
-          data: gustSpeed.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(192, 75, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(192, 75, 192)",
-          },
-          showSymbol: false,
-        },
-      ],
-    };
-    windChart.setOption(windOption);
+        createSeries("Vento", windSpeed, "rgb(75, 192, 192)"),
+        createSeries("Raffica di vento", gustSpeed, "rgb(192, 75, 192)", "scatter")
+      ]
+    });
 
-    // wind dir
-    const windDirChart = echarts.init(document.getElementById("windDirChart"));
-    const windDirOption = {
-      legend: {
-        data: ["Direzione"],
-      },
-      xAxis: {
-        type: "time",
-        axisLabel: {
-          formatter: "{HH}:{mm}",
-        },
-      },
-      yAxis: {
-        type: "value",
-        scale: true,
-        max: 360,
-        axisLabel: {
-          formatter: "{value} °", // Format the y-axis label as needed
-          margin: 12, // Adjust the margin as needed
-        },
-      },
-      tooltip: globalTooltip,
-      dataZoom: globalDataZoom,
-      series: [
-        {
-          name: "Direzione",
-          type: "scatter",
-          symbolSize: 5,
-          data: windDir.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(192, 75, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(192, 75, 192)",
-          },
-          showSymbol: false,
-        },
-      ],
-    };
-    windDirChart.setOption(windDirOption);
+    initChart("windDirChart", {
+      ...createBaseChartOption(["Direzione"], "{value} °"),
+      yAxis: { ...createBaseChartOption(["Direzione"], "{value} °").yAxis, max: 360 },
+      series: [createSeries("Direzione", windDir, "rgb(192, 75, 192)", "scatter")]
+    });
 
-    // heat index wind chill
-    const heatIndexChart = echarts.init(
-      document.getElementById("heatIndexChart")
-    );
-    const heatIndexOption = {
-      legend: {
-        data: ["Heat index", "Wind chill"],
-      },
-      xAxis: {
-        type: "time",
-        axisLabel: {
-          formatter: "{HH}:{mm}",
-        },
-      },
-      yAxis: {
-        type: "value",
-        scale: true,
-        axisLabel: {
-          formatter: "{value} °C", // Format the y-axis label as needed
-          margin: 12, // Adjust the margin as needed
-        },
-      },
-      tooltip: globalTooltip,
-      dataZoom: globalDataZoom,
+    initChart("heatIndexChart", {
+      ...createBaseChartOption(["Heat index", "Wind chill"], "{value} °C"),
       series: [
-        {
-          name: "Heat index",
-          type: "line",
-          data: heatIndex.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(75, 192, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(75, 192, 192)",
-          },
-          showSymbol: false,
-        },
-        {
-          name: "Wind chill",
-          type: "line",
-          data: windChill.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(192, 75, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(192, 75, 192)",
-          },
-          showSymbol: false,
-        },
-        // Repeat for other datasets...
-      ],
-    };
-    heatIndexChart.setOption(heatIndexOption);
+        createSeries("Heat index", heatIndex, "rgb(75, 192, 192)"),
+        createSeries("Wind chill", windChill, "rgb(192, 75, 192)")
+      ]
+    });
 
-    // barometer
-    const barometerChart = echarts.init(
-      document.getElementById("barometerChart")
-    );
-    const barometerOption = {
-      legend: {
-        data: ["Pressione"],
-      },
-      xAxis: {
-        type: "time",
-        axisLabel: {
-          formatter: "{HH}:{mm}",
-        },
-      },
-      yAxis: {
-        type: "value",
-        scale: true,
-        axisLabel: {
-          formatter: "{value} mbar", // Format the y-axis label as needed
-          margin: 12, // Adjust the margin as needed
-        },
-      },
-      tooltip: globalTooltip,
-      dataZoom: globalDataZoom,
-      series: [
-        {
-          name: "Pressione",
-          type: "line",
-          data: barometer.map((temp, i) => [labels[i], temp]),
-          lineStyle: {
-            color: "rgb(75, 192, 192)",
-            width: 3,
-          },
-          itemStyle: {
-            color: "rgb(75, 192, 192)",
-          },
-          showSymbol: false,
-        },
-      ],
-    };
-    barometerChart.setOption(barometerOption);
+    initChart("barometerChart", {
+      ...createBaseChartOption(["Pressione"], "{value} mbar"),
+      series: [createSeries("Pressione", barometer, "rgb(75, 192, 192)")]
+    });
   });
-
