@@ -8,7 +8,7 @@ const globalConfig = {
     { type: "inside", start: 0, end: 100 },
     { type: "slider", start: 0, end: 100, height: 20 }
   ],
-  grid: { containLabel: true, left: 10, right: 10, top: 30, bottom: 30 }
+  grid: { containLabel: true, left: 10, right: 10}
 };
 
 // Funzione per creare opzioni di base per i grafici
