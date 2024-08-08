@@ -8,7 +8,7 @@ const globalConfig = {
     { type: "inside", start: 0, end: 100 },
     { type: "slider", start: 0, end: 100, height: 20 }
   ],
-  grid: { containLabel: true, left: 10, right: 10}
+    grid: { containLabel: true, left: 10, right: 10, top: 50, bottom: 50}
 };
 
 // Funzione per creare opzioni di base per i grafici
@@ -159,7 +159,10 @@ fetch("json/day.json")
       legend: {
         data: ['0-5 km/h', '5-10 km/h', '10-15 km/h', '15-20 km/h', '20+ km/h']
       },
-      polar: {},
+      polar: {
+        center: ['50%', '55%'], // Sposta leggermente verso il basso il centro del grafico
+        radius: '70%' // Riduce il raggio del grafico
+      },
       angleAxis: {
         type: 'category',
         data: windRoseData.map(item => item.name),
