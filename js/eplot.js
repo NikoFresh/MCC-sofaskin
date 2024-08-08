@@ -166,7 +166,9 @@ fetch("json/day.json")
         startAngle: 101, // Inizia da Nord (90 gradi)
         clockwise: true // Ruota in senso antiorario
       },
-      radiusAxis: {},
+      radiusAxis: {
+        show: false // Rimuove l'asse Y
+      },
       series: [0, 1, 2, 3, 4].map(i => ({
         type: 'bar',
         data: windRoseData.map(item => item.data[i]),
