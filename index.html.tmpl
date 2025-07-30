@@ -90,63 +90,104 @@
   </head>
   <body>
     <!-- Header -->
-    <div id="header" class="tw:px-8 tw:pt-8 tw:bg-cyan-200">
-      <div class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left">
-        <h1 class="tw:text-4xl tw:text-gray-900">$station.location</h1>
-        <p
-          class="tw:text-xs tw:mt-1 tw:ml-1 tw:font-Robot-mono tw:text-gray-500"
+    <div
+      id="header"
+      class="tw:px-8 tw:pt-6 tw:bg-sky-500 tw:shadow-lg tw:shadow-sky-500/15"
+    >
+      <div
+        class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left tw:relative tw:z-10 tw:text-white"
+      >
+        <div class="tw:flex tw:items-center tw:gap-3 tw:mb-2">
+          <h1 class="tw:text-4xl tw:font-semibold tw:tracking-tight">
+            $station.location
+          </h1>
+        </div>
+
+        <div
+          class="tw:flex tw:items-center tw:gap-5 tw:mb-2 tw:text-sm tw:text-white/85 tw:font-medium"
         >
-          > $station.latitude[0]&deg; $station.latitude[1]' $station.latitude[2]
-          / $station.longitude[0]&deg; $station.longitude[1]'
-          $station.longitude[2] / $station.altitude
+          <div class="tw:flex tw:items-center tw:gap-1.5">
+            <svg
+              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span class="tw:font-mono"
+              >$station.latitude[0]°$station.latitude[1]'$station.latitude[2],
+              $station.longitude[0]°$station.longitude[1]'$station.longitude[2]</span
+            >
+          </div>
+          <div class="tw:flex tw:items-center tw:gap-1.5">
+            <svg
+              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="17,10 12,15 7,10" />
+              <polyline points="19,15 12,22 5,15" />
+            </svg>
+            <span class="tw:font-mono">$station.altitude</span>
+          </div>
+        </div>
+
+        <p class="tw:text-base tw:text-white/90 tw:font-medium tw:mb-4">
+          Ultimo aggiornamento:
+          <span class="tw:font-mono"
+            >$current.dateTime $current.dateTime.format("%Z")</span
+          >
         </p>
-        <p class="tw:text-xl tw:mt-3 tw:text-gray-900">
-          Condizioni meteo attuali
-        </p>
-        <p class="tw:text-sm tw:text-gray-800 tw:font-Robot-mono">
-          $current.dateTime $current.dateTime.format("%Z")
-        </p>
-        <!-- navigation -->
-        <div class="tw:flex">
+
+        <div
+          class="tw:flex tw:items-end tw:justify-between tw:flex-wrap tw:gap-4"
+        >
           <!-- PC menu -->
-          <nav class="tw:mt-8">
-            <div class="tw:hidden tw:md:flex tw:flex-row">
+          <nav class="tw:flex-1">
+            <div class="tw:hidden tw:md:flex tw:flex-row tw:gap-1">
               <a
                 href="index.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl tw:underline tw:decoration-4 tw:underline-offset-[11px] tw:decoration-cyan-400"
+                class="tw:px-3 tw:py-2 tw:text-white tw:text-lg tw:font-medium tw:border-b-2 tw:border-white/80 tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Oggi</a
               >
               <a
                 href="week.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Settimana</a
               >
               <a
                 href="month.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Mese</a
               >
               <a
                 href="year.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Anno</a
               >
               <a
                 href="summary.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Storico</a
               >
               <a
                 href="vaia.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Vaia</a
               >
             </div>
             <!-- Mobile menu button -->
             <div class="tw:md:hidden">
-              <button class="tw:outline-none mobile-menu-button">
+              <button
+                class="tw:outline-none mobile-menu-button tw:p-2 tw:rounded-lg hover:tw:bg-white/10 tw:transition-colors"
+              >
                 <svg
-                  class="tw:w-5 tw:h-5 tw:mt-2 tw:mr-3 tw:text-gray-900"
+                  class="tw:w-6 tw:h-6 tw:text-white"
                   x-show="!showMenu"
                   fill="none"
                   stroke-linecap="round"
@@ -160,62 +201,69 @@
               </button>
             </div>
           </nav>
-          <a
-            href="https://www.instagram.com/meteocentrocadore/?hl=it"
-            class="tw:w-fit tw:mr-3 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a
-            data-umami-event="A due passi"
-            href="https://aduepassidallaciclabile.it"
-            class="tw:bg-lime-300 tw:w-fit tw:rounded-full tw:px-5 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
-          >
-            <i class="fa-brands fa-airbnb tw:mr-1"></i> A due passi dalla
-            ciclabile
-          </a>
+
+          <!-- IG e aduepassi -->
+          <div class="tw:flex tw:items-center tw:gap-3">
+            <a
+              href="https://www.instagram.com/meteocentrocadore/?hl=it"
+              class="tw:p-2 tw:text-white/80 tw:text-xl tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-lg"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              data-umami-event="A due passi"
+              href="https://aduepassidallaciclabile.it"
+              class="tw:bg-lime-400 tw:text-gray-900 tw:rounded-full tw:px-4 tw:py-2 tw:text-sm tw:font-medium tw:transition-all hover:tw:bg-lime-300 hover:tw:shadow-lg tw:shadow-lime-500/25"
+            >
+              <i class="fa-brands fa-airbnb tw:mr-1.5"></i> A due passi dalla
+              ciclabile
+            </a>
+          </div>
         </div>
+
         <!-- Mobile menu -->
-        <div class="tw:hidden mobile-menu tw:mt-3">
-          <ul class="">
-            <li class="">
+        <div
+          class="tw:hidden mobile-menu tw:mt-4 tw:pt-4 tw:border-t tw:border-white/20"
+        >
+          <ul class="tw:space-y-1">
+            <li>
               <a
                 href="index.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:bg-cyan-100 tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white tw:text-lg tw:bg-white/10 tw:rounded-lg tw:font-medium"
                 >Oggi</a
               >
             </li>
             <li>
               <a
                 href="week.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Settimana</a
               >
             </li>
             <li>
               <a
                 href="month.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Mese</a
               >
             </li>
             <li>
               <a
                 href="year.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Anno</a
               >
             </li>
             <li>
               <a
                 href="summary.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Storico</a
               >
             </li>
             <li>
               <a
                 href="vaia.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Vaia</a
               >
             </li>
