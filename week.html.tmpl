@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 
 <html class="no-js">
-
   <head itemscope itemtype="http://schema.org/Website">
+    <meta charset="utf-8" />
 
-    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta http-equiv="Refresh" content="180">
+    <meta http-equiv="Refresh" content="180" />
 
     #if $Extras.has_key('cwop')
 
-    <meta name="description" content="$station.location Weather Station ($Extras.cwop) - weather web site powered by WeeWX">
+    <meta
+      name="description"
+      content="$station.location Weather Station ($Extras.cwop) - weather web site powered by WeeWX"
+    />
 
     #else
 
-    <meta name="description" content="$station.location Weather Station - weather web site powered by WeeWX">
+    <meta
+      name="description"
+      content="$station.location Weather Station - weather web site powered by WeeWX"
+    />
 
     #end if
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="profile" href="http://gmpg.org/xfn/11" />
 
     #if $Extras.has_key('web_url')
 
-    <link href="$Extras.web_url/week.html" itemprop="url"/>
+    <link href="$Extras.web_url/week.html" itemprop="url" />
 
     #end if
 
@@ -34,49 +38,56 @@
 
     <!-- Open Graph -->
 
-    <meta property="og:site_name" content="$station.location Sommario settimanale" />
+    <meta
+      property="og:site_name"
+      content="$station.location Sommario settimanale"
+    />
 
-    <meta property="og:title" content="Sommario settimanale"/>
+    <meta property="og:title" content="Sommario settimanale" />
 
     #if $Extras.has_key('web_url')
 
-    <meta property="og:url" content="$Extras.web_url/week.html"/>
+    <meta property="og:url" content="$Extras.web_url/week.html" />
 
     #end if
 
-    <meta property="og:description" content="Sommario meteo settimanale di $station.location - weather web site powered by WeeWX" />
+    <meta
+      property="og:description"
+      content="Sommario meteo settimanale di $station.location - weather web site powered by WeeWX"
+    />
 
     <meta property="og:type" content="website" />
 
     <!-- Icons -->
 
-    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="icon" href="favicon.ico" type="image/png" />
 
-    <link rel="apple-touch-icon" href="touch-icon.png"/>
+    <link rel="apple-touch-icon" href="touch-icon.png" />
 
     <!-- Styles -->
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
     <link
-
+      href="http://fonts.googleapis.com/css?family=Lato:300,400,700"
       rel="stylesheet"
-
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-
-      crossorigin="anonymous"
-
-      referrerpolicy="no-referrer"
-
+      type="text/css"
     />
 
-    <link rel="stylesheet" href="css/main.css">
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="build.css?1">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <link rel="stylesheet" href="build.css?1" />
 
     <!-- Skripte -->
 
@@ -86,317 +97,199 @@
 
     <!-- Umami -->
 
-    <script async src="https://analytics.umami.is/script.js" data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"></script> 
-
-
-
+    <script
+      async
+      src="https://analytics.umami.is/script.js"
+      data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"
+    ></script>
   </head>
 
   <body>
-
     <!-- Header -->
 
-    <div id="header" class="tw-px-8 tw-pt-8 tw-bg-cyan-200">
-
-      <div class="lg:tw-max-w-[75%] tw-mx-auto tw-text-left">
-
-        <h1 class="tw-text-4xl tw-text-gray-900">$station.location</h1>
+    <div id="header" class="tw:px-8 tw:pt-8 tw:bg-cyan-200">
+      <div class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left">
+        <h1 class="tw:text-4xl tw:text-gray-900">$station.location</h1>
 
         <p
-
-          class="tw-text-xs tw-mt-1 tw-ml-1 tw-font-Robot-mono tw-text-gray-500"
-
+          class="tw:text-xs tw:mt-1 tw:ml-1 tw:font-Robot-mono tw:text-gray-500"
         >
-
           > $station.latitude[0]&deg; $station.latitude[1]' $station.latitude[2]
-
           / $station.longitude[0]&deg; $station.longitude[1]'
-
           $station.longitude[2] / $station.altitude
-
         </p>
 
-        <p class="tw-text-xl tw-mt-3 tw-text-gray-900">
+        <p class="tw:text-xl tw:mt-3 tw:text-gray-900">Condizioni meteo</p>
 
-          Condizioni meteo
-
-        </p>
-
-        <p class="tw-text-sm tw-text-gray-800 tw-font-Robot-mono">
-
+        <p class="tw:text-sm tw:text-gray-800 tw:font-Robot-mono">
           $current.dateTime $current.dateTime.format("%Z")
-
         </p>
 
         <!-- navigation -->
 
-        <div class="tw-flex">
-
+        <div class="tw:flex">
           <!-- PC menu -->
 
-          <nav class="tw-mt-8">
-
-            <div class="tw-hidden md:tw-flex tw-flex-row">
-
+          <nav class="tw:mt-8">
+            <div class="tw:hidden tw:md:flex tw:flex-row">
               <a
-
                 href="index.html"
-
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl "
-
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Oggi</a
-
               >
 
               <a
-
                 href="week.html"
-
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl tw-underline tw-decoration-4 tw-underline-offset-[11px] tw-decoration-cyan-400"
-
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl tw:underline tw:decoration-4 tw:underline-offset-[11px] tw:decoration-cyan-400"
                 >Settimana</a
-
               >
 
               <a
-
                 href="month.html"
-
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
-
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Mese</a
-
               >
 
               <a
-
                 href="year.html"
-
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
-
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Anno</a
-
               >
 
               <a
-
                 href="summary.html"
-
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
-
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Storico</a
-
               >
 
               <a
-
                 href="vaia.html"
-
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
-
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Vaia</a
-
               >
-
             </div>
 
             <!-- Mobile menu button -->
 
-            <div class="md:tw-hidden">
-
-              <button class="tw-outline-none mobile-menu-button">
-
+            <div class="tw:md:hidden">
+              <button class="tw:outline-none mobile-menu-button">
                 <svg
-
-                  class="tw-w-5 tw-h-5 tw-mt-2 tw-mr-3 tw-text-gray-900"
-
+                  class="tw:w-5 tw:h-5 tw:mt-2 tw:mr-3 tw:text-gray-900"
                   x-show="!showMenu"
-
                   fill="none"
-
                   stroke-linecap="round"
-
                   stroke-linejoin="round"
-
                   stroke-width="2"
-
                   viewBox="0 0 24 24"
-
                   stroke="currentColor"
-
                 >
-
                   <path d="M4 6h16M4 12h16M4 18h16"></path>
-
                 </svg>
-
               </button>
-
             </div>
-
           </nav>
 
           <a
-
             href="https://www.instagram.com/meteocentrocadore/?hl=it"
-
-            class="tw-w-fit tw-mr-3 tw-mt-8 tw-py-1 tw-mb-1 tw-text-lg"
-
+            class="tw:w-fit tw:mr-3 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
             ><i class="fab fa-instagram"></i
-
           ></a>
 
           <a
-
             data-umami-event="A due passi"
-
             href="https://aduepassidallaciclabile.it"
-
-            class="tw-bg-lime-300 tw-w-fit tw-rounded-full tw-px-5 tw-mt-8 tw-py-1 tw-mb-1 tw-text-lg"
-
+            class="tw:bg-lime-300 tw:w-fit tw:rounded-full tw:px-5 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
           >
-
-            <i class="fa-brands fa-airbnb tw-mr-1"></i> A due passi dalla
-
+            <i class="fa-brands fa-airbnb tw:mr-1"></i> A due passi dalla
             ciclabile
-
           </a>
-
         </div>
 
         <!-- Mobile menu -->
 
-        <div class="tw-hidden mobile-menu tw-mt-3">
-
+        <div class="tw:hidden mobile-menu tw:mt-3">
           <ul class="">
-
             <li class="">
-
               <a
-
                 href="index.html"
-
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
-
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Oggi</a
-
               >
-
             </li>
 
             <li>
-
               <a
-
                 href="week.html"
-
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-bg-cyan-100 tw-rounded-lg"
-
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:bg-cyan-100 tw:rounded-lg"
                 >Settimana</a
-
               >
-
             </li>
 
             <li>
-
               <a
-
                 href="month.html"
-
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
-
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Mese</a
-
               >
-
             </li>
 
             <li>
-
               <a
-
                 href="year.html"
-
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
-
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Anno</a
-
               >
-
             </li>
 
             <li>
-
               <a
-
                 href="summary.html"
-
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
-
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Storico</a
-
               >
-
             </li>
 
             <li>
-
               <a
-
                 href="vaia.html"
-
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
-
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Vaia</a
-
               >
-
             </li>
-
           </ul>
-
         </div>
-
       </div>
-
     </div>
 
-    <!-- End header --> 
+    <!-- End header -->
 
-    <div class="main" >
-
-      <div class="container" >
-
-        <div class="left" >
-
-          <div class="card" >
-
-            <h1><i class="fa fa-cloud m-grau" ></i> Questa settimana ($week.start.format("%d-%m-%Y") - $week.end.format("%d-%m-%Y"))</h1>
+    <div class="main">
+      <div class="container">
+        <div class="left">
+          <div class="card">
+            <h1>
+              <i class="fa fa-cloud m-grau"></i> Questa settimana
+              ($week.start.format("%d-%m-%Y") - $week.end.format("%d-%m-%Y"))
+            </h1>
 
             <table class="tablespacer">
-
               <tr>
-
                 <td>Temperatura massima</td>
 
                 <td>$week.outTemp.max</td>
 
                 <td>$week.outTemp.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Temperatura Minima</td>
 
                 <td>$week.outTemp.min</td>
 
                 <td>$week.outTemp.mintime</td>
-
               </tr>
 
-          <!--    <tr>
+              <!--    <tr>
 
                 <td>massima Heat Index</td>
 
@@ -417,76 +310,62 @@
               </tr>-->
 
               <tr>
-
                 <td>Punto di riugiada massimo</td>
 
                 <td>$week.dewpoint.max</td>
 
                 <td>$week.dewpoint.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Punto di rugiada minimo</td>
 
                 <td>$week.dewpoint.min</td>
 
                 <td>$week.dewpoint.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Umidit&agrave; massima</td>
 
                 <td>$week.outHumidity.max</td>
 
                 <td>$week.outHumidity.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Umidit&agrave; minima</td>
 
                 <td>$week.outHumidity.min</td>
 
                 <td>$week.outHumidity.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pressione massima</td>
 
                 <td>$week.barometer.max</td>
 
                 <td>$week.barometer.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pressione minima</td>
 
                 <td>$week.barometer.min</td>
 
                 <td>$week.barometer.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pioggia totale</td>
 
                 <td>$week.rain.sum</td>
 
                 <td></td>
-
               </tr>
 
-        <!--      <tr>
+              <!--      <tr>
 
                 <td>massima Rain Rate</td>
 
@@ -497,26 +376,22 @@
               </tr> -->
 
               <tr>
-
                 <td>Velocit&agrave; massima del vento</td>
 
                 <td>$week.wind.max $week.wind.gustdir</td>
 
                 <td>$week.wind.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Velocit&agrave; media del vento</td>
 
                 <td>$week.wind.avg</td>
 
                 <td></td>
-
               </tr>
 
-      <!--        <tr>
+              <!--        <tr>
 
                 <td>RMS Wind</td>
 
@@ -569,127 +444,100 @@
               #if $week.extraTemp1.has_data
 
               <tr>
-
                 <td>massima Pond Temp</td>
 
                 <td>$week.extraTemp1.max</td>
 
                 <td>$week.extraTemp1.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima Pond Temp</td>
 
                 <td>$week.extraTemp1.min</td>
 
                 <td>$week.extraTemp1.mintime</td>
-
               </tr>
 
-              #end if
-
-              #if $week.UV.has_data
+              #end if #if $week.UV.has_data
 
               <tr>
-
                 <td>massima UV</td>
 
                 <td>$week.UV.max</td>
 
                 <td>$week.UV.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima UV</td>
 
                 <td>$week.UV.min</td>
 
                 <td>$week.UV.mintime</td>
-
               </tr>
 
-              #end if
-
-              #if $week.ET.has_data and $week.ET.sum.raw > 0.0
+              #end if #if $week.ET.has_data and $week.ET.sum.raw > 0.0
 
               <tr>
-
                 <td>massima ET</td>
 
                 <td>$week.ET.max</td>
 
                 <td>$week.ET.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima ET</td>
 
                 <td>$week.ET.min</td>
 
                 <td>$week.ET.mintime</td>
-
               </tr>
 
-              #end if
-
-              #if $week.radiation.has_data
+              #end if #if $week.radiation.has_data
 
               <tr>
-
                 <td>massima Radiation</td>
 
                 <td>$week.radiation.max</td>
 
                 <td>$week.radiation.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima Radiation</td>
 
                 <td>$week.radiation.min</td>
 
                 <td>$week.radiation.mintime</td>
-
               </tr>
 
               #end if
-
             </table>
-
           </div>
 
-          <div class="card" >
-
-            <h1><i class="fa fa-calendar m-orange" ></i> Ieri ($yesterday.dateTime.format("%d-%b-%Y")) </h1>
+          <div class="card">
+            <h1>
+              <i class="fa fa-calendar m-orange"></i> Ieri
+              ($yesterday.dateTime.format("%d-%b-%Y"))
+            </h1>
 
             <table class="tablespacer">
-
               <tr>
-
                 <td>Temperatura massima</td>
 
                 <td>$yesterday.outTemp.max</td>
 
                 <td>$yesterday.outTemp.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Temperatura Minima</td>
 
                 <td>$yesterday.outTemp.min</td>
 
                 <td>$yesterday.outTemp.mintime</td>
-
               </tr>
 
               <!--<tr>
@@ -705,86 +553,70 @@
 -->
 
               <tr>
-
                 <td>Wind Chill minimo</td>
 
                 <td>$yesterday.windchill.min</td>
 
                 <td>$yesterday.windchill.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Punto di riugiada massimo</td>
 
                 <td>$yesterday.dewpoint.max</td>
 
                 <td>$yesterday.dewpoint.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Punto di rugiada minimo</td>
 
                 <td>$yesterday.dewpoint.min</td>
 
                 <td>$yesterday.dewpoint.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Umidit&agrave; massima</td>
 
                 <td>$yesterday.outHumidity.max</td>
 
                 <td>$yesterday.outHumidity.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Umidit&agrave; minima</td>
 
                 <td>$yesterday.outHumidity.min</td>
 
                 <td>$yesterday.outHumidity.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pressione massima</td>
 
                 <td>$yesterday.barometer.max</td>
 
                 <td>$yesterday.barometer.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pressione minima</td>
 
                 <td>$yesterday.barometer.min</td>
 
                 <td>$yesterday.barometer.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pioggia</td>
 
                 <td>$yesterday.rain.sum</td>
 
                 <td></td>
-
               </tr>
 
-    <!--          <tr>
+              <!--          <tr>
 
                 <td>massima Rain Rate</td>
 
@@ -795,26 +627,22 @@
               </tr> -->
 
               <tr>
-
                 <td>Velocit&agrave; massima del vento</td>
 
                 <td>$yesterday.wind.max $day.wind.gustdir</td>
 
                 <td>$yesterday.wind.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Velocit&agrave; media del vento</td>
 
                 <td>$yesterday.wind.avg</td>
 
                 <td></td>
-
               </tr>
 
-          <!--    <tr>
+              <!--    <tr>
 
                 <td>Vector Average Direction</td>
 
@@ -847,106 +675,82 @@
               #if $day.extraTemp1.has_data
 
               <tr>
-
                 <td>massima Pond Temp</td>
 
                 <td>$yesterday.extraTemp1.max</td>
 
                 <td>$yesterday.extraTemp1.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima Pond Temp</td>
 
                 <td>$yesterday.extraTemp1.min</td>
 
                 <td>$yesterday.extraTemp1.mintime</td>
-
               </tr>
 
-              #end if
-
-              #if $yesterday.UV.has_data
+              #end if #if $yesterday.UV.has_data
 
               <tr>
-
                 <td>massima UV</td>
 
                 <td>$yesterday.UV.max</td>
 
                 <td>$yesterday.UV.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima UV</td>
 
                 <td>$yesterday.UV.min</td>
 
                 <td>$yesterday.UV.mintime</td>
-
               </tr>
 
-              #end if
-
-              #if $day.radiation.has_data
+              #end if #if $day.radiation.has_data
 
               <tr>
-
                 <td>massima Radiation</td>
 
                 <td>$yesterday.radiation.max</td>
 
                 <td>$yesterday.radiation.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima Radiation</td>
 
                 <td>$yesterday.radiation.min</td>
 
                 <td>$yesterday.radiation.mintime</td>
-
               </tr>
 
               #end if
-
             </table>
-
           </div>
 
-          <div class="card" >
-
-            <h1><i class="fa fa-calendar m-orange" ></i> Questo mese</h1>
+          <div class="card">
+            <h1><i class="fa fa-calendar m-orange"></i> Questo mese</h1>
 
             <table class="tablespacer">
-
               <tr>
-
                 <td>Temperatura massima</td>
 
                 <td>$month.outTemp.max</td>
 
                 <td>$month.outTemp.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Temperatura Minima</td>
 
                 <td>$month.outTemp.min</td>
 
                 <td>$month.outTemp.mintime</td>
-
               </tr>
 
-        <!--      <tr>
+              <!--      <tr>
 
                 <td>massima Heat Index</td>
 
@@ -967,76 +771,62 @@
               </tr> -->
 
               <tr>
-
                 <td>Punto di riugiada massimo</td>
 
                 <td>$month.dewpoint.max</td>
 
                 <td>$month.dewpoint.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Punto di rugiada minimo</td>
 
                 <td>$month.dewpoint.min</td>
 
                 <td>$month.dewpoint.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Umidit&agrave; massima</td>
 
                 <td>$month.outHumidity.max</td>
 
                 <td>$month.outHumidity.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Umidit&agrave; minima</td>
 
                 <td>$month.outHumidity.min</td>
 
                 <td>$month.outHumidity.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pressione massima</td>
 
                 <td>$month.barometer.max</td>
 
                 <td>$month.barometer.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pressione minima</td>
 
                 <td>$month.barometer.min</td>
 
                 <td>$month.barometer.mintime</td>
-
               </tr>
 
               <tr>
-
                 <td>Pioggia totale</td>
 
                 <td>$month.rain.sum</td>
 
                 <td></td>
-
               </tr>
 
-    <!--          <tr>
+              <!--          <tr>
 
                 <td>massima Rain Rate</td>
 
@@ -1047,26 +837,22 @@
               </tr> -->
 
               <tr>
-
                 <td>Velocit&agrave; massima del vento</td>
 
-                <td>$month.wind.max <br>$month.wind.gustdir</td>
+                <td>$month.wind.max <br />$month.wind.gustdir</td>
 
                 <td>$month.wind.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Velocit&agrave; media del vento</td>
 
                 <td>$month.wind.avg</td>
 
                 <td></td>
-
               </tr>
 
-        <!--      <tr>
+              <!--      <tr>
 
                 <td>RMS Wind</td>
 
@@ -1119,102 +905,104 @@
               #if $month.extraTemp1.has_data
 
               <tr>
-
                 <td>massima Pond Temp</td>
 
                 <td>$month.extraTemp1.max</td>
 
                 <td>$month.extraTemp1.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima Pond Temp</td>
 
                 <td>$month.extraTemp1.min</td>
 
                 <td>$month.extraTemp1.mintime</td>
-
               </tr>
 
-              #end if
-
-              #if $month.UV.has_data
+              #end if #if $month.UV.has_data
 
               <tr>
-
                 <td>massima UV</td>
 
                 <td>$month.UV.max</td>
 
                 <td>$month.UV.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima UV</td>
 
                 <td>$month.UV.min</td>
 
                 <td>$month.UV.mintime</td>
-
               </tr>
 
-              #end if
-
-              #if $month.radiation.has_data
+              #end if #if $month.radiation.has_data
 
               <tr>
-
                 <td>massima Radiation</td>
 
                 <td>$month.radiation.max</td>
 
                 <td>$month.radiation.maxtime</td>
-
               </tr>
 
               <tr>
-
                 <td>Minima Radiation</td>
 
                 <td>$month.radiation.min</td>
 
                 <td>$month.radiation.mintime</td>
-
               </tr>
 
               #end if
-
             </table>
-
           </div>
-
         </div>
 
-        <div class="right" >
+        <div class="right">
+          <div class="card cc graphs">
+            <h1>
+              <i class="fa fa-line-chart m-gruen"></i> Grafici settimanali
+            </h1>
 
-          <div class="card cc graphs" >
+            <img
+              src="http://www.meteocalalzodicadore.altervista.org/weektempdew.png?$current.dateTime.raw"
+              alt="temperatures"
+            />
 
-            <h1><i class="fa fa-line-chart m-gruen" ></i> Grafici settimanali</h1>
+            <img
+              src="http://www.meteocalalzodicadore.altervista.org/weekrain.png?$current.dateTime.raw"
+              alt="rain"
+            />
 
-            <img src="http://www.meteocalalzodicadore.altervista.org/weektempdew.png?$current.dateTime.raw" alt="temperatures" />
+            <img
+              src="http://www.meteocalalzodicadore.altervista.org/weekwind.png?$current.dateTime.raw"
+              alt="wind"
+            />
 
-            <img src="http://www.meteocalalzodicadore.altervista.org/weekrain.png?$current.dateTime.raw" alt="rain" />
+            <img
+              src="http://www.meteocalalzodicadore.altervista.org/weekwinddir.png?$current.dateTime.raw"
+              alt="Hi Wind"
+            />
 
-            <img src="http://www.meteocalalzodicadore.altervista.org/weekwind.png?$current.dateTime.raw" alt="wind" />
+            <img
+              src="http://www.meteocalalzodicadore.altervista.org/weekwindvec.png?$current.dateTime.raw"
+              alt="Wind Vector"
+            />
 
-            <img src="http://www.meteocalalzodicadore.altervista.org/weekwinddir.png?$current.dateTime.raw" alt="Hi Wind" />
+            <img
+              src="http://www.meteocalalzodicadore.altervista.org/weektempchill.png?$current.dateTime.raw"
+              alt="heatchill"
+            />
 
-            <img src="http://www.meteocalalzodicadore.altervista.org/weekwindvec.png?$current.dateTime.raw" alt="Wind Vector" />
+            <img
+              src="http://www.meteocalalzodicadore.altervista.org/weekbarometer.png?$current.dateTime.raw"
+              alt="barometer"
+            />
 
-            <img src="http://www.meteocalalzodicadore.altervista.org/weektempchill.png?$current.dateTime.raw" alt="heatchill" />
-
-            <img src="http://www.meteocalalzodicadore.altervista.org/weekbarometer.png?$current.dateTime.raw" alt="barometer"/>
-
-    <!--        <img src="weekinside.png" alt="Inside" />
+            <!--        <img src="weekinside.png" alt="Inside" />
 
             <img src="weekinhumid.png" alt="Inside/Outside Humidity" /></img> -->
 
@@ -1222,140 +1010,95 @@
 
             <img src="weekuv.png" alt="UV index" />
 
-            #end if
-
-            #if $week.radiation.has_data
+            #end if #if $week.radiation.has_data
 
             <img src="weekradiation.png" alt="Radiation" />
 
-            #end if
-
-            #if $week.UV.has_data
+            #end if #if $week.UV.has_data
 
             <img src="weekuv.png" alt="UV Index" />
 
-            #end if
+            #end if #if $week.rxCheckPercent.has_data
 
-            #if $week.rxCheckPercent.has_data
+            <img src="weekrx.png" alt="week rx percent" />
 
-            <img src="weekrx.png" alt="week rx percent"/>
-
-            #end if
-
-            #if $week.extraTemp1.has_data
+            #end if #if $week.extraTemp1.has_data
 
             <img src="weekpond.png" alt="Pond Temperatura" />
 
             #end if
-
           </div>
-
         </div>
-
       </div>
-
     </div>
 
     <!-- Footer -->
 
-    <footer class="tw-bg-cyan-200 tw-p-8 tw-text-left tw-text-gray-900">
+    <footer class="tw:bg-cyan-200 tw:p-8 tw:text-left tw:text-gray-900">
+      <div class="tw:container tw:mx-auto">
+        <div class="tw:table">
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Stazione:</div>
 
-      <div class="tw-container tw-mx-auto">
-
-        <div class="tw-table">
-
-          <div class="tw-table-row">
-
-            <div class="tw-table-cell tw-pr-2">Stazione:</div>
-
-            <div class="tw-table-cell tw-pr-2">$station.hardware</div>
-
+            <div class="tw:table-cell tw:pr-2">$station.hardware</div>
           </div>
 
-          <div class="tw-table-row">
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Software:</div>
 
-            <div class="tw-table-cell tw-pr-2">Software:</div>
-
-            <div class="tw-table-cell tw-pr-2">WeeWX v$station.version</div>
-
+            <div class="tw:table-cell tw:pr-2">WeeWX v$station.version</div>
           </div>
 
-          <div class="tw-table-row">
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Weewx uptime:</div>
 
-            <div class="tw-table-cell tw-pr-2">Weewx uptime:</div>
-
-            <div class="tw-table-cell tw-pr-2">$station.uptime.long_form</div>
-
+            <div class="tw:table-cell tw:pr-2">$station.uptime.long_form</div>
           </div>
 
-          <div class="tw-table-row">
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Server uptime:</div>
 
-            <div class="tw-table-cell tw-pr-2">Server uptime:</div>
-
-            <div class="tw-table-cell tw-pr-2">$station.os_uptime.long_form</div>
-
+            <div class="tw:table-cell tw:pr-2">
+              $station.os_uptime.long_form
+            </div>
           </div>
-
         </div>
 
-        <hr class="tw-h-px tw-my-4 tw-bg-blue-200 tw-border-0" />
+        <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:border-0" />
 
-        <div class="tw-flex tw-flex-row tw-flex-wrap">
-
-          <p class="tw-mr-2">
-
-            Powered by <a href="weewx.com" class="tw-underline">Weewx</a>.
-
+        <div class="tw:flex tw:flex-row tw:flex-wrap">
+          <p class="tw:mr-2">
+            Powered by <a href="weewx.com" class="tw:underline">Weewx</a>.
           </p>
 
-          <p class="tw-mr-2">
-
-            Non prendere decisioni importanti con le informazioni di questo sito.
-
+          <p class="tw:mr-2">
+            Non prendere decisioni importanti con le informazioni di questo
+            sito.
           </p>
 
-          <p class="tw-mr-2">
-
+          <p class="tw:mr-2">
             © $latest.dateTime.format("%Y") meteocentrocadore.
-
           </p>
 
-          <p class="tw-mr-2">
-
-            <a href="mailto:meteocentrocadore@gmail.com" class="tw-underline"
-
+          <p class="tw:mr-2">
+            <a href="mailto:meteocentrocadore@gmail.com" class="tw:underline"
               >Contattaci</a
-
             >
-
           </p>
-
         </div>
-
       </div>
-
     </footer>
 
     <!-- End footer-->
 
     <script>
-
       const btn = document.querySelector("button.mobile-menu-button");
 
       const menu = document.querySelector(".mobile-menu");
 
-
-
       btn.addEventListener("click", () => {
-
-        menu.classList.toggle("tw-hidden");
-
+        menu.classList.toggle("tw:hidden");
       });
-
     </script>
-
   </body>
-
 </html>
-
-

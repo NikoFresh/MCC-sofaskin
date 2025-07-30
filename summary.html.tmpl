@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
   <head itemscope itemtype="http://schema.org/Website">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Refresh" Content="180">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Refresh" Content="180" />
     #if $Extras.has_key('cwop')
-    <meta name="description" content="$station.location Weather Station ($Extras.cwop) - weather web site powered by WeeWX">
+    <meta
+      name="description"
+      content="$station.location Weather Station ($Extras.cwop) - weather web site powered by WeeWX"
+    />
     #else
-    <meta name="description" content="$station.location Weather Station - weather web site powered by WeeWX">
+    <meta
+      name="description"
+      content="$station.location Weather Station - weather web site powered by WeeWX"
+    />
     #end if
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     #if $Extras.has_key('web_url')
-    <link href="$Extras.web_url/summary.html" itemprop="url"/>
+    <link href="$Extras.web_url/summary.html" itemprop="url" />
     #end if
     <title itemprop="name">$station.location Weather Summaries</title>
     <!-- Open Graph -->
-    <meta property="og:site_name" content="$station.location Summaries and Records" />
-    <meta property="og:title" content="Summaries and Records"/>
+    <meta
+      property="og:site_name"
+      content="$station.location Summaries and Records"
+    />
+    <meta property="og:title" content="Summaries and Records" />
     #if $Extras.has_key('web_url')
-    <meta property="og:url" content="$Extras.web_url/summary.html"/>
+    <meta property="og:url" content="$Extras.web_url/summary.html" />
     #end if
-    <meta property="og:description" content="Summaries and Records for $station.location - weather web site powered by WeeWX" />
+    <meta
+      property="og:description"
+      content="Summaries and Records for $station.location - weather web site powered by WeeWX"
+    />
     <meta property="og:type" content="website" />
     <!-- Icons -->
-    <link rel="icon" href="favicon.ico" type="image/png">
-    <link rel="apple-touch-icon" href="touch-icon.png"/>
+    <link rel="icon" href="favicon.ico" type="image/png" />
+    <link rel="apple-touch-icon" href="touch-icon.png" />
     <!-- Styles -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link
+      href="http://fonts.googleapis.com/css?family=Lato:300,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -36,73 +55,75 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="build.css?1">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="build.css?1" />
     <!-- Skripte -->
     <script src="js/modernizr-2.6.2.min.js"></script>
     <script src="js/checkdiff.js"></script>
     <!-- Umami -->
-    <script async src="https://analytics.umami.is/script.js" data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"></script>
+    <script
+      async
+      src="https://analytics.umami.is/script.js"
+      data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"
+    ></script>
   </head>
   <body>
     <!-- Header -->
-    <div id="header" class="tw-px-8 tw-pt-8 tw-bg-cyan-200">
-      <div class="lg:tw-max-w-[75%] tw-mx-auto tw-text-left">
-        <h1 class="tw-text-4xl tw-text-gray-900">$station.location</h1>
+    <div id="header" class="tw:px-8 tw:pt-8 tw:bg-cyan-200">
+      <div class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left">
+        <h1 class="tw:text-4xl tw:text-gray-900">$station.location</h1>
         <p
-          class="tw-text-xs tw-mt-1 tw-ml-1 tw-font-Robot-mono tw-text-gray-500"
+          class="tw:text-xs tw:mt-1 tw:ml-1 tw:font-Robot-mono tw:text-gray-500"
         >
           > $station.latitude[0]&deg; $station.latitude[1]' $station.latitude[2]
           / $station.longitude[0]&deg; $station.longitude[1]'
           $station.longitude[2] / $station.altitude
         </p>
-        <p class="tw-text-xl tw-mt-3 tw-text-gray-900">
-          Condizioni meteo
-        </p>
-        <p class="tw-text-sm tw-text-gray-800 tw-font-Robot-mono">
+        <p class="tw:text-xl tw:mt-3 tw:text-gray-900">Condizioni meteo</p>
+        <p class="tw:text-sm tw:text-gray-800 tw:font-Robot-mono">
           $current.dateTime $current.dateTime.format("%Z")
         </p>
         <!-- navigation -->
-        <div class="tw-flex">
+        <div class="tw:flex">
           <!-- PC menu -->
-          <nav class="tw-mt-8">
-            <div class="tw-hidden md:tw-flex tw-flex-row">
+          <nav class="tw:mt-8">
+            <div class="tw:hidden tw:md:flex tw:flex-row">
               <a
                 href="index.html"
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl "
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Oggi</a
               >
               <a
                 href="week.html"
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl "
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Settimana</a
               >
               <a
                 href="month.html"
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Mese</a
               >
               <a
                 href="year.html"
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Anno</a
               >
               <a
                 href="summary.html"
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl tw-underline tw-decoration-4 tw-underline-offset-[11px] tw-decoration-cyan-400"
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl tw:underline tw:decoration-4 tw:underline-offset-[11px] tw:decoration-cyan-400"
                 >Storico</a
               >
               <a
                 href="vaia.html"
-                class="tw-px-2 tw-py-1 tw-mr-2 tw-text-gray-900 md:tw-text-xl"
+                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
                 >Vaia</a
               >
             </div>
             <!-- Mobile menu button -->
-            <div class="md:tw-hidden">
-              <button class="tw-outline-none mobile-menu-button">
+            <div class="tw:md:hidden">
+              <button class="tw:outline-none mobile-menu-button">
                 <svg
-                  class="tw-w-5 tw-h-5 tw-mt-2 tw-mr-3 tw-text-gray-900"
+                  class="tw:w-5 tw:h-5 tw:mt-2 tw:mr-3 tw:text-gray-900"
                   x-show="!showMenu"
                   fill="none"
                   stroke-linecap="round"
@@ -118,60 +139,60 @@
           </nav>
           <a
             href="https://www.instagram.com/meteocentrocadore/?hl=it"
-            class="tw-w-fit tw-mr-3 tw-mt-8 tw-py-1 tw-mb-1 tw-text-lg"
+            class="tw:w-fit tw:mr-3 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
             ><i class="fab fa-instagram"></i
           ></a>
           <a
             data-umami-event="A due passi"
             href="https://aduepassidallaciclabile.it"
-            class="tw-bg-lime-300 tw-w-fit tw-rounded-full tw-px-5 tw-mt-8 tw-py-1 tw-mb-1 tw-text-lg"
+            class="tw:bg-lime-300 tw:w-fit tw:rounded-full tw:px-5 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
           >
-            <i class="fa-brands fa-airbnb tw-mr-1"></i> A due passi dalla
+            <i class="fa-brands fa-airbnb tw:mr-1"></i> A due passi dalla
             ciclabile
           </a>
         </div>
         <!-- Mobile menu -->
-        <div class="tw-hidden mobile-menu tw-mt-3">
+        <div class="tw:hidden mobile-menu tw:mt-3">
           <ul class="">
             <li class="">
               <a
                 href="index.html"
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Oggi</a
               >
             </li>
             <li>
               <a
                 href="week.html"
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Settimana</a
               >
             </li>
             <li>
               <a
                 href="month.html"
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Mese</a
               >
             </li>
             <li>
               <a
                 href="year.html"
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Anno</a
               >
             </li>
             <li>
               <a
                 href="summary.html"
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-bg-cyan-100 tw-rounded-lg"
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:bg-cyan-100 tw:rounded-lg"
                 >Storico</a
               >
             </li>
             <li>
               <a
                 href="vaia.html"
-                class="tw-block tw-px-2 tw-py-4 tw-text-gray-900 md:tw-text-xl tw-rounded-lg"
+                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
                 >Vaia</a
               >
             </li>
@@ -179,13 +200,13 @@
         </div>
       </div>
     </div>
-    <!-- End header --> 
+    <!-- End header -->
     <!-- Main container -->
-    <div class="main" >
-      <div class="container" >
-        <div class="left" >
-          <div class="card" >
-            <h1><i class="fa fa-bolt m-orange" ></i> All Time Records </h1>
+    <div class="main">
+      <div class="container">
+        <div class="left">
+          <div class="card">
+            <h1><i class="fa fa-bolt m-orange"></i> All Time Records</h1>
             <table class="tablespacer">
               <tr>
                 <td colspan="3"><b>Temperatura esterna</b></td>
@@ -211,7 +232,7 @@
                 <td>$alltime.outTemp.maxmintime</td>
               </tr>
               <tr>
-                <td colspan="3"><br><b>Punto di rugiada</b></td>
+                <td colspan="3"><br /><b>Punto di rugiada</b></td>
               </tr>
               <tr>
                 <td>Massimo</td>
@@ -224,7 +245,7 @@
                 <td>$alltime.dewpoint.mintime</td>
               </tr>
               <tr>
-                <td colspan="3"><br><b>Precipitazioni</b></td>
+                <td colspan="3"><br /><b>Precipitazioni</b></td>
               </tr>
               <tr>
                 <td>Pioggia giornaliera massima</td>
@@ -237,7 +258,7 @@
                 <td>$alltime.rainRate.maxtime</td>
               </tr>
               <tr>
-                <td colspan="3"><br><b>Indice di calore</b></td>
+                <td colspan="3"><br /><b>Indice di calore</b></td>
               </tr>
               <tr>
                 <td>Massimo</td>
@@ -245,7 +266,7 @@
                 <td>$alltime.heatindex.maxtime</td>
               </tr>
               <tr>
-                <td colspan="3"><br><b>Pressione atmosferica</b></td>
+                <td colspan="3"><br /><b>Pressione atmosferica</b></td>
               </tr>
               <tr>
                 <td>Massima</td>
@@ -258,7 +279,7 @@
                 <td>$alltime.barometer.mintime</td>
               </tr>
               <tr>
-                <td colspan="3"><br><b>Vento</b></td>
+                <td colspan="3"><br /><b>Vento</b></td>
               </tr>
               <tr>
                 <td>Massimo sostenuto</td>
@@ -271,7 +292,7 @@
                 <td>$alltime.windGust.maxtime</td>
               </tr>
               <tr>
-                <td colspan="3"><br><b>Wind Chill</b></td>
+                <td colspan="3"><br /><b>Wind Chill</b></td>
               </tr>
               <tr>
                 <td>Massimo</td>
@@ -309,36 +330,37 @@
             </table>
           </div>
           <div class="card">
-            <h1><i class="fa fa-table m-grau" ></i> Numero di giorni con dati registrati</h1>
-            <div class="tablefix">
-              $temp_count_table
-            </div>
+            <h1>
+              <i class="fa fa-table m-grau"></i> Numero di giorni con dati
+              registrati
+            </h1>
+            <div class="tablefix">$temp_count_table</div>
           </div>
         </div>
-        <div class="right" >
+        <div class="right">
           <div class="card">
             <h1><i class="fa fa-archive"></i> Report mensili</h1>
-            <div class="noaatable">
-              $NOAA_table
-            </div>
+            <div class="noaatable">$NOAA_table</div>
           </div>
           <div class="card">
-            <h1><i class="fa fa-thermometer-half" ></i> Temperatura media mensile (°C)</h1>
-            <div class="tablefix">
-              $avg_temp_table
-            </div>
+            <h1>
+              <i class="fa fa-thermometer-half"></i> Temperatura media mensile
+              (°C)
+            </h1>
+            <div class="tablefix">$avg_temp_table</div>
           </div>
           <div class="card">
-            <h1><i class="fa fa-umbrella m-blau" ></i> Pioggia totale mensile (mm)</h1>
-            <div class="tablefix">
-              $rain_table
-            </div>
+            <h1>
+              <i class="fa fa-umbrella m-blau"></i> Pioggia totale mensile (mm)
+            </h1>
+            <div class="tablefix">$rain_table</div>
           </div>
           <div class="card">
-            <h1><i class="fa fa-umbrella m-blau" ></i> Numero di giorni di pioggia (>=0.5mm)</h1>
-            <div class="tablefix">
-              $rain_count_table
-            </div>
+            <h1>
+              <i class="fa fa-umbrella m-blau"></i> Numero di giorni di pioggia
+              (>=0.5mm)
+            </h1>
+            <div class="tablefix">$rain_count_table</div>
           </div>
           <!--
           <div class="card">
@@ -352,39 +374,42 @@
       </div>
     </div>
     <!-- Footer -->
-    <footer class="tw-bg-cyan-200 tw-p-8 tw-text-left tw-text-gray-900">
-      <div class="tw-container tw-mx-auto">
-        <div class="tw-table">
-          <div class="tw-table-row">
-            <div class="tw-table-cell tw-pr-2">Stazione:</div>
-            <div class="tw-table-cell tw-pr-2">$station.hardware</div>
+    <footer class="tw:bg-cyan-200 tw:p-8 tw:text-left tw:text-gray-900">
+      <div class="tw:container tw:mx-auto">
+        <div class="tw:table">
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Stazione:</div>
+            <div class="tw:table-cell tw:pr-2">$station.hardware</div>
           </div>
-          <div class="tw-table-row">
-            <div class="tw-table-cell tw-pr-2">Software:</div>
-            <div class="tw-table-cell tw-pr-2">WeeWX v$station.version</div>
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Software:</div>
+            <div class="tw:table-cell tw:pr-2">WeeWX v$station.version</div>
           </div>
-          <div class="tw-table-row">
-            <div class="tw-table-cell tw-pr-2">Weewx uptime:</div>
-            <div class="tw-table-cell tw-pr-2">$station.uptime.long_form</div>
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Weewx uptime:</div>
+            <div class="tw:table-cell tw:pr-2">$station.uptime.long_form</div>
           </div>
-          <div class="tw-table-row">
-            <div class="tw-table-cell tw-pr-2">Server uptime:</div>
-            <div class="tw-table-cell tw-pr-2">$station.os_uptime.long_form</div>
+          <div class="tw:table-row">
+            <div class="tw:table-cell tw:pr-2">Server uptime:</div>
+            <div class="tw:table-cell tw:pr-2">
+              $station.os_uptime.long_form
+            </div>
           </div>
         </div>
-        <hr class="tw-h-px tw-my-4 tw-bg-blue-200 tw-border-0" />
-        <div class="tw-flex tw-flex-row tw-flex-wrap">
-          <p class="tw-mr-2">
-            Powered by <a href="weewx.com" class="tw-underline">Weewx</a>.
+        <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:border-0" />
+        <div class="tw:flex tw:flex-row tw:flex-wrap">
+          <p class="tw:mr-2">
+            Powered by <a href="weewx.com" class="tw:underline">Weewx</a>.
           </p>
-          <p class="tw-mr-2">
-            Non prendere decisioni importanti con le informazioni di questo sito.
+          <p class="tw:mr-2">
+            Non prendere decisioni importanti con le informazioni di questo
+            sito.
           </p>
-          <p class="tw-mr-2">
+          <p class="tw:mr-2">
             © $latest.dateTime.format("%Y") meteocentrocadore.
           </p>
-          <p class="tw-mr-2">
-            <a href="mailto:meteocentrocadore@gmail.com" class="tw-underline"
+          <p class="tw:mr-2">
+            <a href="mailto:meteocentrocadore@gmail.com" class="tw:underline"
               >Contattaci</a
             >
           </p>
@@ -397,9 +422,8 @@
       const menu = document.querySelector(".mobile-menu");
 
       btn.addEventListener("click", () => {
-        menu.classList.toggle("tw-hidden");
+        menu.classList.toggle("tw:hidden");
       });
     </script>
   </body>
 </html>
-
