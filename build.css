@@ -773,6 +773,13 @@
       }
     }
   }
+  .tw\:hover\:bg-weather-cool\/5 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in oklab, #0ea5e9 5%, transparent);
+      }
+    }
+  }
   .tw\:hover\:bg-weather-cool\/10 {
     &:hover {
       @media (hover: hover) {
