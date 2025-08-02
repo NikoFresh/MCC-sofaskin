@@ -550,7 +550,7 @@
               $yrNew = ($yr - 1) #if $yrNew % 100 == 0 #if $yrNew % 400 == 0 #if
               $day.dateTime.format("%d-%b") < '01-Mar' #set $n = 366 #else #set
               $n = 365 #end if #end if #else #set $n = 365 #end if #end if
-              <h1 class="tw:text-xl tw:mb-5 tw:text-gray-800 tw:p-4">
+              <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
                 Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b
                 (%Y)"))
               </h1>
@@ -679,17 +679,17 @@
 
             <!-- Almanac -->
             <div
-              class="tw:lg:col-span-2 tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              class="tw:lg:col-span-2 tw:bg-weather-cool/6 tw:rounded-2xl tw:border tw:border-gray-100"
             >
               #set $sun_altitude = $almanac.sun.alt #if $sun_altitude < 0 #set
               $sun_None="<i>(Always down)</i>" #else #set $sun_None="<i
                 >(Always up)</i
               >" #end if
 
-              <h1 class="tw:text-xl tw:pb-4">Almanacco</h1>
+              <h1 class="tw:text-xl tw:px-4 tw:pt-4">Almanacco</h1>
               <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2">
                 <div>
-                  <h1 class="tw:text-xl tw:mb-5 tw:text-gray-800 tw:p-4">
+                  <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
                     Sole
                   </h1>
 
@@ -859,7 +859,7 @@
                 </div>
 
                 <div>
-                  <h1 class="tw:text-xl tw:mb-5 tw:text-gray-800 tw:p-4">
+                  <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
                     Luna
                   </h1>
 
@@ -1039,7 +1039,7 @@
       </div>
     </main>
     <!-- Footer -->
-    <footer class="tw:bg-cyan-200 tw:p-8">
+    <footer class="tw:bg-weather-cool/80 tw:p-8 tw:text-white">
       <div class="tw:container tw:mx-auto">
         <div class="tw:table">
           <div class="tw:table-row">
