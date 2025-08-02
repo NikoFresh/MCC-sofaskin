@@ -269,993 +269,777 @@
       </div>
     </div>
     <!-- End header -->
-    <div class="tw:container tw:mx-auto">
-      <!-- Mqtt -->
-      <div class="tw:mb-2 tw:mt-3">
-        <div
-          class="online-indicator tw:mx-7 tw:mt-1.5 tw:md:ml-0"
-          id="indicator"
-        >
-          <span
-            class="tw:w-2 tw:h-2 tw:bg-red-500 tw:rounded-full tw:animate-pulse"
-            id="indicator-1"
-          ></span>
+    <main class="tw:mx-4">
+      <div class="tw:container tw:mx-auto">
+        <!-- Mqtt -->
+        <div class="tw:mb-2 tw:mt-3">
+          <div
+            class="online-indicator tw:mx-7 tw:mt-1.5 tw:md:ml-0"
+            id="indicator"
+          >
+            <span
+              class="tw:w-2 tw:h-2 tw:bg-red-500 tw:rounded-full tw:animate-pulse"
+              id="indicator-1"
+            ></span>
+          </div>
+          <span id="mqttStatus" class="tw:inline-block tw:align-middle tw:mb-1"
+            >Connessione alla stazione meteo in corso...</span
+          >
         </div>
-        <span id="mqttStatus" class="tw:inline-block tw:align-middle tw:mb-1"
-          >Connessione alla stazione meteo in corso...</span
-        >
-      </div>
 
-      <section class="tw:mb-8 tw:mx-4">
-        <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-6">
-          <div class="tw:lg:col-span-1">
-            <div
-              class="tw:grid tw:grid-cols-2 tw:lg:grid-cols-3 tw:gap-2 tw:mb-4"
-            >
-              <!-- Tempeartura -->
+        <section class="tw:mb-8">
+          <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-6">
+            <div class="tw:lg:col-span-1">
               <div
-                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                class="tw:grid tw:grid-cols-2 tw:lg:grid-cols-3 tw:gap-2 tw:mb-4"
               >
-                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
-                  <div class="tw:text-sm tw:text-gray-800">Temperatura</div>
-                  <div class="tw:w-8 tw:h-6">
-                    <canvas
-                      id="humiditySparkline"
-                      width="32"
-                      height="24"
-                    ></canvas>
-                  </div>
-                </div>
+                <!-- Tempeartura -->
                 <div
-                  class="tw:text-2xl tw:font-bold tw:text-weather-cool tw:mb-2"
+                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
                 >
-                  22°C
-                </div>
-                <div class="tw:text-s tw:text-gray-500 tw:mb-2">
-                  Percepita: <span class="tw:font-medium">23°C</span>
-                </div>
-                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                  <div>
-                    Max: <span class="tw:font-medium">25°C</span>
-                    <span class="tw:text-gray-400">(06:23)</span>
-                  </div>
-                  <div>
-                    Min: <span class="tw:font-medium">16°C</span>
-                    <span class="tw:text-gray-400">(16:44)</span>
-                  </div>
-                </div>
-              </div>
-              <!-- umidità -->
-              <div
-                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
-              >
-                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
-                  <div class="tw:text-sm tw:text-gray-800">Umidità</div>
-                  <div class="tw:w-8 tw:h-6">
-                    <canvas
-                      id="humiditySparkline"
-                      width="32"
-                      height="24"
-                    ></canvas>
-                  </div>
-                </div>
-                <div
-                  class="tw:text-2xl tw:font-bold tw:text-weather-cool tw:mb-2"
-                >
-                  67%
-                </div>
-                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                  <div>
-                    Max: <span class="tw:font-medium">97%</span>
-                    <span class="tw:text-gray-400">(06:23)</span>
-                  </div>
-                  <div>
-                    Min: <span class="tw:font-medium">53%</span>
-                    <span class="tw:text-gray-400">(16:44)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Pressione -->
-              <div
-                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
-              >
-                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
-                  <div class="tw:text-sm tw:text-gray-800">Pressione</div>
-                  <div class="tw:w-8 tw:h-6">
-                    <canvas
-                      id="pressureSparkline"
-                      width="32"
-                      height="24"
-                    ></canvas>
-                  </div>
-                </div>
-                <div class="tw:text-2xl tw:font-bold tw:text-purple-600">
-                  1017
-                </div>
-                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                  <div>mbar</div>
-                  <div>
-                    Max: <span class="tw:font-medium">1023.1</span>
-                    <span class="tw:text-gray-400">(06:24)</span>
-                  </div>
-                  <div>
-                    Min: <span class="tw:font-medium">1015.8</span>
-                    <span class="tw:text-gray-400">(16:10)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Vento -->
-              <div
-                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
-              >
-                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
-                  <div class="tw:text-sm tw:text-gray-800">Vento</div>
                   <div
-                    class="tw:w-8 tw:h-8 tw:bg-green-100 tw:rounded-full tw:flex tw:items-center tw:justify-center"
+                    class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <span class="tw:text-green-600 tw:text-sm">↖</span>
+                    <div class="tw:text-sm tw:text-gray-800">Temperatura</div>
+                  </div>
+                  <div
+                    class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
+                  >
+                    22°C
+                  </div>
+                  <div class="tw:text-s tw:text-gray-500 tw:mb-2">
+                    Percepita: <span class="">23°C</span>
+                  </div>
+                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                    <div>
+                      Max: <span class="tw:font-medium">25°C</span>
+                      <span class="tw:text-gray-400">(06:23)</span>
+                    </div>
+                    <div>
+                      Min: <span class="tw:font-medium">16°C</span>
+                      <span class="tw:text-gray-400">(16:44)</span>
+                    </div>
                   </div>
                 </div>
-                <div class="tw:text-2xl tw:font-bold tw:text-green-600">
-                  8.5
-                </div>
-                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                  <div>km/h NW</div>
-                  <div>
-                    Max: <span class="tw:font-medium">17 km/h</span>
-                    <span class="tw:text-gray-400">(13:57)</span>
+                <!-- umidità -->
+                <div
+                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                >
+                  <div
+                    class="tw:flex tw:items-center tw:justify-between tw:mb-2"
+                  >
+                    <div class="tw:text-sm tw:text-gray-800">Umidità</div>
                   </div>
-                  <div>Avg: <span class="tw:font-medium">3 km/h</span></div>
-                </div>
-              </div>
-              <!-- pioggia -->
-              <div
-                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
-              >
-                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
-                  <div class="tw:text-sm tw:text-gray-800">Pioggia</div>
-                  <div class="tw:text-xs tw:text-blue-500">💧</div>
-                </div>
-                <div class="tw:text-xl tw:font-bold tw:text-blue-600">0.25</div>
-                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                  <div>inches</div>
-                  <div>
-                    Rain rate: <span class="tw:font-medium">0.05 in/hr</span>
+                  <div
+                    class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
+                  >
+                    67%
                   </div>
-                  <div>
-                    Rain rate max:
-                    <span class="tw:font-medium">0.12 in/hr</span>
+                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                    <div>
+                      Max: <span class="tw:font-medium">97%</span>
+                      <span class="tw:text-gray-400">(06:23)</span>
+                    </div>
+                    <div>
+                      Min: <span class="tw:font-medium">53%</span>
+                      <span class="tw:text-gray-400">(16:44)</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Dew Point -->
-              <div
-                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
-              >
-                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
-                  <div class="tw:text-sm tw:text-gray-800">
-                    Punto di rugiada
+                <!-- Pressione -->
+                <div
+                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                >
+                  <div
+                    class="tw:flex tw:items-center tw:justify-between tw:mb-2"
+                  >
+                    <div class="tw:text-sm tw:text-gray-800">Pressione</div>
                   </div>
-                  <div class="tw:text-xs tw:text-gray-400">ℹ️</div>
-                </div>
-                <div class="tw:text-xl tw:font-bold tw:text-weather-cool">
-                  14.4°
-                </div>
-                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                  <div>
-                    Max: <span class="tw:font-medium">16.5°C</span>
-                    <span class="tw:text-gray-400">(16:40)</span>
+                  <div class="tw:text-2xl tw:font-bold tw:text-gray-800">
+                    1017
                   </div>
-                  <div>
-                    Min: <span class="tw:font-medium">10.0°C</span>
-                    <span class="tw:text-gray-400">(06:18)</span>
+                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                    <div>mbar</div>
+                    <div>
+                      Max: <span class="tw:font-medium">1023.1</span>
+                      <span class="tw:text-gray-400">(06:24)</span>
+                    </div>
+                    <div>
+                      Min: <span class="tw:font-medium">1015.8</span>
+                      <span class="tw:text-gray-400">(16:10)</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Wind Chill -->
-              <div
-                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
-              >
-                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
-                  <div class="tw:text-sm tw:text-gray-800">Wind Chill</div>
-                  <div class="tw:text-xs tw:text-gray-400">ℹ️</div>
-                </div>
-                <div class="tw:text-xl tw:font-bold tw:text-weather-cool">
-                  20.8°
-                </div>
-                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                  <div>
-                    Max: <span class="tw:font-medium">22.8°C</span>
-                    <span class="tw:text-gray-400">(16:30)</span>
+                <!-- Vento -->
+                <div
+                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                >
+                  <div
+                    class="tw:flex tw:items-center tw:justify-between tw:mb-2"
+                  >
+                    <div class="tw:text-sm tw:text-gray-800">Vento</div>
                   </div>
-                  <div>
-                    Min: <span class="tw:font-medium">10.6°C</span>
-                    <span class="tw:text-gray-400">(06:18)</span>
+                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                    8.5
+                  </div>
+                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                    <div>km/h NW</div>
+                    <div>
+                      Max: <span class="tw:font-medium">17 km/h</span>
+                      <span class="tw:text-gray-400">(13:57)</span>
+                    </div>
+                    <div>Avg: <span class="tw:font-medium">3 km/h</span></div>
+                  </div>
+                </div>
+                <!-- pioggia -->
+                <div
+                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                >
+                  <div
+                    class="tw:flex tw:items-center tw:justify-between tw:mb-2"
+                  >
+                    <div class="tw:text-sm tw:text-gray-800">Pioggia</div>
+                  </div>
+                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                    0.25
+                  </div>
+                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                    <div>inches</div>
+                    <div>
+                      Rain rate: <span class="tw:font-medium">0.05 in/hr</span>
+                    </div>
+                    <div>
+                      Rain rate max:
+                      <span class="tw:font-medium">0.12 in/hr</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dew Point -->
+                <div
+                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                >
+                  <div
+                    class="tw:flex tw:items-center tw:justify-between tw:mb-2"
+                  >
+                    <div class="tw:text-sm tw:text-gray-800">
+                      Punto di rugiada
+                    </div>
+                  </div>
+                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                    14.4°
+                  </div>
+                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                    <div>
+                      Max: <span class="tw:font-medium">16.5°C</span>
+                      <span class="tw:text-gray-400">(16:40)</span>
+                    </div>
+                    <div>
+                      Min: <span class="tw:font-medium">10.0°C</span>
+                      <span class="tw:text-gray-400">(06:18)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Wind Chill -->
+                <div
+                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                >
+                  <div
+                    class="tw:flex tw:items-center tw:justify-between tw:mb-2"
+                  >
+                    <div class="tw:text-sm tw:text-gray-800">Wind Chill</div>
+                  </div>
+                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                    20.8°
+                  </div>
+                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                    <div>
+                      Max: <span class="tw:font-medium">22.8°C</span>
+                      <span class="tw:text-gray-400">(16:30)</span>
+                    </div>
+                    <div>
+                      Min: <span class="tw:font-medium">10.6°C</span>
+                      <span class="tw:text-gray-400">(06:18)</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- webcam -->
-          <div class="tw:lg:col-span-1">
-            <div
-              class="tw:bg-gradient-to-br tw:from-weather-cool/10 tw:to-weather-warm/10 tw:rounded-2xl tw:p-4 tw:flex tw:flex-col"
-            >
-              <!-- <div class="tw:flex-1 tw:rounded-xl tw:overflow-hidden">
-                <img
-                  src="https://www.meteocentrocadore.it/webcam/webcam.jpg?1753978800"
-                  alt="Live weather camera"
-                  class="tw:w-full tw:object-cover"
+            <!-- webcam -->
+            <div class="tw:lg:col-span-1">
+              <div
+                class="tw:bg-gradient-to-br tw:from-weather-cool/10 tw:to-weather-warm/10 tw:rounded-2xl tw:p-4 tw:flex tw:flex-col"
+              >
+                <!-- Radio buttons prima del container -->
+                <input
+                  type="radio"
+                  id="webcam"
+                  name="weather-view"
+                  style="display: none"
+                  checked
                 />
-              </div> -->
-              <!-- Radio buttons prima del container -->
-              <input
-                type="radio"
-                id="webcam"
-                name="weather-view"
-                style="display: none"
-                checked
-              />
-              <input
-                type="radio"
-                id="radar"
-                name="weather-view"
-                style="display: none"
-              />
+                <input
+                  type="radio"
+                  id="radar"
+                  name="weather-view"
+                  style="display: none"
+                />
 
-              <div class="weather-container">
-                <div class="tw:lg:col-span-1">
-                  <div class="">
-                    <!-- Navigazione -->
-                    <div class="tw:mb-3 tw:flex tw:justify-center">
-                      <div
-                        class="tw:bg-white/20 tw:rounded-lg tw:p-1 tw:flex tw:gap-1"
-                      >
-                        <label
-                          for="webcam"
-                          class="webcam-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:bg-white/30 tw:text-gray-800"
+                <div class="weather-container">
+                  <div class="tw:lg:col-span-1">
+                    <div class="">
+                      <!-- Navigazione -->
+                      <div class="tw:mb-3 tw:flex tw:justify-center">
+                        <div
+                          class="tw:bg-white/20 tw:rounded-lg tw:p-1 tw:flex tw:gap-1"
                         >
-                          📹 Webcam
-                        </label>
-                        <label
-                          for="radar"
-                          class="radar-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:text-gray-600"
-                        >
-                          🌦️ Radar
-                        </label>
+                          <label
+                            for="webcam"
+                            class="webcam-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:bg-white/30 tw:text-gray-800"
+                          >
+                            📹 Webcam
+                          </label>
+                          <label
+                            for="radar"
+                            class="radar-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:text-gray-600"
+                          >
+                            🌦️ Radar
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Immagini -->
+                      <div class="tw:flex-1 tw:overflow-hidden">
+                        <img
+                          class="webcam-image tw:w-full tw:object-cover tw:block tw:rounded-xl"
+                          src="https://www.meteocentrocadore.it/webcam/webcam.jpg"
+                          alt="Live weather camera"
+                        />
+                        <img
+                          class="radar-image tw:w-full tw:object-contain tw:hidden tw:lg:max-h-[25vw] tw:rounded-xl"
+                          src="https://meteo.arpa.veneto.it/meteo/radar/imgs/concordia/1_BASE.jpg?$current.dateTime.raw"
+                          alt="Weather radar"
+                        />
                       </div>
                     </div>
-
-                    <!-- Immagini -->
-                    <div class="tw:flex-1 tw:rounded-xl tw:overflow-hidden">
-                      <img
-                        class="webcam-image tw:w-full tw:object-cover tw:block"
-                        src="https://www.meteocentrocadore.it/webcam/webcam.jpg"
-                        alt="Live weather camera"
-                      />
-                      <img
-                        class="radar-image tw:w-full tw:object-cover tw:hidden"
-                        src="https://meteo.arpa.veneto.it/meteo/radar/imgs/concordia/1_BASE.jpg?$current.dateTime.raw"
-                        alt="Weather radar"
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <!-- Current data -->
-      <div
-        class="tw:flex tw:flex-wrap tw:gap-6 tw:mx-7 tw:mb-4 tw:md:ml-0 tw:mt-4 tw:col-span-5 tw:lg:col-span-3"
-      >
-        <!-- Temperatura esterna -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-orange-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
-              Temperatura esterna
-            </h2>
-          </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="outTemp"
+        </section>
+
+        <section>
+          <div
+            class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-3 tw:gap-6 tw:mt-8"
           >
-            $current.outTemp
-          </p>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massima</span> $day.outTemp.max
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.outTemp.maxtime)</span
-              >
-            </p>
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Minima</span> $day.outTemp.min
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.outTemp.mintime)</span
-              >
-            </p>
-          </div>
-        </div>
+            <div
+              class="tw:md:col-span-1 tw:bg-weather-cool/6 tw:rounded-2xl tw:border tw:border-gray-100"
+            >
+              <!-- One year ago -->
+              <!--Leap Year Code -->
+              #set $yr = int($day.dateTime.format("%Y"))%4 #if $yr == 0 #if $yr
+              % 100 == 0 #if $yr % 400 == 0 #if $day.dateTime.format("%d-%b") ==
+              '29-Feb' #set $n = 1461 #else if $day.dateTime.format("%d-%b") >=
+              '01-Mar' #set $n = 366 #else #set $n = 365 #end if #else #set $n =
+              365 #end if #else #if $day.dateTime.format("%d-%b") == '29-Feb'
+              #set $n = 1461 #else if $day.dateTime.format("%d-%b") >= '01-Mar'
+              #set $n = 366 #else #set $n = 365 #end if #end if #else #set
+              $yrNew = ($yr - 1) #if $yrNew % 100 == 0 #if $yrNew % 400 == 0 #if
+              $day.dateTime.format("%d-%b") < '01-Mar' #set $n = 366 #else #set
+              $n = 365 #end if #end if #else #set $n = 365 #end if #end if
+              <h1 class="tw:text-xl tw:mb-5 tw:text-gray-800 tw:p-4">
+                Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b
+                (%Y)"))
+              </h1>
 
-        <!-- Umidità -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-blue-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10 3.5a6.5 6.5 0 106.5 6.5c0-1.61-.59-2.939-1.37-3.825A10.408 10.408 0 0010 3.5z"
-              />
-            </svg>
-            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">Umidità</h2>
-          </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="outHum"
-          >
-            $current.outHumidity
-          </p>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massima</span> $day.outHumidity.max
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.outHumidity.maxtime)</span
+              <table
+                class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2"
               >
-            </p>
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Minima</span> $day.outHumidity.min
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.outHumidity.mintime)</span
-              >
-            </p>
-          </div>
-        </div>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Temperatura massima:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outTemp.max
+                    $days_ago($days_ago=$n).outTemp.maxtime
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Temperatura minima:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outTemp.min
+                    $days_ago($days_ago=$n).outTemp.mintime
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Umidità massima:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outHumidity.max
+                    $days_ago($days_ago=$n).outHumidity.maxtime
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Umidità minima:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outHumidity.min
+                    $days_ago($days_ago=$n).outHumidity.mintime
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Pressione massima:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).barometer.max
+                    $days_ago($days_ago=$n).barometer.maxtime
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Pressione minima:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).barometer.min
+                    $days_ago($days_ago=$n).barometer.mintime
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Pioggia:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).rain.sum
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  >
+                    Rain Rate max:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).rainRate.max
+                    $days_ago($days_ago=$n).rainRate.maxtime
+                  </td>
+                </tr>
+                <tr class="tw:hover:bg-weather-cool/10 tw:group">
+                  <td
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                  >
+                    Vento massimo:
+                  </td>
+                  <td
+                    class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                  >
+                    $days_ago($days_ago=$n).wind.max $day.wind.gustdir
+                    $days_ago($days_ago=$n).wind.maxtime
+                  </td>
+                </tr>
+              </table>
+            </div>
 
-        <!-- Pressione -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-purple-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
+            <!-- Almanac -->
+            <div
+              class="tw:lg:col-span-2 tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
             >
-              <path
-                fill-rule="evenodd"
-                d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
-              Pressione
-            </h2>
-          </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="pressure"
-          >
-            $current.barometer
-          </p>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massima</span> $day.barometer.max
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.barometer.maxtime)</span
-              >
-            </p>
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Minima</span> $day.barometer.min
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.barometer.mintime)</span
-              >
-            </p>
-          </div>
-        </div>
+              #set $sun_altitude = $almanac.sun.alt #if $sun_altitude < 0 #set
+              $sun_None="<i>(Always down)</i>" #else #set $sun_None="<i
+                >(Always up)</i
+              >" #end if
 
-        <!-- Vento -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-green-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 12a1 1 0 11-2 0 1 1 0 012 0zM7 4a1 1 0 000 2h6a1 1 0 100-2H7z"
-              />
-            </svg>
-            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">Vento</h2>
-          </div>
-          <div class="tw:mb-3">
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:leading-tight"
-              id="windSpeed"
-            >
-              $current.windSpeed
-            </p>
-            <p class="tw:text-sm tw:text-gray-800 tw:mt-1">
-              $current.windDir.ordinal_compass ($current.windDir)
-            </p>
-          </div>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massimo</span> $day.wind.max
-              $day.wind.gustdir
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.wind.maxtime)</span
-              >
-            </p>
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Medio</span> $day.wind.avg
-            </p>
-          </div>
-        </div>
+              <h1 class="tw:text-xl tw:pb-4">Almanacco</h1>
+              <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2">
+                <div>
+                  <h1 class="tw:text-xl tw:mb-5 tw:text-gray-800 tw:p-4">
+                    Sole
+                  </h1>
 
-        <!-- Intensità di pioggia -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-cyan-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
-              Intensità di pioggia
-            </h2>
-          </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="rainRate"
-          >
-            $current.rainRate
-          </p>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massima</span> $day.rainRate.max
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.rainRate.maxtime)</span
-              >
-            </p>
-          </div>
-        </div>
-
-        <!-- Pioggia totale -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-indigo-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10 3.75a2 2 0 00-4 0v.445L4.17 6.608a1 1 0 00-.67.94v.452c0 .8.8 1.6 1.6 1.6h9.8c.8 0 1.6-.8 1.6-1.6v-.452a1 1 0 00-.67-.94L14 4.195V3.75a2 2 0 00-4 0z"
-              />
-            </svg>
-            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
-              Pioggia totale
-            </h2>
-          </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="rain"
-          >
-            $day.rain.sum
-          </p>
-        </div>
-
-        <!-- Punto di rugiada -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-teal-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-              />
-            </svg>
-            <h2
-              class="tw:text-gray-700 tw:font-medium tw:text-sm tw:flex tw:items-center"
-            >
-              Punto di rugiada
-              <span class="tw:relative tw:ml-2 tw:group">
-                <svg
-                  class="tw:w-4 tw:h-4 tw:text-gray-400 tw:cursor-help"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <div
-                  class="tw:absolute tw:w-64 tw:bg-gray-800 tw:text-white tw:text-xs tw:rounded-lg tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 group-hover:tw:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none tw:z-10"
-                >
-                  Temperatura alla quale l'aria deve raffreddarsi affinché il
-                  vapore acqueo presente inizi a condensare.
-                  <div
-                    class="tw:absolute tw:top-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:border-4 tw:border-transparent tw:border-t-gray-800"
-                  ></div>
+                  <table
+                    class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2"
+                  >
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Inizio crepuscolo civile:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac(horizon=-6).sun(use_center=1).rise
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Alba:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.sun.rise.string($sun_None)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Transito:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.sun.transit
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Tramonto:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.sun.set.string($sun_None)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Fine crepuscolo civile:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac(horizon=-6).sun(use_center=1).set
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Azimuth:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.sun.az)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Altitudine:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $sun_altitude)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Ascensione retta:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.sun.ra)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Inclinazione:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.sun.dec)
+                      </td>
+                    </tr>
+                    #if $almanac.next_equinox.raw > $almanac.next_solstice.raw
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Solstizio:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.next_solstice
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Equinozio:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.next_equinox
+                      </td>
+                    </tr>
+                    #else
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Equinozio:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.next_equinox
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10 tw:group">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                      >
+                        Solstizio:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                      >
+                        $almanac.next_solstice
+                      </td>
+                    </tr>
+                    #end if
+                  </table>
                 </div>
-              </span>
-            </h2>
-          </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="dewPoint"
-          >
-            $current.dewpoint
-          </p>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massimo</span> $day.dewpoint.max
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.dewpoint.maxtime)</span
-              >
-            </p>
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Minimo</span> $day.dewpoint.min
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.dewpoint.mintime)</span
-              >
-            </p>
-          </div>
-        </div>
 
-        <!-- Wind Chill -->
-        <div
-          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-blue-600"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 12a1 1 0 11-2 0 1 1 0 012 0zM7 4a1 1 0 000 2h6a1 1 0 100-2H7z"
-              />
-            </svg>
-            <h2
-              class="tw:text-gray-700 tw:font-medium tw:text-sm tw:flex tw:items-center"
-            >
-              Wind Chill
-              <span class="tw:relative tw:ml-2 tw:group">
-                <svg
-                  class="tw:w-4 tw:h-4 tw:text-gray-400 tw:cursor-help"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <div
-                  class="tw:absolute tw:w-64 tw:bg-gray-800 tw:text-white tw:text-xs tw:rounded-lg tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 group-hover:tw:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none tw:z-10"
-                >
-                  Temperatura percepita per effetto del vento sulla pelle.
-                  <div
-                    class="tw:absolute tw:top-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:border-4 tw:border-transparent tw:border-t-gray-800"
-                  ></div>
+                <div>
+                  <h1 class="tw:text-xl tw:mb-5 tw:text-gray-800 tw:p-4">
+                    Luna
+                  </h1>
+
+                  <table
+                    class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2"
+                  >
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Leva:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.moon.rise
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Transito:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.moon.transit
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Cala:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.moon.set
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Azimut:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.az)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Altitudine:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.alt)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Ascensione retta:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.ra)
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Inclinazione:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.dec)
+                      </td>
+                    </tr>
+                    #if $almanac.next_full_moon.raw < $almanac.next_new_moon.raw
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Luna piena:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.next_full_moon
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Luna nuova:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.next_new_moon
+                      </td>
+                    </tr>
+                    #else
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Luna nuova:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.next_new_moon
+                      </td>
+                    </tr>
+                    <tr class="tw:hover:bg-weather-cool/10">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                      >
+                        Luna piena:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                      >
+                        $almanac.next_full_moon
+                      </td>
+                    </tr>
+                    #end if
+                    <tr class="tw:hover:bg-weather-cool/10 tw:group">
+                      <td
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                      >
+                        Fase:
+                      </td>
+                      <td
+                        class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                      >
+                        $almanac.moon_phase ($almanac.moon_fullness% full)
+                      </td>
+                    </tr>
+                  </table>
                 </div>
-              </span>
-            </h2>
+              </div>
+            </div>
           </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="windChill"
-          >
-            $current.windchill
-          </p>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massimo</span> $day.windchill.max
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.windchill.maxtime)</span
-              >
-            </p>
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Minimo</span> $day.windchill.min
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.windchill.mintime)</span
-              >
-            </p>
-          </div>
-        </div>
+        </section>
 
-        <!-- Indice di calore -->
-        <div
-          class="tw:flex-none tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
-        >
-          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
-            <svg
-              class="tw:w-5 tw:h-5 tw:text-red-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <h2
-              class="tw:text-gray-700 tw:font-medium tw:text-sm tw:flex tw:items-center"
-            >
-              Indice di calore
-              <span class="tw:relative tw:ml-2 tw:group">
-                <svg
-                  class="tw:w-4 tw:h-4 tw:text-gray-400 tw:cursor-help"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <div
-                  class="tw:absolute tw:w-64 tw:bg-gray-800 tw:text-white tw:text-xs tw:rounded-lg tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 group-hover:tw:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none tw:z-10"
-                >
-                  Temperatura percepita per la combinazione di temperatura e
-                  umidità.
-                  <div
-                    class="tw:absolute tw:top-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:border-4 tw:border-transparent tw:border-t-gray-800"
-                  ></div>
-                </div>
-              </span>
-            </h2>
-          </div>
-          <p
-            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
-            id="heatIndex"
-          >
-            $current.heatindex
-          </p>
-          <div class="tw:space-y-1 tw:text-sm">
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Massimo</span> $day.heatindex.max
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.heatindex.maxtime)</span
-              >
-            </p>
-            <p class="tw:text-gray-800">
-              <span class="tw:font-medium">Minimo</span> $day.heatindex.min
-              <span class="tw:text-xs tw:text-gray-500"
-                >($day.heatindex.mintime)</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- webcam -->
-      <div
-        class="tw:md:col-span-5 tw:md:mx-24 tw:lg:col-span-2 tw:lg:mt-8 tw:lg:mx-0 tw:m-8"
-      >
-        <img
-          src="https://www.meteocentrocadore.it/webcam/webcam.jpg?$current.dateTime.raw"
-          class="object-contain"
-        />
-        <!-- <?php require_once('./webcam_rename.php'); ?> -->
-      </div>
-      <hr class="tw:h-px tw:mt-4 tw:bg-blue-200 tw:border-0" />
-      <!-- <div
-        class="tw:grid tw:grid-cols-1 tw:md:grid-cols-3 tw:container tw:mb-8 tw:gap-8"
-      > -->
+        <hr class="tw:h-px tw:mt-4 tw:mb-8 tw:bg-blue-200 tw:border-0" />
 
-      <div class="tw:flex tw:flex-wrap tw:justify-between tw:mt-8">
-        <div class="tw:p-8 tw:md:p-0 tw:md:col-span-1">
-          <!-- One year ago -->
-          <!--Leap Year Code -->
-          #set $yr = int($day.dateTime.format("%Y"))%4 #if $yr == 0 #if $yr %
-          100 == 0 #if $yr % 400 == 0 #if $day.dateTime.format("%d-%b") ==
-          '29-Feb' #set $n = 1461 #else if $day.dateTime.format("%d-%b") >=
-          '01-Mar' #set $n = 366 #else #set $n = 365 #end if #else #set $n = 365
-          #end if #else #if $day.dateTime.format("%d-%b") == '29-Feb' #set $n =
-          1461 #else if $day.dateTime.format("%d-%b") >= '01-Mar' #set $n = 366
-          #else #set $n = 365 #end if #end if #else #set $yrNew = ($yr - 1) #if
-          $yrNew % 100 == 0 #if $yrNew % 400 == 0 #if
-          $day.dateTime.format("%d-%b") < '01-Mar' #set $n = 366 #else #set $n =
-          365 #end if #end if #else #set $n = 365 #end if #end if
+        <!-- Grafici -->
+        <div class="tw:p-8 tw:md:p-0 tw:mb-4">
           <h1 class="tw:text-xl">
-            Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b (%Y)"))
+            <i class="fa fa-line-chart m-gruen"></i> Grafici
           </h1>
-          <div class="tw:table tw:pt-2">
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10">Temperatura massima:</div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).outTemp.max
-                $days_ago($days_ago=$n).outTemp.maxtime
-              </div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">
-                Temperatura minima:
-              </div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).outTemp.min
-                $days_ago($days_ago=$n).outTemp.mintime
-              </div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">Umidità massima:</div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).outHumidity.max
-                $days_ago($days_ago=$n).outHumidity.maxtime
-              </div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">Umidità minima:</div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).outHumidity.min
-                $days_ago($days_ago=$n).outHumidity.mintime
-              </div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">
-                Pressione massima:
-              </div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).barometer.max
-                $days_ago($days_ago=$n).barometer.maxtime
-              </div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">
-                Pressione minima:
-              </div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).barometer.min
-                $days_ago($days_ago=$n).barometer.mintime
-              </div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">Pioggia:</div>
-              <div class="tw:table-cell">$days_ago($days_ago=$n).rain.sum</div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">Rain Rate max:</div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).rainRate.max
-                $days_ago($days_ago=$n).rainRate.maxtime
-              </div>
-            </div>
-            <div class="tw:table-row">
-              <div class="tw:table-cell tw:pr-10 tw:pt-1">Vento massimo:</div>
-              <div class="tw:table-cell">
-                $days_ago($days_ago=$n).wind.max $day.wind.gustdir
-                $days_ago($days_ago=$n).wind.maxtime
-              </div>
-            </div>
+          <div class="tw:grid tw:grid-cols-1 tw:md:grid-cols-2">
+            <div id="outTempChart" class="tw:h-[40vh]"></div>
+            <div id="rainChart" class="tw:h-[40vh]"></div>
+            <div id="windChart" class="tw:h-[40vh]"></div>
+            <div id="windDirChart" class="tw:h-[40vh]"></div>
+            <div id="heatIndexChart" class="tw:h-[40vh]"></div>
+            <div id="barometerChart" class="tw:h-[40vh]"></div>
           </div>
         </div>
-
-        <!-- Almanac -->
-        #set $sun_altitude = $almanac.sun.alt #if $sun_altitude < 0 #set
-        $sun_None="<i>(Always down)</i>" #else #set $sun_None="<i>(Always up)</i
-        >" #end if
-        <div class="tw:p-8 tw:md:p-0 tw:md:col-span-1">
-          <h1 class="tw:text-xl tw:pb-4">Almanacco</h1>
-          <div class="tw:grid tw:grid-cols-2 tw:gap-x-4">
-            <div>
-              <h1 class="tw:text-lg">Sole</h1>
-              <div class="tw:table-row-group">
-                <div class="tw:table-row tw:pt-1">
-                  <div class="tw:table-cell tw:pt-1">
-                    Inizio crepuscolo civile
-                    $almanac(horizon=-6).sun(use_center=1).rise
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Alba $almanac.sun.rise.string($sun_None)
-                  </div>
-                </div>
-                <div class="tw:table-row tw:pt-1">
-                  <div class="tw:table-cell tw:pt-1">
-                    Transito: $almanac.sun.transit
-                  </div>
-                </div>
-                <div class="tw:table-row tw:pt-1">
-                  <div class="tw:table-cell tw:pt-1">
-                    Tramonto: $almanac.sun.set.string($sun_None)
-                  </div>
-                </div>
-                <div class="tw:table-row tw:pt-1">
-                  <div class="tw:table-cell tw:pt-1">
-                    Fine crepuscolo civile:
-                    $almanac(horizon=-6).sun(use_center=1).set
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Azimuth: $("%.1f&deg;" % $almanac.sun.az)
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Altitudine: $("%.1f&deg;" % $sun_altitude)
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Ascensione retta: $("%.1f&deg;" % $almanac.sun.ra)
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Inclinazione: $("%.1f&deg;" % $almanac.sun.dec)
-                  </div>
-                </div>
-                #if $almanac.next_equinox.raw > $almanac.next_solstice.raw
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Solstizio: $almanac.next_solstice
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Equinozio: $almanac.next_equinox
-                  </div>
-                </div>
-                #else
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Equinozio: $almanac.next_equinox
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Solstizio: $almanac.next_solstice
-                  </div>
-                </div>
-                #end if
-              </div>
-            </div>
-
-            <div>
-              <h1 class="tw:text-lg">Luna</h1>
-              <div class="tw:table-row-group">
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Leva: $almanac.moon.rise
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Transito: $almanac.moon.transit
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Cala: $almanac.moon.set
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Azimut: $("%.1f&deg;" % $almanac.moon.az)
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Altitudine: $("%.1f&deg;" % $almanac.moon.alt)
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Ascensione retta: $("%.1f&deg;" % $almanac.moon.ra)
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Inclinazione: $("%.1f&deg;" % $almanac.moon.dec)
-                  </div>
-                </div>
-                #if $almanac.next_full_moon.raw < $almanac.next_new_moon.raw
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Luna piena: $almanac.next_full_moon
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Luna nuova: $almanac.next_new_moon
-                  </div>
-                </div>
-                #else
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Luna nuova: $almanac.next_new_moon
-                  </div>
-                </div>
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Luna piena: $almanac.next_full_moon
-                  </div>
-                </div>
-                #end if
-                <div class="tw:table-row">
-                  <div class="tw:table-cell tw:pt-1">
-                    Fase: $almanac.moon_phase ($almanac.moon_fullness% full)
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Forecast -->
-        <div class="tw:p-8 tw:md:p-0 tw:max-w-full">
-          <h1 class="tw:text-xl">Radar</h1>
-          <img
-            src="https://meteo.arpa.veneto.it/meteo/radar/imgs/concordia/1_BASE.jpg?$current.dateTime.raw"
-            class="tw:max-h-[25rem]"
-          />
-        </div>
       </div>
-
-      <hr class="tw:h-px tw:mt-4 tw:mb-8 tw:bg-blue-200 tw:border-0" />
-
-      <!-- Grafici -->
-      <div class="tw:p-8 tw:md:p-0 tw:mb-4">
-        <h1 class="tw:text-xl">
-          <i class="fa fa-line-chart m-gruen"></i> Grafici
-        </h1>
-        <div class="tw:grid tw:grid-cols-1 tw:md:grid-cols-2">
-          <div id="outTempChart" class="tw:h-[40vh]"></div>
-          <div id="rainChart" class="tw:h-[40vh]"></div>
-          <div id="windChart" class="tw:h-[40vh]"></div>
-          <div id="windDirChart" class="tw:h-[40vh]"></div>
-          <div id="heatIndexChart" class="tw:h-[40vh]"></div>
-          <div id="barometerChart" class="tw:h-[40vh]"></div>
-        </div>
-      </div>
-    </div>
+    </main>
     <!-- Footer -->
     <footer class="tw:bg-cyan-200 tw:p-8">
       <div class="tw:container tw:mx-auto">
