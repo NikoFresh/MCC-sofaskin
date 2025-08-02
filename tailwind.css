@@ -1,2 +1,28 @@
 @import "tailwindcss";
 @config "./tailwind.config.js";
+
+/* Regole per il weather toggle */
+#webcam:checked ~ .weather-container .webcam-image {
+  display: block;
+}
+#webcam:checked ~ .weather-container .radar-image {
+  display: none;
+}
+#webcam:checked ~ .weather-container .webcam-btn {
+  @apply tw:bg-white/30 tw:text-gray-800;
+}
+#webcam:checked ~ .weather-container .radar-btn {
+  @apply tw:text-gray-600;
+}
+#radar:checked ~ .weather-container .radar-image {
+  display: block;
+}
+#radar:checked ~ .weather-container .webcam-image {
+  display: none;
+}
+#radar:checked ~ .weather-container .radar-btn {
+  @apply tw:bg-white/30 tw:text-gray-800;
+}
+#radar:checked ~ .weather-container .webcam-btn {
+  @apply tw:text-gray-600;
+}

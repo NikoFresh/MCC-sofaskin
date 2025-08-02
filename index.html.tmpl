@@ -88,12 +88,9 @@
       }
     </style>
   </head>
-  <body>
+  <body class="tw:bg-weather-bg">
     <!-- Header -->
-    <div
-      id="header"
-      class="tw:px-8 tw:pt-6 tw:bg-sky-500 tw:shadow-lg tw:shadow-sky-500/15"
-    >
+    <div id="header" class="tw:px-8 tw:pt-6 tw:bg-weather-cool/80">
       <div
         class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left tw:relative tw:z-10 tw:text-white"
       >
@@ -272,211 +269,719 @@
       </div>
     </div>
     <!-- End header -->
-    <div class="tw:container tw:mx-auto tw:mt-5"></div>
     <div class="tw:container tw:mx-auto">
       <!-- Mqtt -->
-      <div class="online-indicator tw:mx-7 tw:mt-1.5 tw:md:ml-0" id="indicator">
-        <span class="blink tw:block" id="indicator-1"></span>
-      </div>
-      <span id="mqttStatus" class="tw:inline-block tw:align-middle tw:mb-1"
-        >Connessione alla stazione meteo in corso...</span
-      >
-      <!-- Current data -->
-      <div class="tw:grid tw:grid-cols-1 tw:md:grid-cols-5">
+      <div class="tw:mb-2 tw:mt-3">
         <div
-          class="tw:grid tw:grid-cols-2 tw:sm:grid-cols-2 tw:md:grid-cols-3 tw:lg:grid-cols-4 tw:gap-7 tw:mx-7 tw:mb-4 tw:md:ml-0 tw:mt-4 tw:col-span-5 tw:lg:col-span-3"
+          class="online-indicator tw:mx-7 tw:mt-1.5 tw:md:ml-0"
+          id="indicator"
         >
-          <!-- current data -->
-          <div class="">
-            <h2 class="tw:text-gray-800">Temperatura esterna</h2>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="outTemp"
+          <span
+            class="tw:w-2 tw:h-2 tw:bg-red-500 tw:rounded-full tw:animate-pulse"
+            id="indicator-1"
+          ></span>
+        </div>
+        <span id="mqttStatus" class="tw:inline-block tw:align-middle tw:mb-1"
+          >Connessione alla stazione meteo in corso...</span
+        >
+      </div>
+
+      <section class="tw:mb-8 tw:mx-4">
+        <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-6">
+          <div class="tw:lg:col-span-1">
+            <div
+              class="tw:grid tw:grid-cols-2 tw:lg:grid-cols-3 tw:gap-2 tw:mb-4"
             >
-              $current.outTemp
+              <!-- Tempeartura -->
+              <div
+                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              >
+                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
+                  <div class="tw:text-sm tw:text-gray-800">Temperatura</div>
+                  <div class="tw:w-8 tw:h-6">
+                    <canvas
+                      id="humiditySparkline"
+                      width="32"
+                      height="24"
+                    ></canvas>
+                  </div>
+                </div>
+                <div
+                  class="tw:text-2xl tw:font-bold tw:text-weather-cool tw:mb-2"
+                >
+                  22°C
+                </div>
+                <div class="tw:text-s tw:text-gray-500 tw:mb-2">
+                  Percepita: <span class="tw:font-medium">23°C</span>
+                </div>
+                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div>
+                    Max: <span class="tw:font-medium">25°C</span>
+                    <span class="tw:text-gray-400">(06:23)</span>
+                  </div>
+                  <div>
+                    Min: <span class="tw:font-medium">16°C</span>
+                    <span class="tw:text-gray-400">(16:44)</span>
+                  </div>
+                </div>
+              </div>
+              <!-- umidità -->
+              <div
+                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              >
+                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
+                  <div class="tw:text-sm tw:text-gray-800">Umidità</div>
+                  <div class="tw:w-8 tw:h-6">
+                    <canvas
+                      id="humiditySparkline"
+                      width="32"
+                      height="24"
+                    ></canvas>
+                  </div>
+                </div>
+                <div
+                  class="tw:text-2xl tw:font-bold tw:text-weather-cool tw:mb-2"
+                >
+                  67%
+                </div>
+                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div>
+                    Max: <span class="tw:font-medium">97%</span>
+                    <span class="tw:text-gray-400">(06:23)</span>
+                  </div>
+                  <div>
+                    Min: <span class="tw:font-medium">53%</span>
+                    <span class="tw:text-gray-400">(16:44)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pressione -->
+              <div
+                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              >
+                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
+                  <div class="tw:text-sm tw:text-gray-800">Pressione</div>
+                  <div class="tw:w-8 tw:h-6">
+                    <canvas
+                      id="pressureSparkline"
+                      width="32"
+                      height="24"
+                    ></canvas>
+                  </div>
+                </div>
+                <div class="tw:text-2xl tw:font-bold tw:text-purple-600">
+                  1017
+                </div>
+                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div>mbar</div>
+                  <div>
+                    Max: <span class="tw:font-medium">1023.1</span>
+                    <span class="tw:text-gray-400">(06:24)</span>
+                  </div>
+                  <div>
+                    Min: <span class="tw:font-medium">1015.8</span>
+                    <span class="tw:text-gray-400">(16:10)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Vento -->
+              <div
+                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              >
+                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
+                  <div class="tw:text-sm tw:text-gray-800">Vento</div>
+                  <div
+                    class="tw:w-8 tw:h-8 tw:bg-green-100 tw:rounded-full tw:flex tw:items-center tw:justify-center"
+                  >
+                    <span class="tw:text-green-600 tw:text-sm">↖</span>
+                  </div>
+                </div>
+                <div class="tw:text-2xl tw:font-bold tw:text-green-600">
+                  8.5
+                </div>
+                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div>km/h NW</div>
+                  <div>
+                    Max: <span class="tw:font-medium">17 km/h</span>
+                    <span class="tw:text-gray-400">(13:57)</span>
+                  </div>
+                  <div>Avg: <span class="tw:font-medium">3 km/h</span></div>
+                </div>
+              </div>
+              <!-- pioggia -->
+              <div
+                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              >
+                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
+                  <div class="tw:text-sm tw:text-gray-800">Pioggia</div>
+                  <div class="tw:text-xs tw:text-blue-500">💧</div>
+                </div>
+                <div class="tw:text-xl tw:font-bold tw:text-blue-600">0.25</div>
+                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div>inches</div>
+                  <div>
+                    Rain rate: <span class="tw:font-medium">0.05 in/hr</span>
+                  </div>
+                  <div>
+                    Rain rate max:
+                    <span class="tw:font-medium">0.12 in/hr</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dew Point -->
+              <div
+                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              >
+                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
+                  <div class="tw:text-sm tw:text-gray-800">
+                    Punto di rugiada
+                  </div>
+                  <div class="tw:text-xs tw:text-gray-400">ℹ️</div>
+                </div>
+                <div class="tw:text-xl tw:font-bold tw:text-weather-cool">
+                  14.4°
+                </div>
+                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div>
+                    Max: <span class="tw:font-medium">16.5°C</span>
+                    <span class="tw:text-gray-400">(16:40)</span>
+                  </div>
+                  <div>
+                    Min: <span class="tw:font-medium">10.0°C</span>
+                    <span class="tw:text-gray-400">(06:18)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wind Chill -->
+              <div
+                class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+              >
+                <div class="tw:flex tw:items-center tw:justify-between tw:mb-2">
+                  <div class="tw:text-sm tw:text-gray-800">Wind Chill</div>
+                  <div class="tw:text-xs tw:text-gray-400">ℹ️</div>
+                </div>
+                <div class="tw:text-xl tw:font-bold tw:text-weather-cool">
+                  20.8°
+                </div>
+                <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div>
+                    Max: <span class="tw:font-medium">22.8°C</span>
+                    <span class="tw:text-gray-400">(16:30)</span>
+                  </div>
+                  <div>
+                    Min: <span class="tw:font-medium">10.6°C</span>
+                    <span class="tw:text-gray-400">(06:18)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- webcam -->
+          <div class="tw:lg:col-span-1">
+            <div
+              class="tw:bg-gradient-to-br tw:from-weather-cool/10 tw:to-weather-warm/10 tw:rounded-2xl tw:p-4 tw:flex tw:flex-col"
+            >
+              <!-- <div class="tw:flex-1 tw:rounded-xl tw:overflow-hidden">
+                <img
+                  src="https://www.meteocentrocadore.it/webcam/webcam.jpg?1753978800"
+                  alt="Live weather camera"
+                  class="tw:w-full tw:object-cover"
+                />
+              </div> -->
+              <!-- Radio buttons prima del container -->
+              <input
+                type="radio"
+                id="webcam"
+                name="weather-view"
+                style="display: none"
+                checked
+              />
+              <input
+                type="radio"
+                id="radar"
+                name="weather-view"
+                style="display: none"
+              />
+
+              <div class="weather-container">
+                <div class="tw:lg:col-span-1">
+                  <div class="">
+                    <!-- Navigazione -->
+                    <div class="tw:mb-3 tw:flex tw:justify-center">
+                      <div
+                        class="tw:bg-white/20 tw:rounded-lg tw:p-1 tw:flex tw:gap-1"
+                      >
+                        <label
+                          for="webcam"
+                          class="webcam-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:bg-white/30 tw:text-gray-800"
+                        >
+                          📹 Webcam
+                        </label>
+                        <label
+                          for="radar"
+                          class="radar-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:text-gray-600"
+                        >
+                          🌦️ Radar
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- Immagini -->
+                    <div class="tw:flex-1 tw:rounded-xl tw:overflow-hidden">
+                      <img
+                        class="webcam-image tw:w-full tw:object-cover tw:block"
+                        src="https://www.meteocentrocadore.it/webcam/webcam.jpg"
+                        alt="Live weather camera"
+                      />
+                      <img
+                        class="radar-image tw:w-full tw:object-cover tw:hidden"
+                        src="https://meteo.arpa.veneto.it/meteo/radar/imgs/concordia/1_BASE.jpg?$current.dateTime.raw"
+                        alt="Weather radar"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Current data -->
+      <div
+        class="tw:flex tw:flex-wrap tw:gap-6 tw:mx-7 tw:mb-4 tw:md:ml-0 tw:mt-4 tw:col-span-5 tw:lg:col-span-3"
+      >
+        <!-- Temperatura esterna -->
+        <div
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-orange-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
+              Temperatura esterna
+            </h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="outTemp"
+          >
+            $current.outTemp
+          </p>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massima</span> $day.outTemp.max
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.outTemp.maxtime)</span
+              >
             </p>
-            <p class="tw:text-gray-900">
-              Massima $day.outTemp.max
-              <span class="tw:text-xs">($day.outTemp.maxtime)</span>
-            </p>
-            <p class="tw:text-gray-900">
-              Minima $day.outTemp.min
-              <span class="tw:text-xs">($day.outTemp.mintime)</span>
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Minima</span> $day.outTemp.min
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.outTemp.mintime)</span
+              >
             </p>
           </div>
-          <div class="">
-            <h2 class="tw:text-gray-800">Umidità</h2>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="outHum"
+        </div>
+
+        <!-- Umidità -->
+        <div
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-blue-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              $current.outHumidity
+              <path
+                d="M10 3.5a6.5 6.5 0 106.5 6.5c0-1.61-.59-2.939-1.37-3.825A10.408 10.408 0 0010 3.5z"
+              />
+            </svg>
+            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">Umidità</h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="outHum"
+          >
+            $current.outHumidity
+          </p>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massima</span> $day.outHumidity.max
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.outHumidity.maxtime)</span
+              >
             </p>
-            <p class="tw:text-gray-900">
-              Massima $day.outHumidity.max
-              <span class="tw:text-xs">($day.outHumidity.maxtime)</span>
-            </p>
-            <p class="tw:text-gray-900">
-              Minima $day.outHumidity.min
-              <span class="tw:text-xs">($day.outHumidity.mintime)</span>
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Minima</span> $day.outHumidity.min
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.outHumidity.mintime)</span
+              >
             </p>
           </div>
-          <div class="">
-            <h2 class="tw:text-gray-800">Pressione</h2>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="pressure"
+        </div>
+
+        <!-- Pressione -->
+        <div
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-purple-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              $current.barometer
+              <path
+                fill-rule="evenodd"
+                d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
+              Pressione
+            </h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="pressure"
+          >
+            $current.barometer
+          </p>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massima</span> $day.barometer.max
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.barometer.maxtime)</span
+              >
             </p>
-            <p class="tw:text-gray-900">
-              Massima $day.barometer.max
-              <span class="tw:text-xs">($day.barometer.maxtime)</span>
-            </p>
-            <p class="tw:text-gray-900">
-              Minima $day.barometer.min
-              <span class="tw:text-xs">($day.barometer.mintime)</span>
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Minima</span> $day.barometer.min
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.barometer.mintime)</span
+              >
             </p>
           </div>
-          <div class="">
-            <h2 class="tw:text-gray-800">Vento</h2>
+        </div>
+
+        <!-- Vento -->
+        <div
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-green-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 12a1 1 0 11-2 0 1 1 0 012 0zM7 4a1 1 0 000 2h6a1 1 0 100-2H7z"
+              />
+            </svg>
+            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">Vento</h2>
+          </div>
+          <div class="tw:mb-3">
             <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
+              class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:leading-tight"
               id="windSpeed"
             >
               $current.windSpeed
-              <span class="tw:text-xs tw:font-normal"
-                >$current.windDir.ordinal_compass ($current.windDir)</span
+            </p>
+            <p class="tw:text-sm tw:text-gray-800 tw:mt-1">
+              $current.windDir.ordinal_compass ($current.windDir)
+            </p>
+          </div>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massimo</span> $day.wind.max
+              $day.wind.gustdir
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.wind.maxtime)</span
               >
             </p>
-            <p class="tw:text-gray-900">
-              Massimo $day.wind.max $day.wind.gustdir
-              <span class="tw:text-xs">($day.wind.maxtime)</span>
-            </p>
-            <p class="tw:text-gray-900">Medio $day.wind.avg</p>
-          </div>
-          <div class="">
-            <h2 class="tw:text-gray-800">Intensità di pioggia</h2>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="rainRate"
-            >
-              $current.rainRate
-            </p>
-            <p class="tw:text-gray-900">
-              Massima $day.rainRate.max
-              <span class="tw:text-xs">($day.rainRate.maxtime)</span>
-            </p>
-          </div>
-          <div class="">
-            <h2 class="tw:text-gray-800">Pioggia totale</h2>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="rain"
-            >
-              $day.rain.sum
-            </p>
-          </div>
-          <div class="">
-            <div class="tw:flex tw:items-center">
-              <h2 class="tw:text-gray-800 tw:flex tw:items-center">
-                Punto di rugiada
-                <span class="tw:relative tw:ml-2 tw:group">
-                  <i class="fas fa-question-circle tw:text-gray-600"></i>
-                  <span
-                    class="tw:absolute tw:w-56 tw:bg-gray-800 tw:text-white tw:text-center tw:rounded tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 tw:transition-opacity tw:duration-300 tooltip-text"
-                  >
-                    Temperatura alla quale l'aria deve deve raffreddarsi
-                    affinché il vapore acqueo presente inizi a condensare.
-                  </span>
-                </span>
-              </h2>
-            </div>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="dewPoint"
-            >
-              $current.dewpoint
-            </p>
-            <p class="tw:text-gray-900">
-              Massimo $day.dewpoint.max
-              <span class="tw:text-xs">($day.dewpoint.maxtime)</span>
-            </p>
-            <p class="tw:text-gray-900">
-              Minimo $day.dewpoint.min
-              <span class="tw:text-xs">($day.dewpoint.mintime)</span>
-            </p>
-          </div>
-          <div class="">
-            <div class="tw:flex tw:items-center">
-              <h2 class="tw:text-gray-800 tw:flex tw:items-center">
-                Wind Chill
-                <span class="tw:relative tw:ml-2 tw:group">
-                  <i class="fas fa-question-circle tw:text-gray-600"></i>
-                  <span
-                    class="tw:absolute tw:w-56 tw:bg-gray-800 tw:text-white tw:text-center tw:rounded tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 tw:transition-opacity tw:duration-300 tooltip-text"
-                  >
-                    Temperatura percepita per effetto del vento sulla pelle.
-                  </span>
-                </span>
-              </h2>
-            </div>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="windChill"
-            >
-              $current.windchill
-            </p>
-            <p class="tw:text-gray-900">
-              Massimo $day.windchill.max
-              <span class="tw:text-xs">($day.windchill.maxtime)</span>
-            </p>
-            <p class="tw:text-gray-900">
-              Minimo $day.windchill.min
-              <span class="tw:text-xs">($day.windchill.mintime)</span>
-            </p>
-          </div>
-          <div class="">
-            <div class="tw:flex tw:items-center">
-              <h2 class="tw:text-gray-800 tw:flex tw:items-center">
-                Indice di calore
-                <span class="tw:relative tw:ml-2 tw:group">
-                  <i class="fas fa-question-circle tw:text-gray-600"></i>
-                  <span
-                    class="tw:absolute tw:w-56 tw:bg-gray-800 tw:text-white tw:text-center tw:rounded tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 tw:transition-opacity tw:duration-300 tooltip-text"
-                  >
-                    Temperatura percepita per la combinazione di temperatura e
-                    umidità.
-                  </span>
-                </span>
-              </h2>
-            </div>
-            <p
-              class="tw:text-gray-900 tw:font-bold tw:text-2xl tw:my-1"
-              id="heatIndex"
-            >
-              $current.heatindex
-            </p>
-            <p class="tw:text-gray-900">
-              Massimo $day.heatindex.max
-              <span class="tw:text-xs">($day.heatindex.maxtime)</span>
-            </p>
-            <p class="tw:text-gray-900">
-              Minimo $day.heatindex.min
-              <span class="tw:text-xs">($day.heatindex.mintime)</span>
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Medio</span> $day.wind.avg
             </p>
           </div>
         </div>
-        <!-- webcam -->
+
+        <!-- Intensità di pioggia -->
         <div
-          class="tw:md:col-span-5 tw:md:mx-24 tw:lg:col-span-2 tw:lg:mt-8 tw:lg:mx-0 tw:m-8"
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
         >
-          <img
-            src="https://www.meteocentrocadore.it/webcam/webcam.jpg?$current.dateTime.raw"
-            class="object-contain"
-          />
-          <!-- <?php require_once('./webcam_rename.php'); ?> -->
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-cyan-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
+              Intensità di pioggia
+            </h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="rainRate"
+          >
+            $current.rainRate
+          </p>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massima</span> $day.rainRate.max
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.rainRate.maxtime)</span
+              >
+            </p>
+          </div>
         </div>
+
+        <!-- Pioggia totale -->
+        <div
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-indigo-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 3.75a2 2 0 00-4 0v.445L4.17 6.608a1 1 0 00-.67.94v.452c0 .8.8 1.6 1.6 1.6h9.8c.8 0 1.6-.8 1.6-1.6v-.452a1 1 0 00-.67-.94L14 4.195V3.75a2 2 0 00-4 0z"
+              />
+            </svg>
+            <h2 class="tw:text-gray-700 tw:font-medium tw:text-sm">
+              Pioggia totale
+            </h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="rain"
+          >
+            $day.rain.sum
+          </p>
+        </div>
+
+        <!-- Punto di rugiada -->
+        <div
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-teal-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+              />
+            </svg>
+            <h2
+              class="tw:text-gray-700 tw:font-medium tw:text-sm tw:flex tw:items-center"
+            >
+              Punto di rugiada
+              <span class="tw:relative tw:ml-2 tw:group">
+                <svg
+                  class="tw:w-4 tw:h-4 tw:text-gray-400 tw:cursor-help"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <div
+                  class="tw:absolute tw:w-64 tw:bg-gray-800 tw:text-white tw:text-xs tw:rounded-lg tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 group-hover:tw:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none tw:z-10"
+                >
+                  Temperatura alla quale l'aria deve raffreddarsi affinché il
+                  vapore acqueo presente inizi a condensare.
+                  <div
+                    class="tw:absolute tw:top-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:border-4 tw:border-transparent tw:border-t-gray-800"
+                  ></div>
+                </div>
+              </span>
+            </h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="dewPoint"
+          >
+            $current.dewpoint
+          </p>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massimo</span> $day.dewpoint.max
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.dewpoint.maxtime)</span
+              >
+            </p>
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Minimo</span> $day.dewpoint.min
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.dewpoint.mintime)</span
+              >
+            </p>
+          </div>
+        </div>
+
+        <!-- Wind Chill -->
+        <div
+          class="tw:flex-1 tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-blue-600"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 12a1 1 0 11-2 0 1 1 0 012 0zM7 4a1 1 0 000 2h6a1 1 0 100-2H7z"
+              />
+            </svg>
+            <h2
+              class="tw:text-gray-700 tw:font-medium tw:text-sm tw:flex tw:items-center"
+            >
+              Wind Chill
+              <span class="tw:relative tw:ml-2 tw:group">
+                <svg
+                  class="tw:w-4 tw:h-4 tw:text-gray-400 tw:cursor-help"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <div
+                  class="tw:absolute tw:w-64 tw:bg-gray-800 tw:text-white tw:text-xs tw:rounded-lg tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 group-hover:tw:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none tw:z-10"
+                >
+                  Temperatura percepita per effetto del vento sulla pelle.
+                  <div
+                    class="tw:absolute tw:top-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:border-4 tw:border-transparent tw:border-t-gray-800"
+                  ></div>
+                </div>
+              </span>
+            </h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="windChill"
+          >
+            $current.windchill
+          </p>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massimo</span> $day.windchill.max
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.windchill.maxtime)</span
+              >
+            </p>
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Minimo</span> $day.windchill.min
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.windchill.mintime)</span
+              >
+            </p>
+          </div>
+        </div>
+
+        <!-- Indice di calore -->
+        <div
+          class="tw:flex-none tw:min-w-[280px] tw:bg-white tw:rounded-lg tw:border tw:border-gray-200 tw:p-5 tw:shadow-sm hover:tw:shadow-md tw:transition-shadow"
+        >
+          <div class="tw:flex tw:items-center tw:gap-3 tw:mb-3">
+            <svg
+              class="tw:w-5 tw:h-5 tw:text-red-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h2
+              class="tw:text-gray-700 tw:font-medium tw:text-sm tw:flex tw:items-center"
+            >
+              Indice di calore
+              <span class="tw:relative tw:ml-2 tw:group">
+                <svg
+                  class="tw:w-4 tw:h-4 tw:text-gray-400 tw:cursor-help"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <div
+                  class="tw:absolute tw:w-64 tw:bg-gray-800 tw:text-white tw:text-xs tw:rounded-lg tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 group-hover:tw:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none tw:z-10"
+                >
+                  Temperatura percepita per la combinazione di temperatura e
+                  umidità.
+                  <div
+                    class="tw:absolute tw:top-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:border-4 tw:border-transparent tw:border-t-gray-800"
+                  ></div>
+                </div>
+              </span>
+            </h2>
+          </div>
+          <p
+            class="tw:text-gray-900 tw:font-bold tw:text-3xl tw:mb-3"
+            id="heatIndex"
+          >
+            $current.heatindex
+          </p>
+          <div class="tw:space-y-1 tw:text-sm">
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Massimo</span> $day.heatindex.max
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.heatindex.maxtime)</span
+              >
+            </p>
+            <p class="tw:text-gray-800">
+              <span class="tw:font-medium">Minimo</span> $day.heatindex.min
+              <span class="tw:text-xs tw:text-gray-500"
+                >($day.heatindex.mintime)</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- webcam -->
+      <div
+        class="tw:md:col-span-5 tw:md:mx-24 tw:lg:col-span-2 tw:lg:mt-8 tw:lg:mx-0 tw:m-8"
+      >
+        <img
+          src="https://www.meteocentrocadore.it/webcam/webcam.jpg?$current.dateTime.raw"
+          class="object-contain"
+        />
+        <!-- <?php require_once('./webcam_rename.php'); ?> -->
       </div>
       <hr class="tw:h-px tw:mt-4 tw:bg-blue-200 tw:border-0" />
       <!-- <div
