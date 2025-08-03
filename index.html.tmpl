@@ -306,11 +306,15 @@
                   </div>
                   <div
                     class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
+                    id="outTemp"
                   >
                     $current.outTemp.formatted
                   </div>
                   <div class="tw:text-s tw:text-gray-500 tw:mb-2">
-                    Percepita: <span class="">$current.appTemp.formatted</span>
+                    Percepita:
+                    <span class="" id="heatIndex"
+                      >$current.appTemp.formatted</span
+                    >
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
                     <div>
@@ -344,6 +348,7 @@
                   </div>
                   <div
                     class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
+                    id="outHum"
                   >
                     $current.outHumidity.formatted
                   </div>
@@ -378,7 +383,10 @@
                   >
                     <div class="tw:text-sm tw:text-gray-800">Pressione</div>
                   </div>
-                  <div class="tw:text-2xl tw:font-bold tw:text-gray-800">
+                  <div
+                    class="tw:text-2xl tw:font-bold tw:text-gray-800"
+                    id="pressure"
+                  >
                     $current.barometer.formatted
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
@@ -413,7 +421,10 @@
                   >
                     <div class="tw:text-sm tw:text-gray-800">Vento</div>
                   </div>
-                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                  <div
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    id="windSpeed"
+                  >
                     $current.windSpeed.formatted
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
@@ -447,14 +458,17 @@
                   >
                     <div class="tw:text-sm tw:text-gray-800">Pioggia</div>
                   </div>
-                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                  <div
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    id="rain"
+                  >
                     $day.rain.formatted
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
                     <div>inches</div>
                     <div>
                       Rain rate:
-                      <span class="tw:font-medium"
+                      <span class="tw:font-medium" id="rainRate"
                         >$current.rainRate.formatted</span
                       >
                     </div>
@@ -491,7 +505,10 @@
                       </span>
                     </span>
                   </div>
-                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                  <div
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    id="dewPoint"
+                  >
                     $current.dewpoint.formatted
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
@@ -537,7 +554,10 @@
                       </span>
                     </span>
                   </div>
-                  <div class="tw:text-2xl tw:font-bold tw:text-grey-800">
+                  <div
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    id="windChill"
+                  >
                     $current.windchill.formatted
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
