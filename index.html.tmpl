@@ -826,7 +826,9 @@
               <!-- prettier-ignore -->
               #set $sun_altitude = $almanac.sun.alt
               #if $sun_altitude < 0
-              #set $sun_None="<i>(Always down)</i>" #else #set $sun_None="<i>(Always up)</i>" 
+              #set $sun_None="<i>(Always down)</i>" 
+              #else 
+              #set $sun_None="<i>(Always up)</i>" 
               #end if
               <!-- prettier-ignore-end -->
 
