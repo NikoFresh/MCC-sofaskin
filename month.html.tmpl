@@ -623,8 +623,10 @@
                 </td>
               </tr>
 
-              #end if #if $month.UV.has_data
-
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.UV.has_data
+              <!-- prettier-ignore-end -->
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
                   class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
@@ -660,8 +662,10 @@
                   $month.UV.mintime
                 </td>
               </tr>
-
-              #end if #if $month.ET.has_data and $month.ET.sum.raw >0.0
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.ET.has_data and $month.ET.sum.raw > 0.0
+              <!-- prettier-ignore-end -->
 
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
@@ -698,8 +702,10 @@
                   $month.ET.mintime
                 </td>
               </tr>
-
-              #end if #if $month.radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.radiation.has_data
+              <!-- prettier-ignore-end -->
 
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
@@ -1102,9 +1108,10 @@
                   $month($months_ago=12).extraTemp1.mintime
                 </td>
               </tr>
-
-              #end if #if $month($months_ago=12).UV.has_data
-
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).UV.has_data
+              <!-- prettier-ignore-end -->
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
                   class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
@@ -1144,9 +1151,10 @@
                   $month($months_ago=12).UV.mintime
                 </td>
               </tr>
-
-              #end if #if $month($months_ago=12).ET.has_data and
-              $month.ET.sum.raw >0.0
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).ET.has_data and $month.ET.sum.raw > 0.0
+              <!-- prettier-ignore-end -->
 
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
@@ -1187,8 +1195,10 @@
                   $month($months_ago=12).ET.mintime
                 </td>
               </tr>
-
-              #end if #if $month($months_ago=12).radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).radiation.has_data
+              <!-- prettier-ignore-end -->
 
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
@@ -1599,8 +1609,10 @@
                   $month($months_ago=12).extraTemp1.mintime
                 </td>
               </tr>
-
-              #end if #if $month($months_ago=12).UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).UV.has_data
+              <!-- prettier-ignore-end -->
 
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
@@ -1641,9 +1653,10 @@
                   $month($months_ago=12).UV.mintime
                 </td>
               </tr>
-
-              #end if #if $month($months_ago=12).ET.has_data and
-              $month.ET.sum.raw >0.0
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).ET.has_data and $month.ET.sum.raw > 0.0
+              <!-- prettier-ignore-end -->
 
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
@@ -1684,8 +1697,10 @@
                   $month($months_ago=12).ET.mintime
                 </td>
               </tr>
-
-              #end if #if $month($months_ago=12).radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).radiation.has_data
+              <!-- prettier-ignore-end -->
 
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
@@ -1783,20 +1798,28 @@
             #if $month.UV.has_data
 
             <img src="monthuv.png" alt="UV Index" />
-
-            #end if #if $month.radiation.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.radiation.has_data
+            <!-- prettier-ignore-end -->
 
             <img src="monthradiation.png" alt="Radiation" />
-
-            #end if #if $month.UV.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.UV.has_data
+            <!-- prettier-ignore-end -->
 
             <img src="monthuv.png" alt="UV Index" />
-
-            #end if #if $month.rxCheckPercent.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.rxCheckPercent.has_data
+            <!-- prettier-ignore-end -->
 
             <img src="monthrx.png" alt="month rx percent" />
-
-            #end if #if $month.extraTemp1.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.extraTemp1.has_data
+            <!-- prettier-ignore-end -->
 
             <img src="monthpond.png" alt="Pond Temperaturas" />
 

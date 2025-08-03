@@ -517,7 +517,9 @@
                   $week.extraTemp1.mintime
                 </td>
               </tr>
-              #end if #if $week.UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $week.UV.has_data
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
                   class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
@@ -552,7 +554,9 @@
                   $week.UV.mintime
                 </td>
               </tr>
-              #end if #if $week.ET.has_data and $week.ET.sum.raw > 0.0
+              <!-- prettier-ignore -->
+              #end if 
+              #if $week.ET.has_data and $week.ET.sum.raw > 0.0
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
                   class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
@@ -587,7 +591,9 @@
                   $week.ET.mintime
                 </td>
               </tr>
-              #end if #if $week.radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $week.radiation.has_data
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
                   class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
@@ -918,7 +924,9 @@
                   $yesterday.extraTemp1.mintime
                 </td>
               </tr>
-              #end if #if $yesterday.UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $yesterday.UV.has_data
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
                   class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
@@ -953,7 +961,9 @@
                   $yesterday.UV.mintime
                 </td>
               </tr>
-              #end if #if $day.radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $day.radiation.has_data
               <tr class="tw:hover:bg-weather-cool/10">
                 <td
                   class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
@@ -1047,19 +1057,24 @@
 
             <img src="weekuv.png" alt="UV index" />
 
-            #end if #if $week.radiation.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.radiation.has_data
 
             <img src="weekradiation.png" alt="Radiation" />
-
-            #end if #if $week.UV.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.UV.has_data
 
             <img src="weekuv.png" alt="UV Index" />
-
-            #end if #if $week.rxCheckPercent.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.rxCheckPercent.has_data
 
             <img src="weekrx.png" alt="week rx percent" />
-
-            #end if #if $week.extraTemp1.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.extraTemp1.has_data
 
             <img src="weekpond.png" alt="Pond Temperatura" />
 
