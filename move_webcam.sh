@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory locale da controllare
-LOCAL_DIR="/home/pi/ftp/files"
+LOCAL_DIR="/home/meteo/ftp/files"
 
 # Directory di destinazione
 DEST_DIR="/etc/weewx/skins/sofaskin/webcam"
