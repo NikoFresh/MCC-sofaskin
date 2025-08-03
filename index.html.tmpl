@@ -439,16 +439,44 @@
         <div class="tw:p-8 tw:md:p-0 tw:md:col-span-1">
           <!-- One year ago -->
           <!--Leap Year Code -->
-          #set $yr = int($day.dateTime.format("%Y"))%4 #if $yr == 0 #if $yr %
-          100 == 0 #if $yr % 400 == 0 #if $day.dateTime.format("%d-%b") ==
-          '29-Feb' #set $n = 1461 #else if $day.dateTime.format("%d-%b") >=
-          '01-Mar' #set $n = 366 #else #set $n = 365 #end if #else #set $n = 365
-          #end if #else #if $day.dateTime.format("%d-%b") == '29-Feb' #set $n =
-          1461 #else if $day.dateTime.format("%d-%b") >= '01-Mar' #set $n = 366
-          #else #set $n = 365 #end if #end if #else #set $yrNew = ($yr - 1) #if
-          $yrNew % 100 == 0 #if $yrNew % 400 == 0 #if
-          $day.dateTime.format("%d-%b") < '01-Mar' #set $n = 366 #else #set $n =
-          365 #end if #end if #else #set $n = 365 #end if #end if
+          <!-- prettier-ignore -->
+          #set $yr = int($day.dateTime.format("%Y"))%4
+            #if $yr == 0
+              #if $yr % 100 == 0
+                #if $yr % 400 == 0
+                  #if $day.dateTime.format("%d-%b") == '29-Feb'
+                    #set $n = 1461
+                  #else if $day.dateTime.format("%d-%b") >= '01-Mar'
+                    #set $n = 366
+                  #else
+                    #set $n = 365
+                  #end if
+                #else
+                  #set $n = 365
+                #end if
+              #else
+                #if $day.dateTime.format("%d-%b") == '29-Feb'
+                  #set $n = 1461
+                #else if $day.dateTime.format("%d-%b") >= '01-Mar'
+                  #set $n = 366
+                #else
+                  #set $n = 365
+                #end if
+              #end if
+            #else
+              #set $yrNew = ($yr - 1)
+            #if $yrNew % 100 == 0
+              #if $yrNew % 400 == 0
+                #if $day.dateTime.format("%d-%b") < '01-Mar'
+                  #set $n = 366
+                #else
+                  #set $n = 365
+                #end if
+              #end if
+              #else
+                #set $n = 365
+              #end if
+            #end if
           <h1 class="tw:text-xl">
             Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b (%Y)"))
           </h1>
@@ -523,9 +551,14 @@
         </div>
 
         <!-- Almanac -->
-        #set $sun_altitude = $almanac.sun.alt #if $sun_altitude < 0 #set
-        $sun_None="<i>(Always down)</i>" #else #set $sun_None="<i>(Always up)</i
-        >" #end if
+        <!-- prettier-ignore -->
+        #set $sun_altitude = $almanac.sun.alt
+        #if $sun_altitude < 0
+        #set $sun_None="<i>(Always down)</i>"
+        #else
+        #set $sun_None="<i>(Always up)</i>"
+        #end if 
+        <!-- prettier-ignore-end -->
         <div class="tw:p-8 tw:md:p-0 tw:md:col-span-1">
           <h1 class="tw:text-xl tw:pb-4">Almanacco</h1>
           <div class="tw:grid tw:grid-cols-2 tw:gap-x-4">

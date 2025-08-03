@@ -458,8 +458,9 @@
 
                 <td>$month.extraTemp1.mintime</td>
               </tr>
-
-              #end if #if $month.UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.UV.has_data
 
               <tr>
                 <td>High UV</td>
@@ -476,8 +477,9 @@
 
                 <td>$month.UV.mintime</td>
               </tr>
-
-              #end if #if $month.ET.has_data and $month.ET.sum.raw >0.0
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.ET.has_data and $month.ET.sum.raw >0.0
 
               <tr>
                 <td>High ET</td>
@@ -494,8 +496,9 @@
 
                 <td>$month.ET.mintime</td>
               </tr>
-
-              #end if #if $month.radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.radiation.has_data
 
               <tr>
                 <td>High Radiation</td>
@@ -708,8 +711,9 @@
 
                 <td>$month($months_ago=12).extraTemp1.mintime</td>
               </tr>
-
-              #end if #if $month($months_ago=12).UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).UV.has_data
 
               <tr>
                 <td>High UV</td>
@@ -726,9 +730,9 @@
 
                 <td>$month($months_ago=12).UV.mintime</td>
               </tr>
-
-              #end if #if $month($months_ago=12).ET.has_data and
-              $month.ET.sum.raw >0.0
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).ET.has_data and $month.ET.sum.raw > 0.0
 
               <tr>
                 <td>High ET</td>
@@ -745,8 +749,9 @@
 
                 <td>$month($months_ago=12).ET.mintime</td>
               </tr>
-
-              #end if #if $month($months_ago=12).radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).radiation.has_data
 
               <tr>
                 <td>High Radiation</td>
@@ -959,8 +964,9 @@
 
                 <td>$month($months_ago=12).extraTemp1.mintime</td>
               </tr>
-
-              #end if #if $month($months_ago=12).UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).UV.has_data
 
               <tr>
                 <td>High UV</td>
@@ -977,9 +983,9 @@
 
                 <td>$month($months_ago=12).UV.mintime</td>
               </tr>
-
-              #end if #if $month($months_ago=12).ET.has_data and
-              $month.ET.sum.raw >0.0
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).ET.has_data and $month.ET.sum.raw > 0.0
 
               <tr>
                 <td>High ET</td>
@@ -996,8 +1002,9 @@
 
                 <td>$month($months_ago=12).ET.mintime</td>
               </tr>
-
-              #end if #if $month($months_ago=12).radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month($months_ago=12).radiation.has_data
 
               <tr>
                 <td>High Radiation</td>
@@ -1066,20 +1073,24 @@
             #if $month.UV.has_data
 
             <img src="monthuv.png" alt="UV Index" />
-
-            #end if #if $month.radiation.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.radiation.has_data
 
             <img src="monthradiation.png" alt="Radiation" />
-
-            #end if #if $month.UV.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.UV.has_data
 
             <img src="monthuv.png" alt="UV Index" />
-
-            #end if #if $month.rxCheckPercent.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.rxCheckPercent.has_data
 
             <img src="monthrx.png" alt="month rx percent" />
-
-            #end if #if $month.extraTemp1.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $month.extraTemp1.has_data
 
             <img src="monthpond.png" alt="Pond Temperaturas" />
 

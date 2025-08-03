@@ -458,8 +458,9 @@
 
                 <td>$week.extraTemp1.mintime</td>
               </tr>
-
-              #end if #if $week.UV.has_data
+              <!-- prettier-ignore -->
+              #end if
+              #if $week.UV.has_data
 
               <tr>
                 <td>massima UV</td>
@@ -476,8 +477,9 @@
 
                 <td>$week.UV.mintime</td>
               </tr>
-
-              #end if #if $week.ET.has_data and $week.ET.sum.raw > 0.0
+              <!-- prettier-ignore -->
+              #end if
+              #if $week.ET.has_data and $week.ET.sum.raw > 0.0
 
               <tr>
                 <td>massima ET</td>
@@ -494,8 +496,9 @@
 
                 <td>$week.ET.mintime</td>
               </tr>
-
-              #end if #if $week.radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $week.radiation.has_data
 
               <tr>
                 <td>massima Radiation</td>
@@ -689,8 +692,9 @@
 
                 <td>$yesterday.extraTemp1.mintime</td>
               </tr>
-
-              #end if #if $yesterday.UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $yesterday.UV.has_data
 
               <tr>
                 <td>massima UV</td>
@@ -707,8 +711,9 @@
 
                 <td>$yesterday.UV.mintime</td>
               </tr>
-
-              #end if #if $day.radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $day.radiation.has_data
 
               <tr>
                 <td>massima Radiation</td>
@@ -919,8 +924,9 @@
 
                 <td>$month.extraTemp1.mintime</td>
               </tr>
-
-              #end if #if $month.UV.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.UV.has_data
 
               <tr>
                 <td>massima UV</td>
@@ -937,8 +943,9 @@
 
                 <td>$month.UV.mintime</td>
               </tr>
-
-              #end if #if $month.radiation.has_data
+              <!-- prettier-ignore -->
+              #end if 
+              #if $month.radiation.has_data
 
               <tr>
                 <td>massima Radiation</td>
@@ -1009,20 +1016,24 @@
             #if $week.UV.has_data
 
             <img src="weekuv.png" alt="UV index" />
-
-            #end if #if $week.radiation.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.radiation.has_data
 
             <img src="weekradiation.png" alt="Radiation" />
-
-            #end if #if $week.UV.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.UV.has_data
 
             <img src="weekuv.png" alt="UV Index" />
-
-            #end if #if $week.rxCheckPercent.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.rxCheckPercent.has_data
 
             <img src="weekrx.png" alt="week rx percent" />
-
-            #end if #if $week.extraTemp1.has_data
+            <!-- prettier-ignore -->
+            #end if 
+            #if $week.extraTemp1.has_data
 
             <img src="weekpond.png" alt="Pond Temperatura" />
 
