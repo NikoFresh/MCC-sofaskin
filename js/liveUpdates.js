@@ -1,6 +1,6 @@
 clientID = "clientID - " + parseInt(Math.random() * 100);
-host = "mqtt.eclipseprojects.io/mqtt";
-port = 443;
+host = "test.mosquitto.org";
+port = 8081;
 topic = "meteocentrocadore/loop";
 
 client = new Paho.MQTT.Client(host, Number(port), clientID);
@@ -8,7 +8,7 @@ client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 client.connect({
   onSuccess: onConnect,
-  useSSL: true
+  useSSL: true,
 });
 
 client.onConnectionLost = onConnectionLost;
@@ -72,7 +72,7 @@ function updateData(data) {
     document.getElementById("outTemp").innerHTML = data["outTemp_C"] + "°C";
     document.getElementById("outHum").innerHTML = data["outHumidity"] + "%";
     document.getElementById("pressure").innerHTML =
-       data["barometer_mbar"] + "mbar";
+      data["barometer_mbar"] + "mbar";
     document.getElementById("dewPoint").innerHTML = data["dewpoint_C"] + "°C";
     document.getElementById("windChill").innerHTML = data["windchill_C"] + "°C";
     document.getElementById("heatIndex").innerHTML = data["heatindex_C"] + "°C";
