@@ -308,19 +308,19 @@
                     class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
                     id="outTemp"
                   >
-                    $current.outTemp.formatted
+                    $current.outTemp
                   </div>
                   <div class="tw:text-s tw:text-gray-500 tw:mb-2">
                     Percepita:
                     <span class="" id="heatIndex"
-                      >$current.appTemp.formatted</span
+                      >$current.appTemp</span
                     >
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
-                        >$day.outTemp.max.formatted</span
+                        >$day.outTemp.max</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.outTemp.maxtime.format("%H:%M"))</span
@@ -329,7 +329,7 @@
                     <div>
                       Min:
                       <span class="tw:font-medium"
-                        >$day.outTemp.min.formatted</span
+                        >$day.outTemp.min</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.outTemp.mintime.format("%H:%M"))</span
@@ -350,13 +350,13 @@
                     class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
                     id="outHum"
                   >
-                    $current.outHumidity.formatted
+                    $current.outHumidity
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
-                        >$day.outHumidity.max.formatted</span
+                        >$day.outHumidity.max</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.outHumidity.maxtime.format("%H:%M"))</span
@@ -365,7 +365,7 @@
                     <div>
                       Min:
                       <span class="tw:font-medium"
-                        >$day.outHumidity.min.formatted</span
+                        >$day.outHumidity.min</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.outHumidity.mintime.format("%H:%M"))</span
@@ -387,14 +387,13 @@
                     class="tw:text-2xl tw:font-bold tw:text-gray-800"
                     id="pressure"
                   >
-                    $current.barometer.formatted
+                    $current.barometer
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                    <div>mbar</div>
                     <div>
                       Max:
                       <span class="tw:font-medium"
-                        >$day.barometer.max.formatted</span
+                        >$day.barometer.max</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.barometer.maxtime.format("%H:%M"))</span
@@ -403,7 +402,7 @@
                     <div>
                       Min:
                       <span class="tw:font-medium"
-                        >$day.barometer.min.formatted</span
+                        >$day.barometer.min</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.barometer.mintime.format("%H:%M"))</span
@@ -425,7 +424,7 @@
                     class="tw:text-2xl tw:font-bold tw:text-grey-800"
                     id="windSpeed"
                   >
-                    $current.windSpeed.formatted
+                    $current.windSpeed
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
                     <div>
@@ -434,7 +433,7 @@
                     <div>
                       Max:
                       <span class="tw:font-medium"
-                        >$day.windGust.max.formatted</span
+                        >$day.windGust.max</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.windGust.maxtime.format("%H:%M"))</span
@@ -443,7 +442,7 @@
                     <div>
                       Avg:
                       <span class="tw:font-medium"
-                        >$day.windSpeed.avg.formatted</span
+                        >$day.windSpeed.avg</span
                       >
                     </div>
                   </div>
@@ -461,20 +460,19 @@
                     class="tw:text-2xl tw:font-bold tw:text-grey-800"
                     id="rain"
                   >
-                    $day.rain.formatted
+                    $day.rain
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
-                    <div>inches</div>
                     <div>
                       Rain rate:
                       <span class="tw:font-medium" id="rainRate"
-                        >$current.rainRate.formatted</span
+                        >$current.rainRate</span
                       >
                     </div>
                     <div>
                       Rain rate max:
                       <span class="tw:font-medium"
-                        >$day.rainRate.max.formatted</span
+                        >$day.rainRate.max</span
                       >
                     </div>
                   </div>
@@ -508,13 +506,13 @@
                     class="tw:text-2xl tw:font-bold tw:text-grey-800"
                     id="dewPoint"
                   >
-                    $current.dewpoint.formatted
+                    $current.dewpoint
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
-                        >$day.dewpoint.max.formatted</span
+                        >$day.dewpoint.max</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.dewpoint.maxtime.format("%H:%M"))</span
@@ -523,7 +521,7 @@
                     <div>
                       Min:
                       <span class="tw:font-medium"
-                        >$day.dewpoint.min.formatted</span
+                        >$day.dewpoint.min</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.dewpoint.mintime.format("%H:%M"))</span
@@ -557,13 +555,13 @@
                     class="tw:text-2xl tw:font-bold tw:text-grey-800"
                     id="windChill"
                   >
-                    $current.windchill.formatted
+                    $current.windchill
                   </div>
                   <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
-                        >$day.windchill.max.formatted</span
+                        >$day.windchill.max</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.windchill.maxtime.format("%H:%M"))</span
@@ -572,7 +570,7 @@
                     <div>
                       Min:
                       <span class="tw:font-medium"
-                        >$day.windchill.min.formatted</span
+                        >$day.windchill.min</span
                       >
                       <span class="tw:text-gray-400"
                         >($day.windchill.mintime.format("%H:%M"))</span
