@@ -29,6 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <script src="./js/forecast.js?v1.01"></script>
     <script src="./js/liveUpdates.js?v1.05"></script>
+    <script src="./js/checkdiff.js"></script>
 
     <!-- Umami -->
     <script
@@ -273,6 +274,10 @@
     <!-- End header -->
     <main class="tw:mx-4">
       <div class="tw:container tw:mx-auto">
+        <p id="freshweather"></p>
+          <script>
+            window.onload = checkDiff("$current.dateTime ($current.dateTime.format('%Z'))");
+          </script>
         <!-- Mqtt -->
         <div class="tw:mb-2 tw:mt-3">
           <div
