@@ -3,7 +3,7 @@ Update version to work with Weewx 5 */
 
 function checkDiff(datestr) {
     // Parse the input date string
-    var parts = datestr.match(/(\d+)\/(\d+)\/(\d+) (\d+):(\d+):(\d+) (AM|PM) \((\w+)\)/);
+    var parts = datestr.match(/(\d+)\/(\d+)\/(\d+) (\d+):(\d+):(\d+) (am|pm) \((\w+)\)/);
     if (!parts) {
         console.error("Invalid date format");
         return;
@@ -20,7 +20,7 @@ function checkDiff(datestr) {
     var timezone = parts[8];
 
     // Adjust hour if in PM
-    if (period === "PM" && hour < 12) {
+    if (period === "pm" && hour < 12) {
         hour += 12;
     }
 
