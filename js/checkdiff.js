@@ -40,8 +40,8 @@ function checkDiff(datestr) {
 
     // Fixme: Add "icon"
     if (Date.now() - refreshed > diff) {
-        text.innerHTML = `<div role="alert" class="tw:border-s-4 tw:border-red-700 tw:bg-red-50 p-4">
-                            <div class="tw:flex tw:items-center gap-2 tw:text-red-700">
+        text.innerHTML = `<div role="alert" class="tw:border-s-4 tw:border-red-700 tw:bg-red-50 tw:p-4">
+                            <div class="tw:flex tw:items-center tw:gap-2 tw:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="tw:size-5">
                                 <path
                                     fill-rule="evenodd"
