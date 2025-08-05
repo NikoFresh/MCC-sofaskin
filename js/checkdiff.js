@@ -40,7 +40,7 @@ function checkDiff(datestr) {
 
     // Fixme: Add "icon"
     if (Date.now() - refreshed > diff) {
-        text.innerHTML = `<div role="alert" class="tw:border-s-4 tw:border-red-700 tw:bg-red-50 tw:p-4">
+        text.innerHTML = `<div role="alert" class="tw:border-s-4 tw:border-red-700 tw:bg-red-50 tw:p-4 tw:m-4">
                             <div class="tw:flex tw:items-center tw:gap-2 tw:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="tw:size-5">
                                 <path
@@ -50,7 +50,9 @@ function checkDiff(datestr) {
                                 />
                                 </svg>
 
-                                <strong class="tw:font-medium"> Dati non aggiornati </strong>
+                                <strong class="tw:text-lg"> Dati non aggiornati </strong>
+                                <br />
+                                <a href="https://meteocentrocadore.cronitorstatus.com" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
                             </div>
                         </div>`;
     }
