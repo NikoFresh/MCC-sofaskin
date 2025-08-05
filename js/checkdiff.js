@@ -51,9 +51,8 @@ function checkDiff(datestr) {
                                 </svg>
 
                                 <strong class="tw:text-lg"> Dati non aggiornati </strong>
-                                <br />
+                                </div>
                                 <a href="https://meteocentrocadore.cronitorstatus.com" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
-                            </div>
                         </div>`;
     }
 
