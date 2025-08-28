@@ -38,6 +38,16 @@
       data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"
     ></script>
 
+    <!-- Script per Dark Mode Automatico -->
+    <script>
+      // Per evitare FOUC (Flash of Unstyled Content), questo script viene eseguito prima del rendering del body.
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+      } else {
+          document.documentElement.classList.remove('dark');
+      }
+    </script>
+
     <!-- Mqtt status animation -->
     <style>
       div.online-indicator {
@@ -89,9 +99,9 @@
       }
     </style>
   </head>
-  <body class="tw:bg-weather-bg">
+  <body class="tw:bg-weather-bg tw:dark:bg-gray-900">
     <!-- Header -->
-    <div id="header" class="tw:px-8 tw:pt-6 tw:bg-weather-cool/80">
+    <div id="header" class="tw:px-8 tw:pt-6 tw:bg-weather-cool/80 tw:dark:bg-gray-800/80">
       <div
         class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left tw:relative tw:z-10 tw:text-white"
       >
@@ -104,7 +114,7 @@
         </div>
 
         <div
-          class="tw:flex tw:items-center tw:gap-5 tw:mb-2 tw:text-sm tw:text-white/85 tw:font-medium"
+          class="tw:flex tw:items-center tw:gap-5 tw:mb-2 tw:text-sm tw:text-white/85 tw:dark:text-gray-300 tw:font-medium"
         >
           <div class="tw:flex tw:items-center tw:gap-1.5">
             <svg
@@ -137,7 +147,7 @@
           </div>
         </div>
 
-        <p class="tw:text-base tw:text-white/90 tw:font-medium tw:mb-4">
+        <p class="tw:text-base tw:text-white/90 tw:dark:text-gray-300 tw:font-medium tw:mb-4">
           Ultimo aggiornamento:
           <span class="tw:font-mono"
             >$current.dateTime $current.dateTime.format("%Z")</span
@@ -157,27 +167,27 @@
               >
               <a
                 href="week.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="tw:px-3 tw:py-2 tw:text-white/80 hover:tw:text-white tw:text-lg tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Settimana</a
               >
               <a
                 href="month.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="tw:px-3 tw:py-2 tw:text-white/80 hover:tw:text-white tw:text-lg tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Mese</a
               >
               <a
                 href="year.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="tw:px-3 tw:py-2 tw:text-white/80 hover:tw:text-white tw:text-lg tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Anno</a
               >
               <a
                 href="summary.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="tw:px-3 tw:py-2 tw:text-white/80 hover:tw:text-white tw:text-lg tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Storico</a
               >
               <a
                 href="vaia.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="tw:px-3 tw:py-2 tw:text-white/80 hover:tw:text-white tw:text-lg tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Vaia</a
               >
             </div>
@@ -290,7 +300,7 @@
             ></span>
 
           </div>
-          <span id="mqttStatus" class="tw:inline-block tw:align-middle tw:mb-1"
+          <span id="mqttStatus" class="tw:inline-block tw:align-middle tw:mb-1 tw:dark:text-gray-300"
             >Connessione alla stazione meteo in corso...</span
           >
         </div>
@@ -303,32 +313,32 @@
               >
                 <!-- Tempeartura -->
                 <div
-                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                  class="tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:dark:border-gray-700"
                 >
                   <div
                     class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <div class="tw:text-sm tw:text-gray-800">Temperatura</div>
+                    <div class="tw:text-sm tw:text-gray-800 tw:dark:text-gray-300">Temperatura</div>
                   </div>
                   <div
-                    class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
+                    class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:dark:text-gray-100 tw:mb-2"
                     id="outTemp"
                   >
                     $current.outTemp
                   </div>
-                  <div class="tw:text-s tw:text-gray-500 tw:mb-2">
+                  <div class="tw:text-s tw:text-gray-500 tw:dark:text-gray-400 tw:mb-2">
                     Percepita:
                     <span class="" id="heatIndex"
                       >$current.appTemp</span
                     >
                   </div>
-                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div class="tw:text-xs tw:text-gray-500 tw:dark:text-gray-400 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
                         >$day.outTemp.max</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.outTemp.maxtime.format("%H:%M"))</span
                       >
                     </div>
@@ -337,7 +347,7 @@
                       <span class="tw:font-medium"
                         >$day.outTemp.min</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.outTemp.mintime.format("%H:%M"))</span
                       >
                     </div>
@@ -345,26 +355,26 @@
                 </div>
                 <!-- umidità -->
                 <div
-                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                  class="tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:dark:border-gray-700"
                 >
                   <div
                     class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <div class="tw:text-sm tw:text-gray-800">Umidità</div>
+                    <div class="tw:text-sm tw:text-gray-800 tw:dark:text-gray-300">Umidità</div>
                   </div>
                   <div
-                    class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:mb-2"
+                    class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:dark:text-gray-100 tw:mb-2"
                     id="outHum"
                   >
                     $current.outHumidity
                   </div>
-                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div class="tw:text-xs tw:text-gray-500 tw:dark:text-gray-400 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
                         >$day.outHumidity.max</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.outHumidity.maxtime.format("%H:%M"))</span
                       >
                     </div>
@@ -373,7 +383,7 @@
                       <span class="tw:font-medium"
                         >$day.outHumidity.min</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.outHumidity.mintime.format("%H:%M"))</span
                       >
                     </div>
@@ -382,26 +392,26 @@
 
                 <!-- Pressione -->
                 <div
-                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                  class="tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:dark:border-gray-700"
                 >
                   <div
                     class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <div class="tw:text-sm tw:text-gray-800">Pressione</div>
+                    <div class="tw:text-sm tw:text-gray-800 tw:dark:text-gray-300">Pressione</div>
                   </div>
                   <div
-                    class="tw:text-2xl tw:font-bold tw:text-gray-800"
+                    class="tw:text-2xl tw:font-bold tw:text-gray-800 tw:dark:text-gray-100"
                     id="pressure"
                   >
                     $current.barometer
                   </div>
-                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div class="tw:text-xs tw:text-gray-500 tw:dark:text-gray-400 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
                         >$day.barometer.max</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.barometer.maxtime.format("%H:%M"))</span
                       >
                     </div>
@@ -410,7 +420,7 @@
                       <span class="tw:font-medium"
                         >$day.barometer.min</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.barometer.mintime.format("%H:%M"))</span
                       >
                     </div>
@@ -419,20 +429,20 @@
 
                 <!-- Vento -->
                 <div
-                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                  class="tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:dark:border-gray-700"
                 >
                   <div
                     class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <div class="tw:text-sm tw:text-gray-800">Vento</div>
+                    <div class="tw:text-sm tw:text-gray-800 tw:dark:text-gray-300">Vento</div>
                   </div>
                   <div
-                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800 tw:dark:text-gray-100"
                     id="windSpeed"
                   >
                     $current.windSpeed
                   </div>
-                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div class="tw:text-xs tw:text-gray-500 tw:dark:text-gray-400 tw:space-y-1">
                     <div>
                       $current.windDir.ordinal_compass
                     </div>
@@ -441,7 +451,7 @@
                       <span class="tw:font-medium"
                         >$day.windGust.max</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.windGust.maxtime.format("%H:%M"))</span
                       >
                     </div>
@@ -455,20 +465,20 @@
                 </div>
                 <!-- pioggia -->
                 <div
-                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                  class="tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:dark:border-gray-700"
                 >
                   <div
                     class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <div class="tw:text-sm tw:text-gray-800">Pioggia</div>
+                    <div class="tw:text-sm tw:text-gray-800 tw:dark:text-gray-300">Pioggia</div>
                   </div>
                   <div
-                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800 tw:dark:text-gray-100"
                     id="rain"
                   >
                     $day.rain.sum
                   </div>
-                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div class="tw:text-xs tw:text-gray-500 tw:dark:text-gray-400 tw:space-y-1">
                     <div>
                       Rain rate:
                       <span class="tw:font-medium" id="rainRate"
@@ -486,22 +496,22 @@
 
                 <!-- Dew Point -->
                 <div
-                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                  class="tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:dark:border-gray-700"
                 >
                   <div
                     class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <div class="tw:text-sm tw:text-gray-800">
+                    <div class="tw:text-sm tw:text-gray-800 tw:dark:text-gray-300">
                       Punto di rugiada
                     </div>
                     <span class="tw:relative tw:ml-2 tw:group">
                       <i
-                        class="fas fa-question-circle tw:text-gray-600 tw:cursor-pointer"
+                        class="fas fa-question-circle tw:text-gray-600 tw:dark:text-gray-400 tw:cursor-pointer"
                         tabindex="0"
                         aria-label="Informazioni sul punto di rugiada"
                       ></i>
                       <span
-                        class="tw:absolute tw:w-56 tw:bg-gray-800 tw:text-white tw:text-center tw:rounded tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 tw:group-hover:opacity-100 tw:group-focus-within:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none"
+                        class="tw:absolute tw:w-56 tw:bg-gray-800 tw:dark:bg-gray-900 tw:text-white tw:text-center tw:rounded tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 tw:group-hover:opacity-100 tw:group-focus-within:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none"
                       >
                         Temperatura alla quale l'aria deve raffreddarsi affinché
                         il vapore acqueo presente inizi a condensare.
@@ -509,18 +519,18 @@
                     </span>
                   </div>
                   <div
-                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800 tw:dark:text-gray-100"
                     id="dewPoint"
                   >
                     $current.dewpoint
                   </div>
-                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div class="tw:text-xs tw:text-gray-500 tw:dark:text-gray-400 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
                         >$day.dewpoint.max</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.dewpoint.maxtime.format("%H:%M"))</span
                       >
                     </div>
@@ -529,7 +539,7 @@
                       <span class="tw:font-medium"
                         >$day.dewpoint.min</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.dewpoint.mintime.format("%H:%M"))</span
                       >
                     </div>
@@ -538,38 +548,38 @@
 
                 <!-- Wind Chill -->
                 <div
-                  class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100"
+                  class="tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:dark:border-gray-700"
                 >
                   <div
                     class="tw:flex tw:items-center tw:justify-between tw:mb-2"
                   >
-                    <div class="tw:text-sm tw:text-gray-800">Wind Chill</div>
+                    <div class="tw:text-sm tw:text-gray-800 tw:dark:text-gray-300">Wind Chill</div>
                     <span class="tw:relative tw:ml-2 tw:group">
                       <i
-                        class="fas fa-question-circle tw:text-gray-600 tw:cursor-pointer"
+                        class="fas fa-question-circle tw:text-gray-600 tw:dark:text-gray-400 tw:cursor-pointer"
                         tabindex="0"
                         aria-label="Informazioni sul punto di rugiada"
                       ></i>
                       <span
-                        class="tw:absolute tw:w-56 tw:bg-gray-800 tw:text-white tw:text-center tw:rounded tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 tw:group-hover:opacity-100 tw:group-focus-within:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none"
+                        class="tw:absolute tw:w-56 tw:bg-gray-800 tw:dark:bg-gray-900 tw:text-white tw:text-center tw:rounded tw:py-2 tw:px-3 tw:bottom-full tw:left-1/2 tw:transform tw:-translate-x-1/2 tw:mb-2 tw:opacity-0 tw:group-hover:opacity-100 tw:group-focus-within:opacity-100 tw:transition-opacity tw:duration-300 tw:pointer-events-none"
                       >
                         Temperatura percepita per effetto del vento sulla pelle.
                       </span>
                     </span>
                   </div>
                   <div
-                    class="tw:text-2xl tw:font-bold tw:text-grey-800"
+                    class="tw:text-2xl tw:font-bold tw:text-grey-800 tw:dark:text-gray-100"
                     id="windChill"
                   >
                     $current.windchill
                   </div>
-                  <div class="tw:text-xs tw:text-gray-500 tw:space-y-1">
+                  <div class="tw:text-xs tw:text-gray-500 tw:dark:text-gray-400 tw:space-y-1">
                     <div>
                       Max:
                       <span class="tw:font-medium"
                         >$day.windchill.max</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.windchill.maxtime.format("%H:%M"))</span
                       >
                     </div>
@@ -578,7 +588,7 @@
                       <span class="tw:font-medium"
                         >$day.windchill.min</span
                       >
-                      <span class="tw:text-gray-400"
+                      <span class="tw:text-gray-400 tw:dark:text-gray-500"
                         >($day.windchill.mintime.format("%H:%M"))</span
                       >
                     </div>
@@ -590,7 +600,7 @@
             <!-- webcam -->
             <div class="tw:lg:col-span-1">
               <div
-                class="tw:bg-gradient-to-br tw:from-weather-cool/10 tw:to-weather-warm/10 tw:rounded-2xl tw:p-4 tw:flex tw:flex-col"
+                class="tw:bg-gradient-to-br tw:from-weather-cool/10 tw:to-weather-warm/10 tw:dark:from-gray-800 tw:dark:to-gray-900 tw:rounded-2xl tw:p-4 tw:flex tw:flex-col"
               >
                 <!-- Radio buttons prima del container -->
                 <input
@@ -613,17 +623,17 @@
                       <!-- Navigazione -->
                       <div class="tw:mb-3 tw:flex tw:justify-center">
                         <div
-                          class="tw:bg-white/20 tw:rounded-lg tw:p-1 tw:flex tw:gap-1"
+                          class="tw:bg-white/20 tw:dark:bg-gray-700/50 tw:rounded-lg tw:p-1 tw:flex tw:gap-1"
                         >
                           <label
                             for="webcam"
-                            class="webcam-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:bg-white/30 tw:text-gray-800"
+                            class="webcam-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:bg-white/30 tw:dark:bg-gray-600 hover:tw:bg-white/20 dark:hover:tw:bg-gray-600/50 tw:text-gray-800 tw:dark:text-gray-200"
                           >
                             📹 Webcam
                           </label>
                           <label
                             for="radar"
-                            class="radar-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:hover:bg-white/20 tw:text-gray-600"
+                            class="radar-btn tw:px-3 tw:py-1 tw:rounded tw:text-sm tw:font-medium tw:transition-colors tw:cursor-pointer tw:text-gray-600 tw:dark:text-gray-400 hover:tw:bg-white/20 dark:hover:tw:bg-gray-600/50"
                           >
                             🌦️ Radar
                           </label>
@@ -654,7 +664,7 @@
         <section>
           <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-3 tw:gap-6">
             <div
-              class="tw:md:col-span-1 tw:bg-weather-cool/6 tw:rounded-2xl tw:border tw:border-gray-100"
+              class="tw:md:col-span-1 tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:border tw:border-gray-100 tw:dark:border-gray-700"
             >
               <!-- One year ago -->
               <!--Leap Year Code -->
@@ -697,124 +707,124 @@
               #end if
             #end if
               <!-- prettier-ignore-end -->
-              <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+              <h1 class="tw:text-xl tw:text-gray-800 tw:dark:text-gray-200 tw:px-4 tw:pt-4">
                 Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b(%Y)"))
               </h1>
 
               <table
                 class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2"
               >
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Temperatura massima:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).outTemp.max
                     $days_ago($days_ago=$n).outTemp.maxtime
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Temperatura minima:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).outTemp.min
                     $days_ago($days_ago=$n).outTemp.mintime
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Umidità massima:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).outHumidity.max
                     $days_ago($days_ago=$n).outHumidity.maxtime
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Umidità minima:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).outHumidity.min
                     $days_ago($days_ago=$n).outHumidity.mintime
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Pressione massima:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).barometer.max
                     $days_ago($days_ago=$n).barometer.maxtime
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Pressione minima:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).barometer.min
                     $days_ago($days_ago=$n).barometer.mintime
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Pioggia:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).rain.sum
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                   >
                     Rain Rate max:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                   >
                     $days_ago($days_ago=$n).rainRate.max
                     $days_ago($days_ago=$n).rainRate.maxtime
                   </td>
                 </tr>
-                <tr class="tw:hover:bg-weather-cool/5 tw:group">
+                <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50 tw:group">
                   <td
-                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                    class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:pl-4 tw:group-hover:rounded-bl-2xl"
                   >
                     Vento massimo:
                   </td>
                   <td
-                    class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                    class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:group-hover:rounded-br-2xl"
                   >
                     $days_ago($days_ago=$n).wind.max $day.wind.gustdir
                     $days_ago($days_ago=$n).wind.maxtime
@@ -825,7 +835,7 @@
 
             <!-- Almanac -->
             <div
-              class="tw:lg:col-span-2 tw:bg-weather-cool/6 tw:rounded-2xl tw:border tw:border-gray-100"
+              class="tw:lg:col-span-2 tw:bg-weather-cool/6 tw:dark:bg-gray-800 tw:rounded-2xl tw:border tw:border-gray-100 tw:dark:border-gray-700"
             >
               <!-- prettier-ignore -->
               #set $sun_altitude = $almanac.sun.alt
@@ -836,170 +846,170 @@
               #end if
               <!-- prettier-ignore-end -->
 
-              <h1 class="tw:text-xl tw:px-4 tw:pt-4">Almanacco</h1>
+              <h1 class="tw:text-xl tw:px-4 tw:pt-4 tw:dark:text-gray-200">Almanacco</h1>
               <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2">
                 <div>
-                  <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+                  <h1 class="tw:text-xl tw:text-gray-800 tw:dark:text-gray-200 tw:px-4 tw:pt-4">
                     Sole
                   </h1>
 
                   <table
                     class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2"
                   >
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Inizio crepuscolo civile:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac(horizon=-6).sun(use_center=1).rise
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Alba:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.sun.rise.string($sun_None)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Transito:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.sun.transit
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Tramonto:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.sun.set.string($sun_None)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Fine crepuscolo civile:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac(horizon=-6).sun(use_center=1).set
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Azimuth:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $almanac.sun.az)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Altitudine:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $sun_altitude)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Ascensione retta:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $almanac.sun.ra)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Inclinazione:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $almanac.sun.dec)
                       </td>
                     </tr>
                     #if $almanac.next_equinox.raw > $almanac.next_solstice.raw
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Solstizio:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.next_solstice
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Equinozio:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.next_equinox
                       </td>
                     </tr>
                     #else
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Equinozio:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.next_equinox
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5 tw:group">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50 tw:group">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:pl-4 tw:group-hover:rounded-bl-2xl"
                       >
                         Solstizio:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:group-hover:rounded-br-2xl"
                       >
                         $almanac.next_solstice
                       </td>
@@ -1009,156 +1019,156 @@
                 </div>
 
                 <div>
-                  <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+                  <h1 class="tw:text-xl tw:text-gray-800 tw:dark:text-gray-200 tw:px-4 tw:pt-4">
                     Luna
                   </h1>
 
                   <table
                     class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2"
                   >
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Leva:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.moon.rise
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Transito:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.moon.transit
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Cala:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.moon.set
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Azimut:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $almanac.moon.az)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Altitudine:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $almanac.moon.alt)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Ascensione retta:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $almanac.moon.ra)
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Inclinazione:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $("%.1f&deg;" % $almanac.moon.dec)
                       </td>
                     </tr>
                     #if $almanac.next_full_moon.raw < $almanac.next_new_moon.raw
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Luna piena:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.next_full_moon
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Luna nuova:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.next_new_moon
                       </td>
                     </tr>
                     #else
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Luna nuova:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.next_new_moon
                       </td>
                     </tr>
-                    <tr class="tw:hover:bg-weather-cool/5">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600 tw:pl-4"
                       >
                         Luna piena:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:border-b tw:border-gray-200 tw:dark:border-gray-600"
                       >
                         $almanac.next_full_moon
                       </td>
                     </tr>
                     #end if
-                    <tr class="tw:hover:bg-weather-cool/5 tw:group">
+                    <tr class="tw:hover:bg-weather-cool/5 dark:hover:tw:bg-gray-700/50 tw:group">
                       <td
-                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                        class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:dark:text-gray-300 tw:pl-4 tw:group-hover:rounded-bl-2xl"
                       >
                         Fase:
                       </td>
                       <td
-                        class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                        class="tw:py-2 tw:text-gray-900 tw:dark:text-gray-300 tw:group-hover:rounded-br-2xl"
                       >
                         $almanac.moon_phase ($almanac.moon_fullness% full)
                       </td>
@@ -1170,11 +1180,11 @@
           </div>
         </section>
 
-        <hr class="tw:h-px tw:mt-4 tw:mb-8 tw:bg-blue-200 tw:border-0" />
+        <hr class="tw:h-px tw:mt-4 tw:mb-8 tw:bg-blue-200 tw:dark:bg-gray-700 tw:border-0" />
 
         <!-- Grafici -->
         <div class="tw:p-8 tw:md:p-0 tw:mb-4">
-          <h1 class="tw:text-xl">
+          <h1 class="tw:text-xl tw:dark:text-gray-200">
             <i class="fa fa-line-chart m-gruen"></i> Grafici
           </h1>
           <div class="tw:grid tw:grid-cols-1 tw:md:grid-cols-2">
@@ -1189,7 +1199,7 @@
       </div>
     </main>
     <!-- Footer -->
-    <footer class="tw:bg-weather-cool/80 tw:p-8 tw:text-white">
+    <footer class="tw:bg-weather-cool/80 tw:dark:bg-gray-800/80 tw:p-8 tw:text-white">
       <div class="tw:container tw:mx-auto">
         <div class="tw:table">
           <div class="tw:table-row">
@@ -1212,7 +1222,7 @@
           </div>
         </div>
         <a href="https://meteocentrocadore.cronitorstatus.com" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
-        <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:border-0" />
+        <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:dark:bg-gray-600 tw:border-0" />
         <div class="tw:flex tw:flex-row tw:flex-wrap">
           <p class="tw:mr-2">
             Powered by <a href="weewx.com" class="tw:underline">Weewx</a>.
