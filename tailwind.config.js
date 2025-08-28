@@ -16,6 +16,12 @@ module.exports = {
       fontFamily: {
         "Roboto-mono": ['"Roboto Mono"', "monospace"],
       },
+      colors: {
+        "weather-warm": "#f97316",
+        "weather-cool": "#0ea5e9",
+        "weather-neutral": "#64748b",
+        "weather-bg": "#f8fafc",
+      },
     },
   },
   plugins: [],

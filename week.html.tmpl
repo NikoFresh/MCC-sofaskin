@@ -33,7 +33,6 @@
     <link href="$Extras.web_url/week.html" itemprop="url" />
 
     #end if
-
     <title itemprop="name">$station.location Weekly Weather Summary</title>
 
     <!-- Open Graph -->
@@ -85,9 +84,9 @@
       referrerpolicy="no-referrer"
     />
 
-    <link rel="stylesheet" href="css/main.css" />
+    <!-- <link rel="stylesheet" href="css/main.css" /> -->
 
-    <link rel="stylesheet" href="build.css?1.5" />
+    <link rel="stylesheet" href="build.css?2" />
 
     <!-- Skripte -->
 
@@ -106,75 +105,103 @@
 
   <body>
     <!-- Header -->
+    <div id="header" class="tw:px-8 tw:pt-6 tw:bg-weather-cool/80">
+      <div
+        class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left tw:relative tw:z-10 tw:text-white"
+      >
+        <div class="tw:flex tw:items-center tw:gap-3 tw:mb-2">
+          <a href="/">
+            <h1 class="tw:text-4xl tw:font-semibold tw:tracking-tight">
+              $station.location
+            </h1>
+          </a>
+        </div>
 
-    <div id="header" class="tw:px-8 tw:pt-8 tw:bg-cyan-200">
-      <div class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left">
-        <h1 class="tw:text-4xl tw:text-gray-900">$station.location</h1>
-
-        <p
-          class="tw:text-xs tw:mt-1 tw:ml-1 tw:font-Robot-mono tw:text-gray-500"
+        <div
+          class="tw:flex tw:items-center tw:gap-5 tw:mb-2 tw:text-sm tw:text-white/85 tw:font-medium"
         >
-          > $station.latitude[0]&deg; $station.latitude[1]' $station.latitude[2]
-          / $station.longitude[0]&deg; $station.longitude[1]'
-          $station.longitude[2] / $station.altitude
+          <div class="tw:flex tw:items-center tw:gap-1.5">
+            <svg
+              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span class="tw:font-mono"
+              >$station.latitude[0]°$station.latitude[1]'$station.latitude[2],
+              $station.longitude[0]°$station.longitude[1]'$station.longitude[2]</span
+            >
+          </div>
+          <div class="tw:flex tw:items-center tw:gap-1.5">
+            <svg
+              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="17,10 12,15 7,10" />
+              <polyline points="19,15 12,22 5,15" />
+            </svg>
+            <span class="tw:font-mono">$station.altitude</span>
+          </div>
+        </div>
+
+        <p class="tw:text-base tw:text-white/90 tw:font-medium tw:mb-4">
+          Ultimo aggiornamento:
+          <span class="tw:font-mono"
+            >$current.dateTime $current.dateTime.format("%Z")</span
+          >
         </p>
 
-        <p class="tw:text-xl tw:mt-3 tw:text-gray-900">Condizioni meteo</p>
-
-        <p class="tw:text-sm tw:text-gray-800 tw:font-Robot-mono">
-          $current.dateTime $current.dateTime.format("%Z")
-        </p>
-
-        <!-- navigation -->
-
-        <div class="tw:flex">
+        <div
+          class="tw:flex tw:items-end tw:justify-between tw:flex-wrap tw:gap-4"
+        >
           <!-- PC menu -->
-
-          <nav class="tw:mt-8">
-            <div class="tw:hidden tw:md:flex tw:flex-row">
+          <nav class="tw:flex-1">
+            <div class="tw:hidden tw:md:flex tw:flex-row tw:gap-1">
               <a
                 href="index.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Oggi</a
               >
-
               <a
                 href="week.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl tw:underline tw:decoration-4 tw:underline-offset-[11px] tw:decoration-cyan-400"
+                class="tw:px-3 tw:py-2 tw:text-white tw:text-lg tw:font-medium tw:border-b-2 tw:border-white/80 tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Settimana</a
               >
-
               <a
                 href="month.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Mese</a
               >
-
               <a
                 href="year.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Anno</a
               >
-
               <a
                 href="summary.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Storico</a
               >
-
               <a
                 href="vaia.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Vaia</a
               >
             </div>
-
             <!-- Mobile menu button -->
-
             <div class="tw:md:hidden">
-              <button class="tw:outline-none mobile-menu-button">
+              <button
+                class="tw:outline-none mobile-menu-button tw:p-2 tw:rounded-lg hover:tw:bg-white/10 tw:transition-colors"
+              >
                 <svg
-                  class="tw:w-5 tw:h-5 tw:mt-2 tw:mr-3 tw:text-gray-900"
+                  class="tw:w-6 tw:h-6 tw:text-white"
                   x-show="!showMenu"
                   fill="none"
                   stroke-linecap="round"
@@ -189,70 +216,68 @@
             </div>
           </nav>
 
-          <a
-            href="https://www.instagram.com/meteocentrocadore/?hl=it"
-            class="tw:w-fit tw:mr-3 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
-            ><i class="fab fa-instagram"></i
-          ></a>
-
-          <a
-            data-umami-event="A due passi"
-            href="https://aduepassidallaciclabile.it"
-            class="tw:bg-lime-300 tw:w-fit tw:rounded-full tw:px-5 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
-          >
-            <i class="fa-brands fa-airbnb tw:mr-1"></i> A due passi dalla
-            ciclabile
-          </a>
+          <!-- IG e aduepassi -->
+          <div class="tw:flex tw:items-center tw:gap-3">
+            <a
+              href="https://www.instagram.com/meteocentrocadore/?hl=it"
+              class="tw:p-2 tw:text-white/80 tw:text-xl tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-lg"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              data-umami-event="A due passi"
+              href="https://aduepassidallaciclabile.it"
+              class="tw:bg-lime-400 tw:text-gray-900 tw:rounded-full tw:px-4 tw:py-2 tw:text-sm tw:font-medium tw:transition-all hover:tw:bg-lime-300 hover:tw:shadow-lg tw:shadow-lime-500/25"
+            >
+              <i class="fa-brands fa-airbnb tw:mr-1.5"></i> A due passi dalla
+              ciclabile
+            </a>
+          </div>
         </div>
 
         <!-- Mobile menu -->
-
-        <div class="tw:hidden mobile-menu tw:mt-3">
-          <ul class="">
-            <li class="">
+        <div
+          class="tw:hidden mobile-menu tw:mt-4 tw:pt-4 tw:border-t tw:border-white/20"
+        >
+          <ul class="tw:space-y-1">
+            <li>
               <a
                 href="index.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Oggi</a
               >
             </li>
-
             <li>
               <a
                 href="week.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:bg-cyan-100 tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white tw:text-lg tw:bg-white/10 tw:rounded-lg tw:font-medium"
                 >Settimana</a
               >
             </li>
-
             <li>
               <a
                 href="month.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Mese</a
               >
             </li>
-
             <li>
               <a
                 href="year.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Anno</a
               >
             </li>
-
             <li>
               <a
                 href="summary.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Storico</a
               >
             </li>
-
             <li>
               <a
                 href="vaia.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Vaia</a
               >
             </li>
@@ -260,753 +285,769 @@
         </div>
       </div>
     </div>
-
     <!-- End header -->
 
-    <div class="main">
-      <div class="container">
-        <div class="left">
-          <div class="card">
-            <h1>
-              <i class="fa fa-cloud m-grau"></i> Questa settimana
-              ($week.start.format("%d-%m-%Y") - $week.end.format("%d-%m-%Y"))
+    <main class="tw:mx-4">
+      <div
+        class="tw:container tw:mx-auto tw:grid tw:grid-cols-1 tw:lg:grid-cols-5 tw:gap-6 tw:py-4"
+      >
+        <div class="tw:lg:col-span-2">
+          <div class="tw:bg-weather-cool/6 tw:rounded-2xl">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+              Questa settimana ($week.start.format("%d-%m-%Y") -
+              $week.end.format("%d-%m-%Y"))
             </h1>
 
-            <table class="tablespacer">
-              <tr>
-                <td>Temperatura massima</td>
-
-                <td>$week.outTemp.max</td>
-
-                <td>$week.outTemp.maxtime</td>
+            <table class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2">
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Temperatura massima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outTemp.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outTemp.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Temperatura Minima</td>
-
-                <td>$week.outTemp.min</td>
-
-                <td>$week.outTemp.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Temperatura minima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outTemp.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outTemp.mintime
+                </td>
               </tr>
-
-              <!--    <tr>
-
-                <td>massima Heat Index</td>
-
-                <td>$week.heatindex.max</td>
-
-                <td>$week.heatindex.maxtime</td>
-
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Punto di rugiada massimo:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.dewpoint.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.dewpoint.maxtime
+                </td>
               </tr>
-
-              <tr>
-
-                <td>Wind Chill minimo</td>
-
-                <td>$week.windchill.min</td>
-
-                <td>$week.windchill.mintime</td>
-
-              </tr>-->
-
-              <tr>
-                <td>Punto di riugiada massimo</td>
-
-                <td>$week.dewpoint.max</td>
-
-                <td>$week.dewpoint.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Punto di rugiada minimo:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.dewpoint.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.dewpoint.mintime
+                </td>
               </tr>
-
-              <tr>
-                <td>Punto di rugiada minimo</td>
-
-                <td>$week.dewpoint.min</td>
-
-                <td>$week.dewpoint.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Umidità massima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outHumidity.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outHumidity.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Umidit&agrave; massima</td>
-
-                <td>$week.outHumidity.max</td>
-
-                <td>$week.outHumidity.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Umidità minima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outHumidity.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.outHumidity.mintime
+                </td>
               </tr>
-
-              <tr>
-                <td>Umidit&agrave; minima</td>
-
-                <td>$week.outHumidity.min</td>
-
-                <td>$week.outHumidity.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Pressione massima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.barometer.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.barometer.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Pressione massima</td>
-
-                <td>$week.barometer.max</td>
-
-                <td>$week.barometer.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Pressione minima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.barometer.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.barometer.mintime
+                </td>
               </tr>
-
-              <tr>
-                <td>Pressione minima</td>
-
-                <td>$week.barometer.min</td>
-
-                <td>$week.barometer.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Pioggia totale:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.rain.sum
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                ></td>
               </tr>
-
-              <tr>
-                <td>Pioggia totale</td>
-
-                <td>$week.rain.sum</td>
-
-                <td></td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Velocità massima del vento:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.wind.max $week.wind.gustdir
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.wind.maxtime
+                </td>
               </tr>
-
-              <!--      <tr>
-
-                <td>massima Rain Rate</td>
-
-                <td>$week.rainRate.max</td>
-
-                <td>$week.rainRate.maxtime</td>
-
-              </tr> -->
-
-              <tr>
-                <td>Velocit&agrave; massima del vento</td>
-
-                <td>$week.wind.max $week.wind.gustdir</td>
-
-                <td>$week.wind.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Velocità media del vento:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.wind.avg
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                ></td>
               </tr>
-
-              <tr>
-                <td>Velocit&agrave; media del vento</td>
-
-                <td>$week.wind.avg</td>
-
-                <td></td>
-              </tr>
-
-              <!--        <tr>
-
-                <td>RMS Wind</td>
-
-                <td>$week.wind.rms</td>
-
-                <td></td>
-
-              </tr>
-
-              <tr>
-
-                <td>Vector Average Speed</td>
-
-                <td>$week.wind.vecavg</td>
-
-                <td></td>
-
-              </tr>
-
-              <tr>
-
-                <td>Vector Average Direction</td>
-
-                <td>$week.wind.vecdir</td>
-
-                <td></td>
-
-              </tr>
-
-              <tr>
-
-                <td>massima Inside Temperatura</td>
-
-                <td>$week.inTemp.max</td>
-
-                <td>$week.inTemp.maxtime</td>
-
-              </tr>
-
-              <tr>
-
-                <td>Minima Inside Temperatura</td>
-
-                <td>$week.inTemp.min</td>
-
-                <td>$week.inTemp.mintime</td>
-
-              </tr> -->
-
               #if $week.extraTemp1.has_data
-
-              <tr>
-                <td>massima Pond Temp</td>
-
-                <td>$week.extraTemp1.max</td>
-
-                <td>$week.extraTemp1.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima Pond Temp:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.extraTemp1.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.extraTemp1.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Minima Pond Temp</td>
-
-                <td>$week.extraTemp1.min</td>
-
-                <td>$week.extraTemp1.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima Pond Temp:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.extraTemp1.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.extraTemp1.mintime
+                </td>
               </tr>
               <!-- prettier-ignore -->
-              #end if
+              #end if 
               #if $week.UV.has_data
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima UV:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.UV.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.UV.maxtime
+                </td>
 
-              <tr>
-                <td>massima UV</td>
-
-                <td>$week.UV.max</td>
-
-                <td>$week.UV.maxtime</td>
               </tr>
-
-              <tr>
-                <td>Minima UV</td>
-
-                <td>$week.UV.min</td>
-
-                <td>$week.UV.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima UV:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.UV.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.UV.mintime
+                </td>
               </tr>
               <!-- prettier-ignore -->
-              #end if
+              #end if 
               #if $week.ET.has_data and $week.ET.sum.raw > 0.0
-
-              <tr>
-                <td>massima ET</td>
-
-                <td>$week.ET.max</td>
-
-                <td>$week.ET.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima ET:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.ET.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.ET.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Minima ET</td>
-
-                <td>$week.ET.min</td>
-
-                <td>$week.ET.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima ET:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.ET.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.ET.mintime
+                </td>
               </tr>
               <!-- prettier-ignore -->
               #end if 
               #if $week.radiation.has_data
-
-              <tr>
-                <td>massima Radiation</td>
-
-                <td>$week.radiation.max</td>
-
-                <td>$week.radiation.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima Radiation:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.radiation.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $week.radiation.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Minima Radiation</td>
-
-                <td>$week.radiation.min</td>
-
-                <td>$week.radiation.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10 tw:group">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                >
+                  Minima Radiation:
+                </td>
+                <td class="tw:py-2 tw:text-gray-900">$week.radiation.min</td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                >
+                  $week.radiation.mintime
+                </td>
               </tr>
-
               #end if
             </table>
           </div>
 
-          <div class="card">
-            <h1>
-              <i class="fa fa-calendar m-orange"></i> Ieri
-              ($yesterday.dateTime.format("%d-%b-%Y"))
+          <div class="tw:bg-weather-cool/6 tw:mt-4 tw:rounded-2xl">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+              Ieri ($yesterday.dateTime.format("%d-%b-%Y"))
             </h1>
 
-            <table class="tablespacer">
-              <tr>
-                <td>Temperatura massima</td>
-
-                <td>$yesterday.outTemp.max</td>
-
-                <td>$yesterday.outTemp.maxtime</td>
+            <table class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2">
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Temperatura massima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outTemp.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outTemp.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Temperatura Minima</td>
-
-                <td>$yesterday.outTemp.min</td>
-
-                <td>$yesterday.outTemp.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Temperatura minima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outTemp.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outTemp.mintime
+                </td>
               </tr>
 
               <!--<tr>
 
-                <td>massima Heat Index</td>
+    <td>massima Heat Index</td>
 
-                <td>$yesterday.heatindex.max</td>
+    <td>$yesterday.heatindex.max</td>
 
-                <td>$yesterday.heatindex.maxtime</td>
+    <td>$yesterday.heatindex.maxtime</td>
 
-              </tr>
+  </tr>
 
 -->
 
-              <tr>
-                <td>Wind Chill minimo</td>
-
-                <td>$yesterday.windchill.min</td>
-
-                <td>$yesterday.windchill.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Wind Chill minimo:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.windchill.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.windchill.mintime
+                </td>
               </tr>
-
-              <tr>
-                <td>Punto di riugiada massimo</td>
-
-                <td>$yesterday.dewpoint.max</td>
-
-                <td>$yesterday.dewpoint.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Punto di rugiada massimo:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.dewpoint.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.dewpoint.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Punto di rugiada minimo</td>
-
-                <td>$yesterday.dewpoint.min</td>
-
-                <td>$yesterday.dewpoint.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Punto di rugiada minimo:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.dewpoint.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.dewpoint.mintime
+                </td>
               </tr>
-
-              <tr>
-                <td>Umidit&agrave; massima</td>
-
-                <td>$yesterday.outHumidity.max</td>
-
-                <td>$yesterday.outHumidity.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Umidità massima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outHumidity.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outHumidity.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Umidit&agrave; minima</td>
-
-                <td>$yesterday.outHumidity.min</td>
-
-                <td>$yesterday.outHumidity.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Umidità minima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outHumidity.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.outHumidity.mintime
+                </td>
               </tr>
-
-              <tr>
-                <td>Pressione massima</td>
-
-                <td>$yesterday.barometer.max</td>
-
-                <td>$yesterday.barometer.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Pressione massima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.barometer.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.barometer.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Pressione minima</td>
-
-                <td>$yesterday.barometer.min</td>
-
-                <td>$yesterday.barometer.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Pressione minima:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.barometer.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.barometer.mintime
+                </td>
               </tr>
-
-              <tr>
-                <td>Pioggia</td>
-
-                <td>$yesterday.rain.sum</td>
-
-                <td></td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Pioggia:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.rain.sum
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                ></td>
               </tr>
 
               <!--          <tr>
 
-                <td>massima Rain Rate</td>
+    <td>massima Rain Rate</td>
 
-                <td>$yesterday.rainRate.max</td>
+    <td>$yesterday.rainRate.max</td>
 
-                <td>$yesterday.rainRate.maxtime</td>
+    <td>$yesterday.rainRate.maxtime</td>
 
-              </tr> -->
+  </tr> -->
 
-              <tr>
-                <td>Velocit&agrave; massima del vento</td>
-
-                <td>$yesterday.wind.max $day.wind.gustdir</td>
-
-                <td>$yesterday.wind.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Velocità massima del vento:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.wind.max $day.wind.gustdir
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.wind.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Velocit&agrave; media del vento</td>
-
-                <td>$yesterday.wind.avg</td>
-
-                <td></td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Velocità media del vento:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.wind.avg
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                ></td>
               </tr>
 
               <!--    <tr>
 
-                <td>Vector Average Direction</td>
+    <td>Vector Average Direction</td>
 
-                <td>$yesterday.wind.vecdir</td>
+    <td>$yesterday.wind.vecdir</td>
 
-                <td></td>
+    <td></td>
 
-              </tr>
+  </tr>
 
-              <tr>
+  <tr>
 
-                <td>massima Inside Temperatura</td>
+    <td>massima Inside Temperatura</td>
 
-                <td>$yesterday.inTemp.max</td>
+    <td>$yesterday.inTemp.max</td>
 
-                <td>$yesterday.inTemp.maxtime</td>
+    <td>$yesterday.inTemp.maxtime</td>
 
-              </tr>
+  </tr>
 
-              <tr>
+  <tr>
 
-                <td>Minima Inside Temperatura</td>
+    <td>Minima Inside Temperatura</td>
 
-                <td>$yesterday.inTemp.min</td>
+    <td>$yesterday.inTemp.min</td>
 
-                <td>$yesterday.inTemp.mintime</td>
+    <td>$yesterday.inTemp.mintime</td>
 
-              </tr> -->
+  </tr> -->
 
               #if $day.extraTemp1.has_data
-
-              <tr>
-                <td>massima Pond Temp</td>
-
-                <td>$yesterday.extraTemp1.max</td>
-
-                <td>$yesterday.extraTemp1.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima Pond Temp:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.extraTemp1.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.extraTemp1.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Minima Pond Temp</td>
-
-                <td>$yesterday.extraTemp1.min</td>
-
-                <td>$yesterday.extraTemp1.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima Pond Temp:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.extraTemp1.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.extraTemp1.mintime
+                </td>
               </tr>
               <!-- prettier-ignore -->
               #end if 
               #if $yesterday.UV.has_data
-
-              <tr>
-                <td>massima UV</td>
-
-                <td>$yesterday.UV.max</td>
-
-                <td>$yesterday.UV.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima UV:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.UV.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.UV.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Minima UV</td>
-
-                <td>$yesterday.UV.min</td>
-
-                <td>$yesterday.UV.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima UV:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.UV.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.UV.mintime
+                </td>
               </tr>
               <!-- prettier-ignore -->
               #end if 
               #if $day.radiation.has_data
-
-              <tr>
-                <td>massima Radiation</td>
-
-                <td>$yesterday.radiation.max</td>
-
-                <td>$yesterday.radiation.maxtime</td>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima Radiation:
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.radiation.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $yesterday.radiation.maxtime
+                </td>
               </tr>
-
-              <tr>
-                <td>Minima Radiation</td>
-
-                <td>$yesterday.radiation.min</td>
-
-                <td>$yesterday.radiation.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10 tw:group">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                >
+                  Minima Radiation:
+                </td>
+                <td class="tw:py-2 tw:text-gray-900">
+                  $yesterday.radiation.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                >
+                  $yesterday.radiation.mintime
+                </td>
               </tr>
-
-              #end if
-            </table>
-          </div>
-
-          <div class="card">
-            <h1><i class="fa fa-calendar m-orange"></i> Questo mese</h1>
-
-            <table class="tablespacer">
-              <tr>
-                <td>Temperatura massima</td>
-
-                <td>$month.outTemp.max</td>
-
-                <td>$month.outTemp.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Temperatura Minima</td>
-
-                <td>$month.outTemp.min</td>
-
-                <td>$month.outTemp.mintime</td>
-              </tr>
-
-              <!--      <tr>
-
-                <td>massima Heat Index</td>
-
-                <td>$month.heatindex.max</td>
-
-                <td>$month.heatindex.maxtime</td>
-
-              </tr>
-
-              <tr>
-
-                <td>Wind Chill minimo</td>
-
-                <td>$month.windchill.min</td>
-
-                <td>$month.windchill.mintime</td>
-
-              </tr> -->
-
-              <tr>
-                <td>Punto di riugiada massimo</td>
-
-                <td>$month.dewpoint.max</td>
-
-                <td>$month.dewpoint.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Punto di rugiada minimo</td>
-
-                <td>$month.dewpoint.min</td>
-
-                <td>$month.dewpoint.mintime</td>
-              </tr>
-
-              <tr>
-                <td>Umidit&agrave; massima</td>
-
-                <td>$month.outHumidity.max</td>
-
-                <td>$month.outHumidity.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Umidit&agrave; minima</td>
-
-                <td>$month.outHumidity.min</td>
-
-                <td>$month.outHumidity.mintime</td>
-              </tr>
-
-              <tr>
-                <td>Pressione massima</td>
-
-                <td>$month.barometer.max</td>
-
-                <td>$month.barometer.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Pressione minima</td>
-
-                <td>$month.barometer.min</td>
-
-                <td>$month.barometer.mintime</td>
-              </tr>
-
-              <tr>
-                <td>Pioggia totale</td>
-
-                <td>$month.rain.sum</td>
-
-                <td></td>
-              </tr>
-
-              <!--          <tr>
-
-                <td>massima Rain Rate</td>
-
-                <td>$month.rainRate.max</td>
-
-                <td>$month.rainRate.maxtime</td>
-
-              </tr> -->
-
-              <tr>
-                <td>Velocit&agrave; massima del vento</td>
-
-                <td>$month.wind.max <br />$month.wind.gustdir</td>
-
-                <td>$month.wind.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Velocit&agrave; media del vento</td>
-
-                <td>$month.wind.avg</td>
-
-                <td></td>
-              </tr>
-
-              <!--      <tr>
-
-                <td>RMS Wind</td>
-
-                <td>$month.wind.rms</td>
-
-                <td></td>
-
-              </tr>
-
-              <tr>
-
-                <td>Vector Average Speed</td>
-
-                <td>$month.wind.vecavg</td>
-
-                <td></td>
-
-              </tr>
-
-              <tr>
-
-                <td>Vector Average Direction</td>
-
-                <td>$month.wind.vecdir</td>
-
-                <td></td>
-
-              </tr>
-
-              <tr>
-
-                <td>massima Inside Temperatura</td>
-
-                <td>$month.inTemp.max</td>
-
-                <td>$month.inTemp.maxtime</td>
-
-              </tr>
-
-              <tr>
-
-                <td>Minima Inside Temperatura</td>
-
-                <td>$month.inTemp.min</td>
-
-                <td>$month.inTemp.mintime</td>
-
-              </tr> -->
-
-              #if $month.extraTemp1.has_data
-
-              <tr>
-                <td>massima Pond Temp</td>
-
-                <td>$month.extraTemp1.max</td>
-
-                <td>$month.extraTemp1.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Minima Pond Temp</td>
-
-                <td>$month.extraTemp1.min</td>
-
-                <td>$month.extraTemp1.mintime</td>
-              </tr>
-              <!-- prettier-ignore -->
-              #end if 
-              #if $month.UV.has_data
-
-              <tr>
-                <td>massima UV</td>
-
-                <td>$month.UV.max</td>
-
-                <td>$month.UV.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Minima UV</td>
-
-                <td>$month.UV.min</td>
-
-                <td>$month.UV.mintime</td>
-              </tr>
-              <!-- prettier-ignore -->
-              #end if 
-              #if $month.radiation.has_data
-
-              <tr>
-                <td>massima Radiation</td>
-
-                <td>$month.radiation.max</td>
-
-                <td>$month.radiation.maxtime</td>
-              </tr>
-
-              <tr>
-                <td>Minima Radiation</td>
-
-                <td>$month.radiation.min</td>
-
-                <td>$month.radiation.mintime</td>
-              </tr>
-
               #end if
             </table>
           </div>
         </div>
 
-        <div class="right">
-          <div class="card cc graphs">
-            <h1>
-              <i class="fa fa-line-chart m-gruen"></i> Grafici settimanali
+        <div class="tw:lg:col-span-3">
+          <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:pb-4">
+              Grafici settimanali
             </h1>
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/weektempdew.png?$current.dateTime.raw"
               alt="temperatures"
+              class="tw:mb-4 tw:rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/weekrain.png?$current.dateTime.raw"
               alt="rain"
+              class="tw:mb-4 tw:rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/weekwind.png?$current.dateTime.raw"
               alt="wind"
+              class="tw:mb-4 tw:rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/weekwinddir.png?$current.dateTime.raw"
               alt="Hi Wind"
+              class="tw:mb-4 tw:rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/weekwindvec.png?$current.dateTime.raw"
               alt="Wind Vector"
+              class="tw:mb-4 tw:rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/weektempchill.png?$current.dateTime.raw"
               alt="heatchill"
+              class="tw:mb-4 tw:rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/weekbarometer.png?$current.dateTime.raw"
               alt="barometer"
+              class="tw:mb-4 tw:rounded-xl"
             />
 
             <!--        <img src="weekinside.png" alt="Inside" />
@@ -1016,6 +1057,7 @@
             #if $week.UV.has_data
 
             <img src="weekuv.png" alt="UV index" />
+
             <!-- prettier-ignore -->
             #end if 
             #if $week.radiation.has_data
@@ -1041,65 +1083,64 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <!-- Footer -->
-
-    <footer class="tw:bg-cyan-200 tw:p-8 tw:text-left tw:text-gray-900">
+    <footer class="tw:bg-weather-cool/80 tw:p-8 tw:text-white">
       <div class="tw:container tw:mx-auto">
         <div class="tw:table">
           <div class="tw:table-row">
             <div class="tw:table-cell tw:pr-2">Stazione:</div>
-
             <div class="tw:table-cell tw:pr-2">$station.hardware</div>
           </div>
-
           <div class="tw:table-row">
             <div class="tw:table-cell tw:pr-2">Software:</div>
-
             <div class="tw:table-cell tw:pr-2">WeeWX v$station.version</div>
           </div>
-
           <div class="tw:table-row">
             <div class="tw:table-cell tw:pr-2">Weewx uptime:</div>
-
             <div class="tw:table-cell tw:pr-2">$station.uptime.long_form</div>
           </div>
-
           <div class="tw:table-row">
             <div class="tw:table-cell tw:pr-2">Server uptime:</div>
-
             <div class="tw:table-cell tw:pr-2">
               $station.os_uptime.long_form
             </div>
           </div>
         </div>
-
+        <a href="https://meteocentrocadore.cronitorstatus.com" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
         <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:border-0" />
-
         <div class="tw:flex tw:flex-row tw:flex-wrap">
           <p class="tw:mr-2">
             Powered by <a href="weewx.com" class="tw:underline">Weewx</a>.
           </p>
-
+          <p class="tw:mr-2">|</p>
           <p class="tw:mr-2">
             Non prendere decisioni importanti con le informazioni di questo
             sito.
           </p>
-
+          <p class="tw:mr-2">|</p>
           <p class="tw:mr-2">
             © $latest.dateTime.format("%Y") meteocentrocadore.
           </p>
-
+          <p class="tw:mr-2">|</p>
           <p class="tw:mr-2">
             <a href="mailto:meteocentrocadore@gmail.com" class="tw:underline"
               >Contattaci</a
             >
           </p>
+          <p class="tw:mr-2">|</p>
+          <p class="tw:mr-2">
+            <a
+              href="https://github.com/NikoFresh/MCC-sofaskin"
+              class="tw:underline"
+            >
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </p>
         </div>
       </div>
     </footer>
-
     <!-- End footer-->
 
     <script>

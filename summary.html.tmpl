@@ -3,7 +3,7 @@
   <head itemscope itemtype="http://schema.org/Website">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Refresh" Content="180" />
+    <meta http-equiv="Refresh" content="180" />
     #if $Extras.has_key('cwop')
     <meta
       name="description"
@@ -55,8 +55,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="build.css?1.5" />
+    <!-- <link rel="stylesheet" href="css/main.css" /> -->
+    <link rel="stylesheet" href="build.css?2" />
     <!-- Skripte -->
     <script src="js/modernizr-2.6.2.min.js"></script>
     <script src="js/checkdiff.js"></script>
@@ -69,61 +69,103 @@
   </head>
   <body>
     <!-- Header -->
-    <div id="header" class="tw:px-8 tw:pt-8 tw:bg-cyan-200">
-      <div class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left">
-        <h1 class="tw:text-4xl tw:text-gray-900">$station.location</h1>
-        <p
-          class="tw:text-xs tw:mt-1 tw:ml-1 tw:font-Robot-mono tw:text-gray-500"
+    <div id="header" class="tw:px-8 tw:pt-6 tw:bg-weather-cool/80">
+      <div
+        class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left tw:relative tw:z-10 tw:text-white"
+      >
+        <div class="tw:flex tw:items-center tw:gap-3 tw:mb-2">
+          <a href="/">
+            <h1 class="tw:text-4xl tw:font-semibold tw:tracking-tight">
+              $station.location
+            </h1>
+          </a>
+        </div>
+
+        <div
+          class="tw:flex tw:items-center tw:gap-5 tw:mb-2 tw:text-sm tw:text-white/85 tw:font-medium"
         >
-          > $station.latitude[0]&deg; $station.latitude[1]' $station.latitude[2]
-          / $station.longitude[0]&deg; $station.longitude[1]'
-          $station.longitude[2] / $station.altitude
+          <div class="tw:flex tw:items-center tw:gap-1.5">
+            <svg
+              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span class="tw:font-mono"
+              >$station.latitude[0]°$station.latitude[1]'$station.latitude[2],
+              $station.longitude[0]°$station.longitude[1]'$station.longitude[2]</span
+            >
+          </div>
+          <div class="tw:flex tw:items-center tw:gap-1.5">
+            <svg
+              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="17,10 12,15 7,10" />
+              <polyline points="19,15 12,22 5,15" />
+            </svg>
+            <span class="tw:font-mono">$station.altitude</span>
+          </div>
+        </div>
+
+        <p class="tw:text-base tw:text-white/90 tw:font-medium tw:mb-4">
+          Ultimo aggiornamento:
+          <span class="tw:font-mono"
+            >$current.dateTime $current.dateTime.format("%Z")</span
+          >
         </p>
-        <p class="tw:text-xl tw:mt-3 tw:text-gray-900">Condizioni meteo</p>
-        <p class="tw:text-sm tw:text-gray-800 tw:font-Robot-mono">
-          $current.dateTime $current.dateTime.format("%Z")
-        </p>
-        <!-- navigation -->
-        <div class="tw:flex">
+
+        <div
+          class="tw:flex tw:items-end tw:justify-between tw:flex-wrap tw:gap-4"
+        >
           <!-- PC menu -->
-          <nav class="tw:mt-8">
-            <div class="tw:hidden tw:md:flex tw:flex-row">
+          <nav class="tw:flex-1">
+            <div class="tw:hidden tw:md:flex tw:flex-row tw:gap-1">
               <a
                 href="index.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Oggi</a
               >
               <a
                 href="week.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Settimana</a
               >
               <a
                 href="month.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Mese</a
               >
               <a
                 href="year.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Anno</a
               >
               <a
                 href="summary.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl tw:underline tw:decoration-4 tw:underline-offset-[11px] tw:decoration-cyan-400"
+                class="tw:px-3 tw:py-2 tw:text-white tw:text-lg tw:font-medium tw:border-b-2 tw:border-white/80 tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
                 >Storico</a
               >
               <a
                 href="vaia.html"
-                class="tw:px-2 tw:py-1 tw:mr-2 tw:text-gray-900 tw:md:text-xl"
+                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
                 >Vaia</a
               >
             </div>
             <!-- Mobile menu button -->
             <div class="tw:md:hidden">
-              <button class="tw:outline-none mobile-menu-button">
+              <button
+                class="tw:outline-none mobile-menu-button tw:p-2 tw:rounded-lg hover:tw:bg-white/10 tw:transition-colors"
+              >
                 <svg
-                  class="tw:w-5 tw:h-5 tw:mt-2 tw:mr-3 tw:text-gray-900"
+                  class="tw:w-6 tw:h-6 tw:text-white"
                   x-show="!showMenu"
                   fill="none"
                   stroke-linecap="round"
@@ -137,62 +179,69 @@
               </button>
             </div>
           </nav>
-          <a
-            href="https://www.instagram.com/meteocentrocadore/?hl=it"
-            class="tw:w-fit tw:mr-3 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a
-            data-umami-event="A due passi"
-            href="https://aduepassidallaciclabile.it"
-            class="tw:bg-lime-300 tw:w-fit tw:rounded-full tw:px-5 tw:mt-8 tw:py-1 tw:mb-1 tw:text-lg"
-          >
-            <i class="fa-brands fa-airbnb tw:mr-1"></i> A due passi dalla
-            ciclabile
-          </a>
+
+          <!-- IG e aduepassi -->
+          <div class="tw:flex tw:items-center tw:gap-3">
+            <a
+              href="https://www.instagram.com/meteocentrocadore/?hl=it"
+              class="tw:p-2 tw:text-white/80 tw:text-xl tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-lg"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              data-umami-event="A due passi"
+              href="https://aduepassidallaciclabile.it"
+              class="tw:bg-lime-400 tw:text-gray-900 tw:rounded-full tw:px-4 tw:py-2 tw:text-sm tw:font-medium tw:transition-all hover:tw:bg-lime-300 hover:tw:shadow-lg tw:shadow-lime-500/25"
+            >
+              <i class="fa-brands fa-airbnb tw:mr-1.5"></i> A due passi dalla
+              ciclabile
+            </a>
+          </div>
         </div>
+
         <!-- Mobile menu -->
-        <div class="tw:hidden mobile-menu tw:mt-3">
-          <ul class="">
-            <li class="">
+        <div
+          class="tw:hidden mobile-menu tw:mt-4 tw:pt-4 tw:border-t tw:border-white/20"
+        >
+          <ul class="tw:space-y-1">
+            <li>
               <a
                 href="index.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Oggi</a
               >
             </li>
             <li>
               <a
                 href="week.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Settimana</a
               >
             </li>
             <li>
               <a
                 href="month.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Mese</a
               >
             </li>
             <li>
               <a
                 href="year.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Anno</a
               >
             </li>
             <li>
               <a
                 href="summary.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:bg-cyan-100 tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white tw:text-lg tw:bg-white/10 tw:rounded-lg tw:font-medium"
                 >Storico</a
               >
             </li>
             <li>
               <a
                 href="vaia.html"
-                class="tw:block tw:px-2 tw:py-4 tw:text-gray-900 tw:md:text-xl tw:rounded-lg"
+                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
                 >Vaia</a
               >
             </li>
@@ -202,102 +251,305 @@
     </div>
     <!-- End header -->
     <!-- Main container -->
-    <div class="main">
-      <div class="container">
-        <div class="left">
-          <div class="card">
-            <h1><i class="fa fa-bolt m-orange"></i> All Time Records</h1>
-            <table class="tablespacer">
+    <main class="tw:mx-4">
+      <div
+        class="tw:container tw:mx-auto tw:grid tw:grid-cols-1 tw:lg:grid-cols-5 tw:gap-6 tw:py-4"
+      >
+        <div class="tw:lg:col-span-2">
+          <div class="tw:bg-weather-cool/6 tw:rounded-2xl">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+              Record di sempre
+            </h1>
+            <table class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2">
               <tr>
-                <td colspan="3"><b>Temperatura esterna</b></td>
+                <td
+                  colspan="3"
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  <b>Temperatura esterna</b>
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.maxtime
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.mintime
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima più alta
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.minmax
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.minmaxtime
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima più bassa
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.maxmin
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.outTemp.maxmintime
+                </td>
               </tr>
               <tr>
-                <td>Massima</td>
-                <td>$alltime.outTemp.max</td>
-                <td>$alltime.outTemp.maxtime</td>
+                <td
+                  colspan="3"
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  <br /><b>Punto di rugiada</b>
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massimo
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.dewpoint.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.dewpoint.maxtime
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minimo
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.dewpoint.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.dewpoint.mintime
+                </td>
               </tr>
               <tr>
-                <td>Minima</td>
-                <td>$alltime.outTemp.min</td>
-                <td>$alltime.outTemp.mintime</td>
+                <td
+                  colspan="3"
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  <br /><b>Precipitazioni</b>
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Pioggia giornaliera massima
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.rain.maxsum
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.rain.maxsumtime.format("%m/%d/%Y")
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Rain Rate massimo
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.rainRate.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.rainRate.maxtime
+                </td>
               </tr>
               <tr>
-                <td>Minima più alta</td>
-                <td>$alltime.outTemp.minmax</td>
-                <td>$alltime.outTemp.minmaxtime</td>
+                <td
+                  colspan="3"
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  <br /><b>Indice di calore</b>
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massimo
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.heatindex.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.heatindex.maxtime
+                </td>
               </tr>
               <tr>
-                <td>Massima più bassa</td>
-                <td>$alltime.outTemp.maxmin</td>
-                <td>$alltime.outTemp.maxmintime</td>
+                <td
+                  colspan="3"
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  <br /><b>Pressione atmosferica</b>
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massima
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.barometer.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.barometer.maxtime
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Minima
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.barometer.min
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.barometer.mintime
+                </td>
               </tr>
               <tr>
-                <td colspan="3"><br /><b>Punto di rugiada</b></td>
+                <td
+                  colspan="3"
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  <br /><b>Vento</b>
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Massimo sostenuto
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.windSpeed.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.windSpeed.maxtime
+                </td>
+              </tr>
+              <tr class="tw:hover:bg-weather-cool/10">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  Raffica massima
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.windGust.max
+                </td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                >
+                  $alltime.windGust.maxtime
+                </td>
               </tr>
               <tr>
-                <td>Massimo</td>
-                <td>$alltime.dewpoint.max</td>
-                <td>$alltime.dewpoint.maxtime</td>
+                <td
+                  colspan="3"
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                >
+                  <br /><b>Wind Chill</b>
+                </td>
               </tr>
-              <tr>
-                <td>Minimo</td>
-                <td>$alltime.dewpoint.min</td>
-                <td>$alltime.dewpoint.mintime</td>
-              </tr>
-              <tr>
-                <td colspan="3"><br /><b>Precipitazioni</b></td>
-              </tr>
-              <tr>
-                <td>Pioggia giornaliera massima</td>
-                <td>$alltime.rain.maxsum</td>
-                <td>$alltime.rain.maxsumtime.format("%m/%d/%Y")</td>
-              </tr>
-              <tr>
-                <td>Rain Rate massimo</td>
-                <td>$alltime.rainRate.max</td>
-                <td>$alltime.rainRate.maxtime</td>
-              </tr>
-              <tr>
-                <td colspan="3"><br /><b>Indice di calore</b></td>
-              </tr>
-              <tr>
-                <td>Massimo</td>
-                <td>$alltime.heatindex.max</td>
-                <td>$alltime.heatindex.maxtime</td>
-              </tr>
-              <tr>
-                <td colspan="3"><br /><b>Pressione atmosferica</b></td>
-              </tr>
-              <tr>
-                <td>Massima</td>
-                <td>$alltime.barometer.max</td>
-                <td>$alltime.barometer.maxtime</td>
-              </tr>
-              <tr>
-                <td>Minima</td>
-                <td>$alltime.barometer.min</td>
-                <td>$alltime.barometer.mintime</td>
-              </tr>
-              <tr>
-                <td colspan="3"><br /><b>Vento</b></td>
-              </tr>
-              <tr>
-                <td>Massimo sostenuto</td>
-                <td>$alltime.windSpeed.max</td>
-                <td>$alltime.windSpeed.maxtime</td>
-              </tr>
-              <tr>
-                <td>Raffica massima</td>
-                <td>$alltime.windGust.max</td>
-                <td>$alltime.windGust.maxtime</td>
-              </tr>
-              <tr>
-                <td colspan="3"><br /><b>Wind Chill</b></td>
-              </tr>
-              <tr>
-                <td>Massimo</td>
-                <td>$alltime.windchill.min</td>
-                <td>$alltime.windchill.mintime</td>
+              <tr class="tw:hover:bg-weather-cool/10 tw:group">
+                <td
+                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                >
+                  Massimo
+                </td>
+                <td class="tw:py-2 tw:text-gray-900">$alltime.windchill.min</td>
+                <td
+                  class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                >
+                  $alltime.windchill.mintime
+                </td>
               </tr>
               <!--
               <tr>
@@ -329,36 +581,33 @@
               -->
             </table>
           </div>
-          <div class="card">
-            <h1>
-              <i class="fa fa-table m-grau"></i> Numero di giorni con dati
-              registrati
+          <div class="tw:bg-weather-cool/6 tw:mt-4 tw:rounded-2xl">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+              Numero di giorni con dati registrati
             </h1>
-            <div class="tablefix">$temp_count_table</div>
+            <div class="tw:p-4">$temp_count_table</div>
           </div>
         </div>
-        <div class="right">
-          <div class="card">
-            <h1><i class="fa fa-archive"></i> Report mensili</h1>
+        <div class="tw:lg:col-span-3">
+          <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:pb-4">Report mensili</h1>
             <div class="noaatable">$NOAA_table</div>
           </div>
-          <div class="card">
-            <h1>
-              <i class="fa fa-thermometer-half"></i> Temperatura media mensile
-              (°C)
+          <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:mt-4">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:pb-4">
+              Temperatura media mensile (°C)
             </h1>
             <div class="tablefix">$avg_temp_table</div>
           </div>
-          <div class="card">
-            <h1>
-              <i class="fa fa-umbrella m-blau"></i> Pioggia totale mensile (mm)
+          <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:mt-4">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:pb-4">
+              Pioggia totale mensile (mm)
             </h1>
             <div class="tablefix">$rain_table</div>
           </div>
-          <div class="card">
-            <h1>
-              <i class="fa fa-umbrella m-blau"></i> Numero di giorni di pioggia
-              (>=0.5mm)
+          <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:mt-4">
+            <h1 class="tw:text-xl tw:text-gray-800 tw:pb-4">
+              Numero di giorni di pioggia (>=0.5mm)
             </h1>
             <div class="tablefix">$rain_count_table</div>
           </div>
@@ -372,9 +621,9 @@
           -->
         </div>
       </div>
-    </div>
+    </main>
     <!-- Footer -->
-    <footer class="tw:bg-cyan-200 tw:p-8 tw:text-left tw:text-gray-900">
+    <footer class="tw:bg-weather-cool/80 tw:p-8 tw:text-white">
       <div class="tw:container tw:mx-auto">
         <div class="tw:table">
           <div class="tw:table-row">
@@ -396,22 +645,35 @@
             </div>
           </div>
         </div>
+        <a href="https://meteocentrocadore.cronitorstatus.com" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
         <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:border-0" />
         <div class="tw:flex tw:flex-row tw:flex-wrap">
           <p class="tw:mr-2">
             Powered by <a href="weewx.com" class="tw:underline">Weewx</a>.
           </p>
+          <p class="tw:mr-2">|</p>
           <p class="tw:mr-2">
             Non prendere decisioni importanti con le informazioni di questo
             sito.
           </p>
+          <p class="tw:mr-2">|</p>
           <p class="tw:mr-2">
             © $latest.dateTime.format("%Y") meteocentrocadore.
           </p>
+          <p class="tw:mr-2">|</p>
           <p class="tw:mr-2">
             <a href="mailto:meteocentrocadore@gmail.com" class="tw:underline"
               >Contattaci</a
             >
+          </p>
+          <p class="tw:mr-2">|</p>
+          <p class="tw:mr-2">
+            <a
+              href="https://github.com/NikoFresh/MCC-sofaskin"
+              class="tw:underline"
+            >
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
           </p>
         </div>
       </div>
