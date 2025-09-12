@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   prefix: "tw",
-  content: ["./*.html", "./js/*.js", "./*.html.tmpl"],
+  content: ["./*.html", "./js/*.js", "./*.html.tmpl", "./bin/user/historygenerator.py"],
   theme: {
     container: {
       padding: {
