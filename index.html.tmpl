@@ -298,6 +298,35 @@
         <section class="tw:mb-8">
           <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-6">
             <div class="tw:lg:col-span-1">
+	      <div class="summary-message">
+    <span>
+        #if ($current.outTemp.raw - $day.outTemp.avg($days_ago=1).raw) > 1.0
+            Temperature superiori alla giornata di ieri.
+        #elif ($day.outTemp.avg($days_ago=1).raw - $current.outTemp.raw) > 1.0
+            Temperature inferiori alla giornata di ieri.
+        #else
+            Temperature in linea con la giornata di ieri.
+        #end if
+    </span>
+    <span>
+        #if $trend.outTemp.raw > 0.05
+            Valori attualmente in aumento.
+        #elif $trend.outTemp.raw < -0.05
+            Valori attualmente in calo.
+        #else
+            Valori attualmente stabili.
+        #end if
+    </span>
+    <span>
+        #if $current.rainRate.raw > 0
+            Precipitazioni in corso.
+        #elif $day.rain.sum.raw > 0
+            Precipitazioni terminate.
+        #else
+            Precipitazioni assenti oggi.
+        #end if
+    </span>
+</div>
               <div
                 class="tw:grid tw:grid-cols-2 tw:lg:grid-cols-3 tw:gap-2 tw:mb-4"
               >
