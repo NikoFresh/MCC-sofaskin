@@ -298,8 +298,8 @@
         <section class="tw:mb-8">
           <div class="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-6">
             <div class="tw:lg:col-span-1">
-              <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:mb-4">
-                <!-- <span>
+              <!-- <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4 tw:border tw:border-gray-100 tw:mb-4">
+                <span>
                     #if ($current.outTemp.raw - $day.outTemp.avg($days_ago=1).raw) > 1.0
                         Temperature superiori rispetto a ieri
                     #elif ($day.outTemp.avg($days_ago=1).raw - $current.outTemp.raw) > 1.0
@@ -859,9 +859,9 @@
               <!-- prettier-ignore -->
               #set $sun_altitude = $almanac.sun.alt
               #if $sun_altitude < 0
-              #set $sun_None="<i>(Always down)</i>" 
-              #else 
-              #set $sun_None="<i>(Always up)</i>" 
+              #set $sun_None="<i>(Always down)</i>"
+              #else
+              #set $sun_None="<i>(Always up)</i>"
               #end if
               <!-- prettier-ignore-end -->
 
