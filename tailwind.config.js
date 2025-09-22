@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  prefix: "tw",
+  // prefix: "tw",
   content: ["./*.html", "./js/*.js", "./*.html.tmpl", "./bin/user/historygenerator.py"],
   theme: {
     container: {

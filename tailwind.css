@@ -9,10 +9,10 @@
   display: none;
 }
 #webcam:checked ~ .weather-container .webcam-btn {
-  @apply tw:bg-white/30 tw:text-gray-800;
+  @apply bg-white/30 text-gray-800;
 }
 #webcam:checked ~ .weather-container .radar-btn {
-  @apply tw:text-gray-600;
+  @apply text-gray-600;
 }
 #radar:checked ~ .weather-container .radar-image {
   display: block;
@@ -21,8 +21,8 @@
   display: none;
 }
 #radar:checked ~ .weather-container .radar-btn {
-  @apply tw:bg-white/30 tw:text-gray-800;
+  @apply bg-white/30 text-gray-800;
 }
 #radar:checked ~ .weather-container .webcam-btn {
-  @apply tw:text-gray-600;
+  @apply text-gray-600;
 }

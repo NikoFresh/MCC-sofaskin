@@ -106,24 +106,24 @@
 
   <body>
     <!-- Header -->
-    <div id="header" class="tw:px-8 tw:pt-6 tw:bg-weather-cool/80">
+    <div id="header" class="px-8 pt-6 bg-weather-cool/80">
       <div
-        class="tw:lg:max-w-[75%] tw:mx-auto tw:text-left tw:relative tw:z-10 tw:text-white"
+        class="lg:max-w-[75%] mx-auto text-left relative z-10 text-white"
       >
-        <div class="tw:flex tw:items-center tw:gap-3 tw:mb-2">
+        <div class="flex items-center gap-3 mb-2">
           <a href="$Extras.web_url">
-            <h1 class="tw:text-4xl tw:font-semibold tw:tracking-tight">
+            <h1 class="text-4xl font-semibold tracking-tight">
               $station.location
             </h1>
           </a>
         </div>
 
         <div
-          class="tw:flex tw:items-center tw:gap-5 tw:mb-2 tw:text-sm tw:text-white/85 tw:font-medium"
+          class="flex items-center gap-5 mb-2 text-sm text-white/85 font-medium"
         >
-          <div class="tw:flex tw:items-center tw:gap-1.5">
+          <div class="flex items-center gap-1.5">
             <svg
-              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              class="w-3.5 h-3.5 opacity-70"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -132,14 +132,14 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span class="tw:font-mono"
+            <span class="font-mono"
               >$station.latitude[0]°$station.latitude[1]'$station.latitude[2],
               $station.longitude[0]°$station.longitude[1]'$station.longitude[2]</span
             >
           </div>
-          <div class="tw:flex tw:items-center tw:gap-1.5">
+          <div class="flex items-center gap-1.5">
             <svg
-              class="tw:w-3.5 tw:h-3.5 tw:opacity-70"
+              class="w-3.5 h-3.5 opacity-70"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -148,61 +148,61 @@
               <polyline points="17,10 12,15 7,10" />
               <polyline points="19,15 12,22 5,15" />
             </svg>
-            <span class="tw:font-mono">$station.altitude</span>
+            <span class="font-mono">$station.altitude</span>
           </div>
         </div>
 
-        <p class="tw:text-base tw:text-white/90 tw:font-medium tw:mb-4">
+        <p class="text-base text-white/90 font-medium mb-4">
           Ultimo aggiornamento:
-          <span class="tw:font-mono"
+          <span class="font-mono"
             >$current.dateTime $current.dateTime.format("%Z")</span
           >
         </p>
 
         <div
-          class="tw:flex tw:items-end tw:justify-between tw:flex-wrap tw:gap-4"
+          class="flex items-end justify-between flex-wrap gap-4"
         >
           <!-- PC menu -->
-          <nav class="tw:flex-1">
-            <div class="tw:hidden tw:md:flex tw:flex-row tw:gap-1">
+          <nav class="flex-1">
+            <div class="hidden md:flex flex-row gap-1">
               <a
                 href="index.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
                 >Oggi</a
               >
               <a
                 href="week.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
                 >Settimana</a
               >
               <a
                 href="month.html"
-                class="tw:px-3 tw:py-2 tw:text-white tw:text-lg tw:font-medium tw:border-b-2 tw:border-white/80 tw:transition-colors hover:tw:bg-white/10 tw:rounded-t-md"
+                class="px-3 py-2 text-white text-lg font-medium border-b-2 border-white/80 transition-colors hover:bg-white/10 rounded-t-md"
                 >Mese</a
               >
               <a
                 href="year.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
                 >Anno</a
               >
               <a
                 href="summary.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
                 >Storico</a
               >
               <a
                 href="vaia.html"
-                class="tw:px-3 tw:py-2 tw:text-white/80 tw:text-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-t-md"
+                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
                 >Vaia</a
               >
             </div>
             <!-- Mobile menu button -->
-            <div class="tw:md:hidden">
+            <div class="md:hidden">
               <button
-                class="tw:outline-none mobile-menu-button tw:p-2 tw:rounded-lg hover:tw:bg-white/10 tw:transition-colors"
+                class="outline-none mobile-menu-button p-2 rounded-lg hover:bg-white/10 transition-colors"
               >
                 <svg
-                  class="tw:w-6 tw:h-6 tw:text-white"
+                  class="w-6 h-6 text-white"
                   x-show="!showMenu"
                   fill="none"
                   stroke-linecap="round"
@@ -218,18 +218,18 @@
           </nav>
 
           <!-- IG e aduepassi -->
-          <div class="tw:flex tw:items-center tw:gap-3">
+          <div class="flex items-center gap-3">
             <a
               href="https://www.instagram.com/meteocentrocadore/?hl=it"
-              class="tw:p-2 tw:text-white/80 tw:text-xl tw:transition-colors hover:tw:text-white hover:tw:bg-white/10 tw:rounded-lg"
+              class="p-2 text-white/80 text-xl transition-colors hover:text-white hover:bg-white/10 rounded-lg"
               ><i class="fab fa-instagram"></i
             ></a>
             <a
               data-umami-event="A due passi"
               href="https://aduepassidallaciclabile.it"
-              class="tw:bg-lime-400 tw:text-gray-900 tw:rounded-full tw:px-4 tw:py-2 tw:text-sm tw:font-medium tw:transition-all hover:tw:bg-lime-300 hover:tw:shadow-lg tw:shadow-lime-500/25"
+              class="bg-lime-400 text-gray-900 rounded-full px-4 py-2 text-sm font-medium transition-all hover:bg-lime-300 hover:shadow-lg shadow-lime-500/25"
             >
-              <i class="fa-brands fa-airbnb tw:mr-1.5"></i> A due passi dalla
+              <i class="fa-brands fa-airbnb mr-1.5"></i> A due passi dalla
               ciclabile
             </a>
           </div>
@@ -237,48 +237,48 @@
 
         <!-- Mobile menu -->
         <div
-          class="tw:hidden mobile-menu tw:mt-4 tw:pt-4 tw:border-t tw:border-white/20"
+          class="hidden mobile-menu mt-4 pt-4 border-t border-white/20"
         >
-          <ul class="tw:space-y-1">
+          <ul class="space-y-1">
             <li>
               <a
                 href="index.html"
-                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
+                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
                 >Oggi</a
               >
             </li>
             <li>
               <a
                 href="week.html"
-                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
+                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
                 >Settimana</a
               >
             </li>
             <li>
               <a
                 href="month.html"
-                class="tw:block tw:px-3 tw:py-3 tw:text-white tw:text-lg tw:bg-white/10 tw:rounded-lg tw:font-medium"
+                class="block px-3 py-3 text-white text-lg bg-white/10 rounded-lg font-medium"
                 >Mese</a
               >
             </li>
             <li>
               <a
                 href="year.html"
-                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
+                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
                 >Anno</a
               >
             </li>
             <li>
               <a
                 href="summary.html"
-                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
+                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
                 >Storico</a
               >
             </li>
             <li>
               <a
                 href="vaia.html"
-                class="tw:block tw:px-3 tw:py-3 tw:text-white/80 tw:text-lg tw:rounded-lg tw:transition-colors hover:tw:text-white hover:tw:bg-white/10"
+                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
                 >Vaia</a
               >
             </li>
@@ -288,82 +288,82 @@
     </div>
     <!-- End header -->
 
-    <main class="tw:mx-4">
+    <main class="mx-4">
       <div
-        class="tw:container tw:mx-auto tw:grid tw:grid-cols-1 tw:lg:grid-cols-5 tw:gap-6 tw:py-4"
+        class="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-6 py-4"
       >
-        <div class="tw:lg:col-span-2">
-          <div class="tw:bg-weather-cool/6 tw:rounded-2xl">
-            <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+        <div class="lg:col-span-2">
+          <div class="bg-weather-cool/6 rounded-2xl">
+            <h1 class="text-xl text-gray-800 px-4 pt-4">
               Questo mese ($month.dateTime.format("%B %Y"))
             </h1>
 
-            <table class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2">
-              <tr class="tw:hover:bg-weather-cool/10">
+            <table class="w-full table-fixed border-collapse mt-2">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Temperatura massima
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outTemp.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outTemp.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Temperatura minima
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outTemp.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outTemp.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pioggia totale
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.rain.sum
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 ></td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Rain Rate massimo
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.rainRate.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.rainRate.maxtime
                 </td>
@@ -381,145 +381,145 @@
           </tr>   -->
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Umidità massima
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outHumidity.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outHumidity.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Umidità minima
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outHumidity.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.outHumidity.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pressione massima
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.barometer.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.barometer.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pressione minima
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.barometer.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.barometer.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Velociàt massima del vento
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.wind.max <br />$month.wind.gustdir
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.wind.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Wind Chill minimo
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.windchill.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.windchill.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Punto di rugiada massimo
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.dewpoint.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.dewpoint.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Punto di rugiada minimo
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.dewpoint.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.dewpoint.mintime
                 </td>
@@ -587,37 +587,37 @@
 
               #if $month.extraTemp1.has_data
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High Pond Temp
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.extraTemp1.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.extraTemp1.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low Pond Temp
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.extraTemp1.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.extraTemp1.mintime
                 </td>
@@ -627,37 +627,37 @@
               #end if 
               #if $month.UV.has_data
               <!-- prettier-ignore-end -->
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High UV
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.UV.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.UV.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low UV
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.UV.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.UV.mintime
                 </td>
@@ -668,37 +668,37 @@
               #if $month.ET.has_data and $month.ET.sum.raw > 0.0
               <!-- prettier-ignore-end -->
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High ET
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.ET.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.ET.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low ET
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.ET.min
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.ET.mintime
                 </td>
@@ -708,33 +708,33 @@
               #if $month.radiation.has_data
               <!-- prettier-ignore-end -->
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High Radiation
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.radiation.max
                 </td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month.radiation.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10 tw:group">
+              <tr class="hover:bg-weather-cool/10 group">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                  class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                 >
                   Low Radiation
                 </td>
-                <td class="tw:py-2 tw:text-gray-900">$month.radiation.min</td>
+                <td class="py-2 text-gray-900">$month.radiation.min</td>
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                  class="py-2 text-gray-900 group-hover:rounded-br-2xl"
                 >
                   $month.radiation.mintime
                 </td>
@@ -743,266 +743,266 @@
             </table>
           </div>
 
-          <div class="tw:bg-weather-cool/6 tw:mt-4 tw:rounded-2xl">
-            <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+          <div class="bg-weather-cool/6 mt-4 rounded-2xl">
+            <h1 class="text-xl text-gray-800 px-4 pt-4">
               Lo scorso mese ($month($months_ago=1).dateTime.format("%B %Y"))
             </h1>
 
-            <table class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2">
-              <tr class="tw:hover:bg-weather-cool/10">
+            <table class="w-full table-fixed border-collapse mt-2">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Temperatura massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outTemp.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outTemp.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Temperatura minima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outTemp.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outTemp.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Heat Index massimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).heatindex.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).heatindex.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Wind Chill minimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).windchill.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).windchill.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Punto di rugiada massimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).dewpoint.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).dewpoint.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Punto di rugiada minimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).dewpoint.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).dewpoint.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Umidità massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outHumidity.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outHumidity.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Umidità minima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outHumidity.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).outHumidity.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pressione massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).barometer.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).barometer.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pressione minima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).barometer.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).barometer.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pioggia totale
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).rain.sum
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 ></td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Rain Rate massimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).rainRate.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).rainRate.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Velocità del vento massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).wind.max
                   <br />$month($months_ago=12).wind.gustdir
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=1).wind.maxtime
                 </td>
@@ -1070,41 +1070,41 @@
 
               #if $month($months_ago=12).extraTemp1.has_data
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High Pond Temp
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low Pond Temp
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.mintime
                 </td>
@@ -1113,41 +1113,41 @@
               #end if 
               #if $month($months_ago=12).UV.has_data
               <!-- prettier-ignore-end -->
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High UV
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low UV
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.mintime
                 </td>
@@ -1157,41 +1157,41 @@
               #if $month($months_ago=12).ET.has_data and $month.ET.sum.raw > 0.0
               <!-- prettier-ignore-end -->
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High ET
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low ET
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.mintime
                 </td>
@@ -1201,39 +1201,39 @@
               #if $month($months_ago=12).radiation.has_data
               <!-- prettier-ignore-end -->
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High Radiation
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).radiation.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).radiation.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10 tw:group">
+              <tr class="hover:bg-weather-cool/10 group">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                  class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                 >
                   Low Radiation
                 </td>
 
-                <td class="tw:py-2 tw:text-gray-900">
+                <td class="py-2 text-gray-900">
                   $month($months_ago=12).radiation.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                  class="py-2 text-gray-900 group-hover:rounded-br-2xl"
                 >
                   $month($months_ago=12).radiation.mintime
                 </td>
@@ -1243,267 +1243,267 @@
             </table>
           </div>
 
-          <div class="tw:bg-weather-cool/6 tw:mt-4 tw:rounded-2xl">
-            <h1 class="tw:text-xl tw:text-gray-800 tw:px-4 tw:pt-4">
+          <div class="bg-weather-cool/6 mt-4 rounded-2xl">
+            <h1 class="text-xl text-gray-800 px-4 pt-4">
               <i class="fa fa-calendar m-orange"></i>
               $month($months_ago=12).dateTime.format("%B %Y")
             </h1>
 
-            <table class="tw:w-full tw:table-fixed tw:border-collapse tw:mt-2">
-              <tr class="tw:hover:bg-weather-cool/10">
+            <table class="w-full table-fixed border-collapse mt-2">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Temperatura massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outTemp.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outTemp.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Temperatura minima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outTemp.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outTemp.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Heat Index massimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).heatindex.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).heatindex.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Wind Chill minimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).windchill.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).windchill.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Punto di rugiada massimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).dewpoint.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).dewpoint.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Punto di rugiada minimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).dewpoint.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).dewpoint.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Umidità massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outHumidity.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outHumidity.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Umidità minima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outHumidity.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).outHumidity.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pressione massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).barometer.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).barometer.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pressione minima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).barometer.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).barometer.mintime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Pioggia totale
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).rain.sum
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 ></td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Rain Rate massimo
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).rainRate.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).rainRate.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Velocità del vento massima
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).wind.max
                   <br />$month($months_ago=12).wind.gustdir
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).wind.maxtime
                 </td>
@@ -1571,41 +1571,41 @@
 
               #if $month($months_ago=12).extraTemp1.has_data
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High Pond Temp
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low Pond Temp
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).extraTemp1.mintime
                 </td>
@@ -1615,41 +1615,41 @@
               #if $month($months_ago=12).UV.has_data
               <!-- prettier-ignore-end -->
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High UV
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low UV
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).UV.mintime
                 </td>
@@ -1659,41 +1659,41 @@
               #if $month($months_ago=12).ET.has_data and $month.ET.sum.raw > 0.0
               <!-- prettier-ignore-end -->
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High ET
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   Low ET
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).ET.mintime
                 </td>
@@ -1703,39 +1703,39 @@
               #if $month($months_ago=12).radiation.has_data
               <!-- prettier-ignore-end -->
 
-              <tr class="tw:hover:bg-weather-cool/10">
+              <tr class="hover:bg-weather-cool/10">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:border-b tw:border-gray-200 tw:pl-4"
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
                   High Radiation
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).radiation.max
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:border-b tw:border-gray-200"
+                  class="py-2 text-gray-900 border-b border-gray-200"
                 >
                   $month($months_ago=12).radiation.maxtime
                 </td>
               </tr>
 
-              <tr class="tw:hover:bg-weather-cool/10 tw:group">
+              <tr class="hover:bg-weather-cool/10 group">
                 <td
-                  class="tw:pr-10 tw:py-2 tw:font-medium tw:text-gray-900 tw:pl-4 tw:group-hover:rounded-bl-2xl"
+                  class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                 >
                   Low Radiation
                 </td>
 
-                <td class="tw:py-2 tw:text-gray-900">
+                <td class="py-2 text-gray-900">
                   $month($months_ago=12).radiation.min
                 </td>
 
                 <td
-                  class="tw:py-2 tw:text-gray-900 tw:group-hover:rounded-br-2xl"
+                  class="py-2 text-gray-900 group-hover:rounded-br-2xl"
                 >
                   $month($months_ago=12).radiation.mintime
                 </td>
@@ -1746,50 +1746,50 @@
           </div>
         </div>
 
-        <div class="tw:lg:col-span-3">
-          <div class="tw:bg-weather-cool/6 tw:rounded-2xl tw:p-4">
-            <h1 class="tw:text-xl tw:text-gray-800 tw:pb-4">Grafici mensili</h1>
+        <div class="lg:col-span-3">
+          <div class="bg-weather-cool/6 rounded-2xl p-4">
+            <h1 class="text-xl text-gray-800 pb-4">Grafici mensili</h1>
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/monthtempdew.png?$current.dateTime.raw"
               alt="temperatures"
-              class="tw:mb-4 tw:rounded-xl"
+              class="mb-4 rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/monthrain.png?$current.dateTime.raw"
               alt="rain"
-              class="tw:mb-4 tw:rounded-xl"
+              class="mb-4 rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/monthwind.png?$current.dateTime.raw?$current.dateTime.raw"
               alt="wind"
-              class="tw:mb-4 tw:rounded-xl"
+              class="mb-4 rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/monthwinddir.png?$current.dateTime.raw"
               alt="Hi Wind"
-              class="tw:mb-4 tw:rounded-xl"
+              class="mb-4 rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/monthwindvec.png?$current.dateTime.raw"
               alt="Wind Vector"
-              class="tw:mb-4 tw:rounded-xl"
+              class="mb-4 rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/monthtempchill.png?$current.dateTime.raw"
               alt="heatchill"
-              class="tw:mb-4 tw:rounded-xl"
+              class="mb-4 rounded-xl"
             />
 
             <img
               src="http://www.meteocalalzodicadore.altervista.org/monthbarometer.png?$current.dateTime.raw"
               alt="barometer"
-              class="tw:mb-4 tw:rounded-xl"
+              class="mb-4 rounded-xl"
             />
 
             <!--      <img src="http://www.meteocalalzodicadore.altervista.org/monthinside.png?$current.dateTime.raw" alt="Inside" />
@@ -1831,54 +1831,54 @@
     </main>
 
     <!-- Footer -->
-    <footer class="tw:bg-weather-cool/80 tw:p-8 tw:text-white">
-      <div class="tw:container tw:mx-auto">
-        <div class="tw:table">
-          <div class="tw:table-row">
-            <div class="tw:table-cell tw:pr-2">Stazione:</div>
-            <div class="tw:table-cell tw:pr-2">$station.hardware</div>
+    <footer class="bg-weather-cool/80 p-8 text-white">
+      <div class="container mx-auto">
+        <div class="table">
+          <div class="table-row">
+            <div class="table-cell pr-2">Stazione:</div>
+            <div class="table-cell pr-2">$station.hardware</div>
           </div>
-          <div class="tw:table-row">
-            <div class="tw:table-cell tw:pr-2">Software:</div>
-            <div class="tw:table-cell tw:pr-2">WeeWX v$station.version</div>
+          <div class="table-row">
+            <div class="table-cell pr-2">Software:</div>
+            <div class="table-cell pr-2">WeeWX v$station.version</div>
           </div>
-          <div class="tw:table-row">
-            <div class="tw:table-cell tw:pr-2">Weewx uptime:</div>
-            <div class="tw:table-cell tw:pr-2">$station.uptime.long_form</div>
+          <div class="table-row">
+            <div class="table-cell pr-2">Weewx uptime:</div>
+            <div class="table-cell pr-2">$station.uptime.long_form</div>
           </div>
-          <div class="tw:table-row">
-            <div class="tw:table-cell tw:pr-2">Server uptime:</div>
-            <div class="tw:table-cell tw:pr-2">
+          <div class="table-row">
+            <div class="table-cell pr-2">Server uptime:</div>
+            <div class="table-cell pr-2">
               $station.os_uptime.long_form
             </div>
           </div>
         </div>
-        <a href="https://meteocentrocadore.cronitorstatus.com" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
-        <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:border-0" />
-        <div class="tw:flex tw:flex-row tw:flex-wrap">
-          <p class="tw:mr-2">
-            Powered by <a href="weewx.com" class="tw:underline">Weewx</a>.
+        <a href="https://meteocentrocadore.cronitorstatus.com" class="underline mt-2">Controlla lo stato dei servizi</p>
+        <hr class="h-px my-4 bg-blue-200 border-0" />
+        <div class="flex flex-row flex-wrap">
+          <p class="mr-2">
+            Powered by <a href="weewx.com" class="underline">Weewx</a>.
           </p>
-          <p class="tw:mr-2">|</p>
-          <p class="tw:mr-2">
+          <p class="mr-2">|</p>
+          <p class="mr-2">
             Non prendere decisioni importanti con le informazioni di questo
             sito.
           </p>
-          <p class="tw:mr-2">|</p>
-          <p class="tw:mr-2">
+          <p class="mr-2">|</p>
+          <p class="mr-2">
             © $latest.dateTime.format("%Y") meteocentrocadore.
           </p>
-          <p class="tw:mr-2">|</p>
-          <p class="tw:mr-2">
-            <a href="mailto:meteocentrocadore@gmail.com" class="tw:underline"
+          <p class="mr-2">|</p>
+          <p class="mr-2">
+            <a href="mailto:meteocentrocadore@gmail.com" class="underline"
               >Contattaci</a
             >
           </p>
-          <p class="tw:mr-2">|</p>
-          <p class="tw:mr-2">
+          <p class="mr-2">|</p>
+          <p class="mr-2">
             <a
               href="https://github.com/NikoFresh/MCC-sofaskin"
-              class="tw:underline"
+              class="underline"
             >
               <i class="fa-brands fa-github"></i> GitHub
             </a>
@@ -1894,7 +1894,7 @@
       const menu = document.querySelector(".mobile-menu");
 
       btn.addEventListener("click", () => {
-        menu.classList.toggle("tw:hidden");
+        menu.classList.toggle("hidden");
       });
     </script>
   </body>

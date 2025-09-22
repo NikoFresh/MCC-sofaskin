@@ -60,16 +60,16 @@ function showWeather(data) {
       let tableWind = document.getElementById("table-wind");
       let tablePrec = document.getElementById("table-prec");
 
-      tableDay.innerHTML += `<div class="tw:table-cell tw:p-2">${giornoMaiusc}</div>`;
-      tableForecast.innerHTML += `<div class="tw:table-cell tw:p-2"><i class="${
+      tableDay.innerHTML += `<div class="table-cell p-2">${giornoMaiusc}</div>`;
+      tableForecast.innerHTML += `<div class="table-cell p-2"><i class="${
         iconsName[data.daily.weather_code[i]][0]
-      } tw:text-lg"></i><br>${iconsName[data.daily.weather_code[i]][1]}</div>`;
-      tableTemp.innerHTML += `<div class="tw:table-cell tw:p-2">${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max} <br> ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</div>`;
-      tableWind.innerHTML += `<div class="tw:table-cell tw:p-2">${data.daily.wind_speed_10m_max[i]}${data.daily_units.wind_speed_10m_max} <br> (${data.daily.wind_gusts_10m_max[i]}${data.daily_units.wind_gusts_10m_max})</div>`;
+      } text-lg"></i><br>${iconsName[data.daily.weather_code[i]][1]}</div>`;
+      tableTemp.innerHTML += `<div class="table-cell p-2">${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max} <br> ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</div>`;
+      tableWind.innerHTML += `<div class="table-cell p-2">${data.daily.wind_speed_10m_max[i]}${data.daily_units.wind_speed_10m_max} <br> (${data.daily.wind_gusts_10m_max[i]}${data.daily_units.wind_gusts_10m_max})</div>`;
       if ([71, 73, 75].includes(data.daily.weather_code[i])) {
-        tablePrec.innerHTML += `<div class="tw:table-cell tw:p-2">${data.daily.snowfall_sum[i]}${data.daily_units.snowfall_sum}</div>`;
+        tablePrec.innerHTML += `<div class="table-cell p-2">${data.daily.snowfall_sum[i]}${data.daily_units.snowfall_sum}</div>`;
       } else {
-        tablePrec.innerHTML += `<div class="tw:table-cell tw:p-2">${data.daily.precipitation_sum[i]}${data.daily_units.precipitation_sum}</div>`;
+        tablePrec.innerHTML += `<div class="table-cell p-2">${data.daily.precipitation_sum[i]}${data.daily_units.precipitation_sum}</div>`;
       }
     }
   });
@@ -100,7 +100,7 @@ function showWeather(data) {
       timeToRain < 180
     ) {
       skip = true;
-      htmlMinutely.innerHTML = `Precipitazioni previste intorno alle <span class="tw:underline">${forecastTime.toLocaleTimeString(
+      htmlMinutely.innerHTML = `Precipitazioni previste intorno alle <span class="underline">${forecastTime.toLocaleTimeString(
         "it-IT",
         { hour: "2-digit", minute: "2-digit" }
       )}</span>`;
