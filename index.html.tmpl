@@ -35,7 +35,7 @@
     <script
       async
       src="https://analytics.umami.is/script.js"
-      data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"
+      data-website-id="$Extras.umami_id"
     ></script>
 
     <!-- Mqtt status animation -->
@@ -663,12 +663,12 @@
                       <div class="tw:flex-1 tw:overflow-hidden">
                         <img
                           class="webcam-image tw:w-full tw:object-cover tw:block tw:rounded-xl"
-                          src="https://www.meteocentrocadore.it/webcam/webcam.jpg?$current.dateTime.raw"
+                          src="$Extras.webcam_url?$current.dateTime.raw"
                           alt="Live weather camera"
                         />
                         <img
                           class="radar-image tw:w-full tw:object-contain tw:hidden tw:lg:max-h-[25vw] tw:rounded-xl"
-                          src="https://meteo.arpa.veneto.it/meteo/radar/imgs/concordia/1_BASE.jpg?$current.dateTime.raw"
+                          src="$Extras.radar_url?$current.dateTime.raw"
                           alt="Weather radar"
                         />
                       </div>
@@ -1240,7 +1240,7 @@
             </div>
           </div>
         </div>
-        <a href="https://meteocentrocadore.cronitorstatus.com" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
+        <a href="$Extras.cronitor_url" class="tw:underline tw:mt-2">Controlla lo stato dei servizi</p>
         <hr class="tw:h-px tw:my-4 tw:bg-blue-200 tw:border-0" />
         <div class="tw:flex tw:flex-row tw:flex-wrap">
           <p class="tw:mr-2">
@@ -1257,7 +1257,7 @@
           </p>
           <p class="tw:mr-2">|</p>
           <p class="tw:mr-2">
-            <a href="mailto:meteocentrocadore@gmail.com" class="tw:underline"
+            <a href="mailto:$Extras.email" class="tw:underline"
               >Contattaci</a
             >
           </p>
