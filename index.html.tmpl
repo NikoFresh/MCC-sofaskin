@@ -1,276 +1,11 @@
+#set global $page = "index"
+
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Robot+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/qweather-icons@1.3.1/font/qweather-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link href="./build.css?v2.51" rel="stylesheet" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"
-      type="text/javascript"
-    ></script>
-    <!-- echarts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <script src="./js/forecast.js?v1.01"></script>
-    <script src="./js/liveUpdates.js?v1.05"></script>
-    <script src="./js/checkdiff.js?v2.12"></script>
-
-    <!-- Umami -->
-    <script
-      async
-      src="https://analytics.umami.is/script.js"
-      data-website-id="$Extras.umami_id"
-    ></script>
-
-    <!-- Mqtt status animation -->
-    <style>
-      div.online-indicator {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        margin-right: 10px;
-
-        background-color: rgb(239 68 68);
-        border-radius: 50%;
-
-        position: relative;
-      }
-      span.blink {
-        display: block;
-        width: 15px;
-        height: 15px;
-
-        background-color: (239 68 68);
-        opacity: 0.7;
-        border-radius: 50%;
-      }
-
-      .animate {
-        animation: blink 1s linear;
-      }
-
-      /*Animations*/
-
-      @keyframes blink {
-        100% {
-          transform: scale(2, 2);
-          opacity: 0;
-        }
-      }
-
-      /* tooltip */
-      .tooltip-text {
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s, margin-bottom 0.3s;
-      }
-
-      .group:hover .tooltip-text,
-      .group:focus .tooltip-text {
-        visibility: visible;
-        opacity: 1;
-        margin-bottom: 10px;
-      }
-    </style>
-  </head>
+  #include "templates/head.html.tmpl"
   <body class="bg-weather-bg">
     <!-- Header -->
-    <div id="header" class="px-8 pt-6 bg-weather-cool/80">
-      <div
-        class="lg:max-w-[75%] mx-auto text-left relative z-10 text-white"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <a href="$Extras.web_url">
-            <h1 class="text-4xl font-semibold tracking-tight">
-              $station.location
-            </h1>
-          </a>
-        </div>
-
-        <div
-          class="flex flex-wrap items-center gap-2 mb-2 text-sm text-white/85 font-medium"
-        >
-          <div class="flex items-center gap-1.5">
-            <svg
-              class="w-3.5 h-3.5 opacity-70"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span class="font-mono"
-              >$station.latitude[0]°$station.latitude[1]'$station.latitude[2],
-              $station.longitude[0]°$station.longitude[1]'$station.longitude[2]</span
-            >
-          </div>
-          <div class="flex items-center gap-1.5">
-            <svg
-              class="w-3.5 h-3.5 opacity-70"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="17,10 12,15 7,10" />
-              <polyline points="19,15 12,22 5,15" />
-            </svg>
-            <span class="font-mono">$station.altitude</span>
-          </div>
-        </div>
-
-        <p class="text-base text-white/90 font-medium mb-4">
-          Ultimo aggiornamento:
-          <span class="font-mono"
-            >$current.dateTime $current.dateTime.format("%Z")</span
-          >
-        </p>
-
-        <div
-          class="flex items-end justify-between flex-wrap gap-4"
-        >
-          <!-- PC menu -->
-          <nav class="flex-1">
-            <div class="hidden md:flex flex-row gap-1">
-              <a
-                href="index.html"
-                class="px-3 py-2 text-white text-lg font-medium border-b-2 border-white/80 transition-colors hover:bg-white/10 rounded-t-md"
-                >Oggi</a
-              >
-              <a
-                href="week.html"
-                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
-                >Settimana</a
-              >
-              <a
-                href="month.html"
-                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
-                >Mese</a
-              >
-              <a
-                href="year.html"
-                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
-                >Anno</a
-              >
-              <a
-                href="summary.html"
-                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
-                >Storico</a
-              >
-              <a
-                href="vaia.html"
-                class="px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md"
-                >Vaia</a
-              >
-            </div>
-            <!-- Mobile menu button -->
-            <div class="md:hidden">
-              <button
-                class="outline-none mobile-menu-button p-2 rounded-lg hover:bg-white/10 transition-colors"
-              >
-                <svg
-                  class="w-6 h-6 text-white"
-                  x-show="!showMenu"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-              </button>
-            </div>
-          </nav>
-
-          <!-- IG e aduepassi -->
-          <div class="flex items-center gap-3">
-            <a
-              href="https://www.instagram.com/meteocentrocadore/?hl=it"
-              class="p-2 text-white/80 text-xl transition-colors hover:text-white hover:bg-white/10 rounded-lg"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a
-              data-umami-event="A due passi"
-              href="https://aduepassidallaciclabile.it"
-              class="bg-lime-400 text-gray-900 rounded-full px-4 py-2 text-sm font-medium transition-all hover:bg-lime-300 hover:shadow-lg shadow-lime-500/25"
-            >
-              <i class="fa-brands fa-airbnb mr-1.5"></i> A due passi dalla
-              ciclabile
-            </a>
-          </div>
-        </div>
-
-        <!-- Mobile menu -->
-        <div
-          class="hidden mobile-menu mt-4 pt-4 border-t border-white/20"
-        >
-          <ul class="space-y-1">
-            <li>
-              <a
-                href="index.html"
-                class="block px-3 py-3 text-white text-lg bg-white/10 rounded-lg font-medium"
-                >Oggi</a
-              >
-            </li>
-            <li>
-              <a
-                href="week.html"
-                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
-                >Settimana</a
-              >
-            </li>
-            <li>
-              <a
-                href="month.html"
-                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
-                >Mese</a
-              >
-            </li>
-            <li>
-              <a
-                href="year.html"
-                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
-                >Anno</a
-              >
-            </li>
-            <li>
-              <a
-                href="summary.html"
-                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
-                >Storico</a
-              >
-            </li>
-            <li>
-              <a
-                href="vaia.html"
-                class="block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10"
-                >Vaia</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    #include "templates/header.html.tmpl"
     <!-- End header -->
     <main class="mx-4">
       <div class="container mx-auto">
@@ -638,7 +373,11 @@
 
                 <div class="weather-container">
                   <div class="lg:col-span-1">
+                  #set $has_webcam = $getVar('Extras.webcam_url', None)
+                  #set $has_radar = $getVar('Extras.radar_url', None)
+                  #set $has_both = $has_webcam and $has_radar
                     <div class="">
+                      #if $has_both
                       <!-- Navigazione -->
                       <div class="mb-3 flex justify-center">
                         <div
@@ -658,19 +397,24 @@
                           </label>
                         </div>
                       </div>
+                      #end if
 
                       <!-- Immagini -->
                       <div class="flex-1 overflow-hidden">
+                        #if $has_webcam
                         <img
                           class="webcam-image w-full object-cover block rounded-xl"
                           src="$Extras.webcam_url?$current.dateTime.raw"
                           alt="Live weather camera"
                         />
+                        #end if
+                        #if $has_radar
                         <img
-                          class="radar-image w-full object-contain hidden lg:max-h-[25vw] rounded-xl"
+                          class="radar-image w-full object-contain #if $has_both then 'hidden' else 'block'# lg:max-h-[25vw] rounded-xl"
                           src="$Extras.radar_url?$current.dateTime.raw"
                           alt="Weather radar"
                         />
+                        #end if
                       </div>
                     </div>
                   </div>
@@ -1217,71 +961,11 @@
         </div>
       </div>
     </main>
-    <!-- Footer -->
-    <footer class="bg-weather-cool/80 p-8 text-white">
-      <div class="container mx-auto">
-        <div class="table">
-          <div class="table-row">
-            <div class="table-cell pr-2">Stazione:</div>
-            <div class="table-cell pr-2">$station.hardware</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell pr-2">Software:</div>
-            <div class="table-cell pr-2">WeeWX v$station.version</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell pr-2">Weewx uptime:</div>
-            <div class="table-cell pr-2">$station.uptime.long_form</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell pr-2">Server uptime:</div>
-            <div class="table-cell pr-2">
-              $station.os_uptime.long_form
-            </div>
-          </div>
-        </div>
-        <a href="$Extras.cronitor_url" class="underline mt-2">Controlla lo stato dei servizi</p>
-        <hr class="h-px my-4 bg-blue-200 border-0" />
-        <div class="flex flex-row flex-wrap">
-          <p class="mr-2">
-            Powered by <a href="weewx.com" class="underline">Weewx</a>.
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            Non prendere decisioni importanti con le informazioni di questo
-            sito.
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            © $latest.dateTime.format("%Y") meteocentrocadore.
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            <a href="mailto:$Extras.email" class="underline"
-              >Contattaci</a
-            >
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            <a
-              href="https://github.com/NikoFresh/MCC-sofaskin"
-              class="underline"
-            >
-              <i class="fa-brands fa-github"></i> GitHub
-            </a>
-          </p>
-        </div>
-      </div>
-    </footer>
-    <!-- End footer-->
-    <script>
-      const btn = document.querySelector("button.mobile-menu-button");
-      const menu = document.querySelector(".mobile-menu");
 
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-      });
-    </script>
+    <!-- Footer -->
+    #include "templates/footer.html.tmpl"
+    <!-- End footer-->
+
     <script src="./js/eplot.js?v1.3"></script>
   </body>
 </html>
