@@ -1,7 +1,7 @@
 #set global $page = "index"
 
 <!DOCTYPE html>
-<html lang="it">
+<html lang="$lang">
   #include "templates/head.html.tmpl"
   <body class="bg-weather-bg">
     <!-- Header -->
@@ -72,7 +72,7 @@
                   <div
                     class="flex items-center justify-between mb-2"
                   >
-                    <div class="text-sm text-gray-800">Temperatura</div>
+                    <div class="text-sm text-gray-800">$obs.label.outTemp</div>
                   </div>
                   <div
                     class="text-2xl font-bold text-gray-800 mb-2"
@@ -81,7 +81,7 @@
                     $current.outTemp
                   </div>
                   <div class="text-s text-gray-500 mb-2">
-                    Percepita:
+                    $obs.label.appTemp:
                     <span class="" id="heatIndex"
                       >$current.appTemp</span
                     >
@@ -114,7 +114,7 @@
                   <div
                     class="flex items-center justify-between mb-2"
                   >
-                    <div class="text-sm text-gray-800">Umidità</div>
+                    <div class="text-sm text-gray-800">$obs.label.outHumidity</div>
                   </div>
                   <div
                     class="text-2xl font-bold text-gray-800 mb-2"
@@ -151,7 +151,7 @@
                   <div
                     class="flex items-center justify-between mb-2"
                   >
-                    <div class="text-sm text-gray-800">Pressione</div>
+                    <div class="text-sm text-gray-800">$obs.label.barometer</div>
                   </div>
                   <div
                     class="text-2xl font-bold text-gray-800"
@@ -188,7 +188,7 @@
                   <div
                     class="flex items-center justify-between mb-2"
                   >
-                    <div class="text-sm text-gray-800">Vento</div>
+                    <div class="text-sm text-gray-800">$obs.label.wind</div>
                   </div>
                   <div
                     class="text-2xl font-bold text-grey-800"
@@ -224,7 +224,7 @@
                   <div
                     class="flex items-center justify-between mb-2"
                   >
-                    <div class="text-sm text-gray-800">Pioggia</div>
+                    <div class="text-sm text-gray-800">$obs.label.rain</div>
                   </div>
                   <div
                     class="text-2xl font-bold text-grey-800"
@@ -234,7 +234,7 @@
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <div>
-                      Rain rate:
+                      $obs.label.rainRate:
                       <span class="font-medium" id="rainRate"
                         >$current.rainRate</span
                       >
@@ -256,7 +256,7 @@
                     class="flex items-center justify-between mb-2"
                   >
                     <div class="text-sm text-gray-800">
-                      Punto di rugiada
+                      $obs.label.dewpoint
                     </div>
                     <span class="relative ml-2 group">
                       <i
@@ -307,7 +307,7 @@
                   <div
                     class="flex items-center justify-between mb-2"
                   >
-                    <div class="text-sm text-gray-800">Wind Chill</div>
+                    <div class="text-sm text-gray-800">$obs.label.windChill</div>
                     <span class="relative ml-2 group">
                       <i
                         class="fas fa-question-circle text-gray-600 cursor-pointer"
