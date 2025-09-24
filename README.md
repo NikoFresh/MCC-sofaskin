@@ -12,6 +12,17 @@ Features:
 
 You can see the live version on my website at [meteocentrocadore.it](https://meteocentrocadore.it)
 
+## TODO
+Please note that the skin is still in active development and it's not production ready
+
+- [x] Make Webcam and radar optional
+- [ ] Make everything configurable via skin.conf
+- [ ] Implement translation
+- [ ] Rework js plot implementation
+- [ ] Rework mqtt implementation
+- [ ] Auto install via weectl extension
+
+
 ## Installation
 
 1. Download the latest skin from [this repository](https://github.com/NikoFresh/MCC-sofaskin/archive/master.zip)
