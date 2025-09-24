@@ -373,7 +373,11 @@
 
                 <div class="weather-container">
                   <div class="lg:col-span-1">
+                  #set $has_webcam = $getVar('Extras.webcam_url', None)
+                  #set $has_radar = $getVar('Extras.radar_url', None)
+                  #set $has_both = $has_webcam and $has_radar
                     <div class="">
+                      #if $has_both
                       <!-- Navigazione -->
                       <div class="mb-3 flex justify-center">
                         <div
@@ -393,19 +397,24 @@
                           </label>
                         </div>
                       </div>
+                      #end if
 
                       <!-- Immagini -->
                       <div class="flex-1 overflow-hidden">
+                        #if $has_webcam
                         <img
                           class="webcam-image w-full object-cover block rounded-xl"
                           src="$Extras.webcam_url?$current.dateTime.raw"
                           alt="Live weather camera"
                         />
+                        #end if
+                        #if $has_radar
                         <img
-                          class="radar-image w-full object-contain hidden lg:max-h-[25vw] rounded-xl"
+                          class="radar-image w-full object-contain #if $has_both then 'hidden' else 'block'# lg:max-h-[25vw] rounded-xl"
                           src="$Extras.radar_url?$current.dateTime.raw"
                           alt="Weather radar"
                         />
+                        #end if
                       </div>
                     </div>
                   </div>
