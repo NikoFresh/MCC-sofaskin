@@ -1217,63 +1217,11 @@
         </div>
       </div>
     </main>
+
     <!-- Footer -->
-    <footer class="bg-weather-cool/80 p-8 text-white">
-      <div class="container mx-auto">
-        <div class="table">
-          <div class="table-row">
-            <div class="table-cell pr-2">Stazione:</div>
-            <div class="table-cell pr-2">$station.hardware</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell pr-2">Software:</div>
-            <div class="table-cell pr-2">WeeWX v$station.version</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell pr-2">Weewx uptime:</div>
-            <div class="table-cell pr-2">$station.uptime.long_form</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell pr-2">Server uptime:</div>
-            <div class="table-cell pr-2">
-              $station.os_uptime.long_form
-            </div>
-          </div>
-        </div>
-        <a href="$Extras.cronitor_url" class="underline mt-2">Controlla lo stato dei servizi</p>
-        <hr class="h-px my-4 bg-blue-200 border-0" />
-        <div class="flex flex-row flex-wrap">
-          <p class="mr-2">
-            Powered by <a href="weewx.com" class="underline">Weewx</a>.
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            Non prendere decisioni importanti con le informazioni di questo
-            sito.
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            © $latest.dateTime.format("%Y") meteocentrocadore.
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            <a href="mailto:$Extras.email" class="underline"
-              >Contattaci</a
-            >
-          </p>
-          <p class="mr-2">|</p>
-          <p class="mr-2">
-            <a
-              href="https://github.com/NikoFresh/MCC-sofaskin"
-              class="underline"
-            >
-              <i class="fa-brands fa-github"></i> GitHub
-            </a>
-          </p>
-        </div>
-      </div>
-    </footer>
+    #include templates/footer.html.tmpl
     <!-- End footer-->
+    
     <script>
       const btn = document.querySelector("button.mobile-menu-button");
       const menu = document.querySelector(".mobile-menu");
