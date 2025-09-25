@@ -88,7 +88,7 @@
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <div>
-                      Max:
+                      $obs.label.maxAbbr:
                       <span class="font-medium"
                         >$day.outTemp.max</span
                       >
@@ -97,7 +97,7 @@
                       >
                     </div>
                     <div>
-                      Min:
+                      $obs.label.minAbbr:
                       <span class="font-medium"
                         >$day.outTemp.min</span
                       >
@@ -124,7 +124,7 @@
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <div>
-                      Max:
+                      $obs.label.maxAbbr:
                       <span class="font-medium"
                         >$day.outHumidity.max</span
                       >
@@ -133,7 +133,7 @@
                       >
                     </div>
                     <div>
-                      Min:
+                      $obs.label.minAbbr:
                       <span class="font-medium"
                         >$day.outHumidity.min</span
                       >
@@ -161,7 +161,7 @@
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <div>
-                      Max:
+                      $obs.label.maxAbbr:
                       <span class="font-medium"
                         >$day.barometer.max</span
                       >
@@ -170,7 +170,7 @@
                       >
                     </div>
                     <div>
-                      Min:
+                      $obs.label.minAbbr:
                       <span class="font-medium"
                         >$day.barometer.min</span
                       >
@@ -201,7 +201,7 @@
                       $current.windDir.ordinal_compass
                     </div>
                     <div>
-                      Max:
+                      $obs.label.maxAbbr:
                       <span class="font-medium"
                         >$day.windGust.max</span
                       >
@@ -210,7 +210,7 @@
                       >
                     </div>
                     <div>
-                      Avg:
+                      $obs.label.avgAbbr:
                       <span class="font-medium"
                         >$day.windSpeed.avg</span
                       >
@@ -240,7 +240,7 @@
                       >
                     </div>
                     <div>
-                      Rain rate max:
+                      $obs.label.rainRate $obs.label.maxAbbr:
                       <span class="font-medium"
                         >$day.rainRate.max</span
                       >
@@ -267,8 +267,7 @@
                       <span
                         class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
                       >
-                        Temperatura alla quale l'aria deve raffreddarsi affinché
-                        il vapore acqueo presente inizi a condensare.
+                        $obs.label.dewPointTooltip
                       </span>
                     </span>
                   </div>
@@ -280,7 +279,7 @@
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <div>
-                      Max:
+                      $obs.label.maxAbbr:
                       <span class="font-medium"
                         >$day.dewpoint.max</span
                       >
@@ -289,7 +288,7 @@
                       >
                     </div>
                     <div>
-                      Min:
+                      $obs.label.minAbbr:
                       <span class="font-medium"
                         >$day.dewpoint.min</span
                       >
@@ -317,7 +316,7 @@
                       <span
                         class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
                       >
-                        Temperatura percepita per effetto del vento sulla pelle.
+                      $obs.label.windChillTooltip 
                       </span>
                     </span>
                   </div>
@@ -329,7 +328,7 @@
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <div>
-                      Max:
+                      $obs.label.maxAbbr:
                       <span class="font-medium"
                         >$day.windchill.max</span
                       >
@@ -338,7 +337,7 @@
                       >
                     </div>
                     <div>
-                      Min:
+                      $obs.label.minAbbr:
                       <span class="font-medium"
                         >$day.windchill.min</span
                       >
@@ -471,7 +470,7 @@
             #end if
               <!-- prettier-ignore-end -->
               <h1 class="text-xl text-gray-800 px-4 pt-4">
-                Un anno fa ($days_ago($days_ago=$n).dateTime.format("%d-%b(%Y)"))
+                $obs.label.oneYearAgo ($days_ago($days_ago=$n).dateTime.format("%d-%b(%Y)"))
               </h1>
 
               <table
@@ -481,7 +480,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Temperatura massima:
+                    $obs.label.temperature $obs.label.maxF:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -494,7 +493,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Temperatura minima:
+                    $obs.label.temperature $obs.label.minF:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -507,7 +506,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Umidità massima:
+                    $obs.label.humidity $obs.label.maxF:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -520,7 +519,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Umidità minima:
+                    $obs.label.humidity $obs.label.minF:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -533,7 +532,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Pressione massima:
+                    $obs.label.barometer $obs.label.maxF:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -546,7 +545,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Pressione minima:
+                    $obs.label.barometer $obs.label.minF:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -559,7 +558,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Pioggia:
+                    $obs.label.rain $obs.label.total:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -571,7 +570,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                   >
-                    Rain Rate max:
+                    $obs.label.rainRate $obs.label.maxF:
                   </td>
                   <td
                     class="py-2 text-gray-900 border-b border-gray-200"
@@ -584,7 +583,7 @@
                   <td
                     class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                   >
-                    Vento massimo:
+                    $obs.label.wind $obs.label.maxM:
                   </td>
                   <td
                     class="py-2 text-gray-900 group-hover:rounded-br-2xl"
@@ -609,11 +608,11 @@
               #end if
               <!-- prettier-ignore-end -->
 
-              <h1 class="text-xl px-4 pt-4">Almanacco</h1>
+              <h1 class="text-xl px-4 pt-4">$obs.label.almanac</h1>
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
                 <div>
                   <h1 class="text-xl text-gray-800 px-4 pt-4">
-                    Sole
+                    $obs.label.sun
                   </h1>
 
                   <table
@@ -623,7 +622,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Inizio crepuscolo civile:
+                        $obs.label.startCivilTwilight:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -635,7 +634,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Alba:
+                        $obs.label.sunrise:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -647,7 +646,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Transito:
+                        $obs.label.sunTransit:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -659,7 +658,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Tramonto:
+                        $obs.label.sunset:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -671,7 +670,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Fine crepuscolo civile:
+                        $obs.label.endCivilTwilight:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -683,7 +682,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Azimuth:
+                        $obs.label.azimuth:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -695,7 +694,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Altitudine:
+                        $obs.label.altitude:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -707,7 +706,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Ascensione retta:
+                        $obs.label.rightAscension:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -719,7 +718,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Inclinazione:
+                        $obs.label.declination:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -732,7 +731,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Solstizio:
+                        $obs.label.solstice:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -744,7 +743,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Equinozio:
+                        $obs.label.equinox:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -757,7 +756,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Equinozio:
+                        $obs.label.equinox:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -769,7 +768,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                       >
-                        Solstizio:
+                        $obs.label.solstice:
                       </td>
                       <td
                         class="py-2 text-gray-900 group-hover:rounded-br-2xl"
@@ -783,7 +782,7 @@
 
                 <div>
                   <h1 class="text-xl text-gray-800 px-4 pt-4">
-                    Luna
+                    $obs.label.moon
                   </h1>
 
                   <table
@@ -793,7 +792,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Leva:
+                        $obs.label.moonrise:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -805,7 +804,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Transito:
+                        $obs.label.moonTransit:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -817,7 +816,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Cala:
+                        $obs.label.moonset:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -829,7 +828,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Azimut:
+                        $obs.label.azimuth:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -841,7 +840,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Altitudine:
+                        $obs.label.altitude:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -853,7 +852,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Ascensione retta:
+                        $obs.label.rightAscension:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -865,7 +864,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Inclinazione:
+                        $obs.label.declination:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -878,7 +877,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Luna piena:
+                        $obs.label.moon_full:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -890,7 +889,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Luna nuova:
+                        $obs.label.moon_new:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -903,7 +902,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Luna nuova:
+                        $obs.label.moon_new:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -915,7 +914,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                       >
-                        Luna piena:
+                        $obs.label.moon_full:
                       </td>
                       <td
                         class="py-2 text-gray-900 border-b border-gray-200"
@@ -928,7 +927,7 @@
                       <td
                         class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                       >
-                        Fase:
+                        $obs.label.moon_phase:
                       </td>
                       <td
                         class="py-2 text-gray-900 group-hover:rounded-br-2xl"
@@ -948,7 +947,7 @@
         <!-- Grafici -->
         <div class="mb-4">
           <h1 class="text-xl p-4 md:p-4">
-            <i class="fa fa-line-chart m-gruen"></i> Grafici
+            <i class="fa fa-line-chart m-gruen"></i> $obs.label.charts
           </h1>
           <div class="grid grid-cols-1 md:grid-cols-2">
             <div id="outTempChart" class="h-[40vh]"></div>
