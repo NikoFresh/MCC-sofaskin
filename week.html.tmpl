@@ -17,7 +17,7 @@
         <div class="lg:col-span-2">
           <div class="bg-weather-cool/6 rounded-2xl">
             <h1 class="text-xl text-gray-800 px-4 pt-4">
-              Questa settimana ($week.start.format("%d-%m-%Y") -
+              $obs.label.thisWeek ($week.start.format("%d-%m-%Y") -
               $week.end.format("%d-%m-%Y"))
             </h1>
 
@@ -26,7 +26,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Temperatura massima:
+                  $obs.label.outTemp $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -43,7 +43,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Temperatura minima:
+                  $obs.label.outTemp $obs.label.minF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -60,7 +60,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Punto di rugiada massimo:
+                  $obs.label.dewpoint $obs.label.maxM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -77,7 +77,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Punto di rugiada minimo:
+                  $obs.label.dewpoint $obs.label.minM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -94,7 +94,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Umidità massima:
+                  $obs.label.outHumidity $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -111,7 +111,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Umidità minima:
+                  $obs.label.outHumidity $obs.label.minF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -128,7 +128,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Pressione massima:
+                  $obs.label.barometer $obs.label.maxM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -145,7 +145,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Pressione minima:
+                  $obs.label.barometer $obs.label.minM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -162,7 +162,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Pioggia totale:
+                  $obs.label.rain $obs.label.total:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -177,7 +177,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Velocità massima del vento:
+                  $obs.label.windSpeed $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -194,7 +194,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Velocità media del vento:
+                  $obs.label.windSpeed $obs.label.avgF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -210,7 +210,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima Pond Temp:
+                  $obs.label.extraTemp1 $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -227,7 +227,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima Pond Temp:
+                  $obs.label.extraTemp1 $obs.label.minF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -247,7 +247,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima UV:
+                  $obs.label.UV $obs.label.maxM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -265,7 +265,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima UV:
+                  $obs.label.UV $obs.label.minM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -285,7 +285,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima ET:
+                  $obs.label.ET $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -302,7 +302,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima ET:
+                  $obs.label.ET $obs.label.minF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -322,7 +322,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima Radiation:
+                  $obs.label.radiation $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -339,7 +339,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                 >
-                  Minima Radiation:
+                  $obs.label.radiation $obs.label.minF:
                 </td>
                 <td class="py-2 text-gray-900">$week.radiation.min</td>
                 <td
@@ -354,7 +354,7 @@
 
           <div class="bg-weather-cool/6 mt-4 rounded-2xl">
             <h1 class="text-xl text-gray-800 px-4 pt-4">
-              Ieri ($yesterday.dateTime.format("%d-%b-%Y"))
+              $obs.label.yesterday ($yesterday.dateTime.format("%d-%b-%Y"))
             </h1>
 
             <table class="w-full table-fixed border-collapse mt-2">
@@ -362,7 +362,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Temperatura massima:
+                  $obs.label.outTemp $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -379,7 +379,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Temperatura minima:
+                  $obs.label.outTemp $obs.label.minF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -393,23 +393,11 @@
                 </td>
               </tr>
 
-              <!--<tr>
-
-    <td>massima Heat Index</td>
-
-    <td>$yesterday.heatindex.max</td>
-
-    <td>$yesterday.heatindex.maxtime</td>
-
-  </tr>
-
--->
-
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Wind Chill minimo:
+                  $obs.label.windchill $obs.label.maxM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -426,7 +414,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Punto di rugiada massimo:
+                  $obs.label.windchill $obs.label.minM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -443,7 +431,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Punto di rugiada minimo:
+                  $obs.label.dewpoint $obs.label.minM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -460,7 +448,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Umidità massima:
+                  $obs.label.outHumidity $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -477,7 +465,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Umidità minima:
+                  $obs.label.outHumidity $obs.label.minF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -494,7 +482,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Pressione massima:
+                  $obs.label.barometer $obs.label.maxM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -511,7 +499,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Pressione minima:
+                  $obs.label.barometer $obs.label.minM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -528,7 +516,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Pioggia:
+                  $obs.label.rain $obs.label.total:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -539,22 +527,26 @@
                   class="py-2 text-gray-900 border-b border-gray-200"
                 ></td>
               </tr>
-
-              <!--          <tr>
-
-    <td>massima Rain Rate</td>
-
-    <td>$yesterday.rainRate.max</td>
-
-    <td>$yesterday.rainRate.maxtime</td>
-
-  </tr> -->
-
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Velocità massima del vento:
+                  $obs.label.rainRate $obs.label.maxM:
+                </td>
+                <td
+                  class="py-2 text-gray-900 border-b border-gray-200"
+                >
+                  $yesterday.rainRate.max</td>
+                <td
+                  class="py-2 text-gray-900 border-b border-gray-200"
+                >
+                  $yesterday.rainRate.maxtime</td>
+              </tr>
+              <tr class="hover:bg-weather-cool/10">
+                <td
+                  class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                >
+                  $obs.label.windSpeed $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -571,7 +563,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Velocità media del vento:
+                  $obs.label.windSpeed $obs.label.avgF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -592,33 +584,14 @@
     <td></td>
 
   </tr>
-
-  <tr>
-
-    <td>massima Inside Temperatura</td>
-
-    <td>$yesterday.inTemp.max</td>
-
-    <td>$yesterday.inTemp.maxtime</td>
-
-  </tr>
-
-  <tr>
-
-    <td>Minima Inside Temperatura</td>
-
-    <td>$yesterday.inTemp.min</td>
-
-    <td>$yesterday.inTemp.mintime</td>
-
-  </tr> -->
+ -->
 
               #if $day.extraTemp1.has_data
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima Pond Temp:
+                  $obs.label.extraTemp1 $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -635,7 +608,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima Pond Temp:
+                  $obs.label.extraTemp1 $obs.label.minF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -655,7 +628,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima UV:
+                  $obs.label.UV $obs.label.maxM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -672,7 +645,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima UV:
+                  $obs.label.UV $obs.label.minM:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -692,7 +665,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima Radiation:
+                  $obs.label.UV $obs.label.maxF:
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -709,7 +682,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                 >
-                  Minima Radiation:
+                  $obs.label.radiation $obs.label.minF:
                 </td>
                 <td class="py-2 text-gray-900">
                   $yesterday.radiation.min
@@ -728,7 +701,7 @@
         <div class="lg:col-span-3">
           <div class="bg-weather-cool/6 rounded-2xl p-4">
             <h1 class="text-xl text-gray-800 pb-4">
-              Grafici settimanali
+              $obs.label.weeklyCharts
             </h1>
 
             <img
