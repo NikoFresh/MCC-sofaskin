@@ -45,7 +45,7 @@
         </div>
 
         <p class="text-base text-white/90 font-medium mb-4">
-            Ultimo aggiornamento:
+            $obs.label.lastUpdate:
             <span class="font-mono"
             >$current.dateTime $current.dateTime.format("%Z")</span
             >
@@ -60,27 +60,27 @@
                     <a
                     href="index.html"
                     class="#if $page == 'index' then 'header-active-pc' else 'header-inactive-pc'#"
-                    >Oggi</a
+                    >$obs.label.today</a
                     >
                     <a
                     href="week.html"
                     class="#if $page == 'week' then 'header-active-pc' else 'header-inactive-pc'#"
-                    >Settimana</a
+                    >$obs.label.week</a
                     >
                     <a
                     href="month.html"
                     class="#if $page == 'month' then 'header-active-pc' else 'header-inactive-pc'#"
-                    >Mese</a
+                    >$obs.label.month</a
                     >
                     <a
                     href="year.html"
                     class="#if $page == 'year' then 'header-active-pc' else 'header-inactive-pc'#"
-                    >Anno</a
+                    >$obs.label.year</a
                     >
                     <a
                     href="summary.html"
                     class="#if $page == 'summary' then 'header-active-pc' else 'header-inactive-pc'#"
-                    >Storico</a
+                    >$obs.label.summary</a
                     >
                     <a
                     href="vaia.html"
@@ -136,35 +136,35 @@
                 <a
                 href="index.html"
                 class="#if $page == 'index' then 'header-active-mobile' else 'header-inactive-mobile'#"
-                >Oggi</a
+                >$obs.label.today</a
                 >
             </li>
             <li>
                 <a
                 href="week.html"
                 class="#if $page == 'week' then 'header-active-pc' else 'header-inactive-pc'#"
-                >Settimana</a
+                >$obs.label.week</a
                 >
             </li>
             <li>
                 <a
                 href="month.html"
                 class="#if $page == 'month' then 'header-active-pc' else 'header-inactive-pc'#"
-                >Mese</a
+                >$obs.label.month</a
                 >
             </li>
             <li>
                 <a
                 href="year.html"
                 class="#if $page == 'year' then 'header-active-pc' else 'header-inactive-pc'#"
-                >Anno</a
+                >$obs.label.year</a
                 >
             </li>
             <li>
                 <a
                 href="summary.html"
                 class="#if $page == 'summary' then 'header-active-pc' else 'header-inactive-pc'#"
-                >Storico</a
+                >$obs.label.summary</a
                 >
             </li>
             <li>
