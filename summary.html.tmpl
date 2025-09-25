@@ -15,7 +15,7 @@
         <div class="lg:col-span-2">
           <div class="bg-weather-cool/6 rounded-2xl">
             <h1 class="text-xl text-gray-800 px-4 pt-4">
-              Record di sempre
+              $obs.label.allTimeRecords
             </h1>
             <table class="w-full table-fixed border-collapse mt-2">
               <tr>
@@ -23,14 +23,14 @@
                   colspan="3"
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  <b>Temperatura esterna</b>
+                  <b>$obs.label.outTemp</b>
                 </td>
               </tr>
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima
+                  $obs.label.maxF.capitalize()
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -47,7 +47,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima
+                  $obs.label.minF.capitalize()
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -64,7 +64,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima più alta
+                  $obs.label.minmax
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -81,7 +81,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima più bassa
+                  $obs.label.maxmin
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -99,14 +99,14 @@
                   colspan="3"
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  <br /><b>Punto di rugiada</b>
+                  <br /><b>$obs.label.dewpoint</b>
                 </td>
               </tr>
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massimo
+                  $obs.label.maxM.capitalize()
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -123,7 +123,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minimo
+                  $obs.label.minM.capitalize()
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -141,14 +141,14 @@
                   colspan="3"
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  <br /><b>Precipitazioni</b>
+                  <br /><b>$obs.label.precipitations</b>
                 </td>
               </tr>
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Pioggia giornaliera massima
+                  $obs.label.dailyRainMax
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -165,7 +165,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Rain Rate massimo
+                  $obs.label.rainRate $obs.label.maxM
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -183,14 +183,14 @@
                   colspan="3"
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  <br /><b>Indice di calore</b>
+                  <br /><b>$obs.label.heatindex</b>
                 </td>
               </tr>
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massimo
+                  $obs.label.maxM.capitalize()
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -208,14 +208,14 @@
                   colspan="3"
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  <br /><b>Pressione atmosferica</b>
+                  <br /><b>$obs.label.barometer</b>
                 </td>
               </tr>
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massima
+                  $obs.label.maxF.capitalize()
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -232,7 +232,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Minima
+                  $obs.label.minF.capitalize()
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -250,14 +250,14 @@
                   colspan="3"
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  <br /><b>Vento</b>
+                  <br /><b>$obs.label.wind</b>
                 </td>
               </tr>
               <tr class="hover:bg-weather-cool/10">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Massimo sostenuto
+                  $obs.label.windSpeed $obs.label.maxM
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -274,7 +274,7 @@
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  Raffica massima
+                  $obs.label.windGust $obs.label.maxF
                 </td>
                 <td
                   class="py-2 text-gray-900 border-b border-gray-200"
@@ -292,14 +292,14 @@
                   colspan="3"
                   class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
                 >
-                  <br /><b>Wind Chill</b>
+                  <br /><b>$obs.label.windchill</b>
                 </td>
               </tr>
               <tr class="hover:bg-weather-cool/10 group">
                 <td
                   class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
                 >
-                  Massimo
+                  $obs.label.maxM.capitalize()
                 </td>
                 <td class="py-2 text-gray-900">$alltime.windchill.min</td>
                 <td
@@ -308,74 +308,38 @@
                   $alltime.windchill.mintime
                 </td>
               </tr>
-              <!--
-              <tr>
-                <td colspan="3"><br><b>House Temperatures</b></td>
-              </tr>
-              <tr>
-                <td>Highest</td>
-                <td>$alltime.inTemp.max</td>
-                <td>$alltime.inTemp.maxtime</td>
-              </tr>
-              <tr>
-                <td>Lowest</td>
-                <td>$alltime.inTemp.min</td>
-                <td>$alltime.inTemp.mintime</td>
-              </tr>
-              <tr>
-                <td colspan="3"><br><b>House Humidity</b></td>
-              </tr>
-              <tr>
-                <td>Highest</td>
-                <td>$alltime.inHumidity.max</td>
-                <td>$alltime.inHumidity.maxtime</td>
-              </tr>
-              <tr>
-                <td>Lowest</td>
-                <td>$alltime.inHumidity.min</td>
-                <td>$alltime.inHumidity.mintime</td>
-              </tr>
-              -->
             </table>
           </div>
           <div class="bg-weather-cool/6 mt-4 rounded-2xl">
             <h1 class="text-xl text-gray-800 px-4 pt-4">
-              Numero di giorni con dati registrati
+              $obs.label.numberOfDataDays
             </h1>
             <div class="p-4">$temp_count_table</div>
           </div>
         </div>
         <div class="lg:col-span-3">
           <div class="bg-weather-cool/6 rounded-2xl p-4">
-            <h1 class="text-xl text-gray-800 pb-4">Report mensili</h1>
+            <h1 class="text-xl text-gray-800 pb-4">$obs.label.monthlyReports</h1>
             <div class="noaatable overflow-x-auto">$NOAA_table</div>
           </div>
           <div class="bg-weather-cool/6 rounded-2xl p-4 mt-4">
             <h1 class="text-xl text-gray-800 pb-4">
-              Temperatura media mensile (°C)
+              $obs.label.avgTemp
             </h1>
             <div class="tablefix overflow-x-auto">$avg_temp_table</div>
           </div>
           <div class="bg-weather-cool/6 rounded-2xl p-4 mt-4">
             <h1 class="text-xl text-gray-800 pb-4">
-              Pioggia totale mensile (mm)
+              $obs.label.totalRain
             </h1>
             <div class="tablefix overflow-x-auto">$rain_table</div>
           </div>
           <div class="bg-weather-cool/6 rounded-2xl p-4 mt-4">
             <h1 class="text-xl text-gray-800 pb-4">
-              Numero di giorni di pioggia (>=0.5mm)
+              $obs.label.daysWithRain
             </h1>
             <div class="tablefix overflow-x-auto">$rain_count_table</div>
           </div>
-          <!--
-          <div class="card">
-            <h1><i class="fa fa-thermometer-half m-rot" ></i> Average House Temperature by Month</h1>
-            <div class="tablefix">
-              $avg_htemp_table
-            </div>
-          </div>
-          -->
         </div>
       </div>
     </main>
