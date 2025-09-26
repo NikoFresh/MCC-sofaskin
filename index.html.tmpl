@@ -8,14 +8,14 @@
     #include "templates/header.html.tmpl"
     <!-- End header -->
     <main class="mx-4">
-      <div class="container mx-auto">
+      <div class="container mx-auto mt-4">
         <p id="freshweather"></p>
           <script>
             window.onload = checkDiff("$current.dateTime.format('%m/%d/%Y %I:%M:%S %p (%Z)')");
           </script>
         #if $getVar('Extras.mqtt_enable', None) == 'true'
         <!-- Mqtt -->
-        <div class="mt-4">
+        <div class="">
           <div
             class="online-indicator mx-7 mt-1.5 md:ml-0"
             id="indicator"
