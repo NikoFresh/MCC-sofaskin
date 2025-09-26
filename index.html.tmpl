@@ -13,6 +13,7 @@
           <script>
             window.onload = checkDiff("$current.dateTime.format('%m/%d/%Y %I:%M:%S %p (%Z)')");
           </script>
+        #if $getVar('Extras.mqtt_enable', None)
         <!-- Mqtt -->
         <div class="mb-4 mt-4">
           <div
@@ -26,9 +27,10 @@
 
           </div>
           <p id="mqttStatus" class="inline-block align-middle mb-1"
-            >Connessione alla stazione meteo in corso...</p
+            >$obs.label.mqttConnecting</p
           >
         </div>
+        #end if
 
         <section class="mb-4">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">

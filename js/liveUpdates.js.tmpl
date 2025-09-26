@@ -1,7 +1,7 @@
 clientID = "clientID - " + parseInt(Math.random() * 100);
-host = "test.mosquitto.org";
-port = 8081;
-topic = "meteocentrocadore/loop";
+host = "$Extras.mqtt_broker";
+port = $Extras.mqtt_port;
+topic = "$Extras.mqtt_topic";
 
 client = new Paho.MQTT.Client(host, Number(port), clientID);
 client.onConnectionLost = onConnectionLost;
@@ -18,7 +18,7 @@ indicator = document.getElementById("indicator");
 indicator1 = document.getElementById("indicator-1");
 
 document.getElementById("mqttStatus").innerHTML =
-  "Connessione alla stazione meteo in corso...";
+  "$obs.label.mqttConnecting";
 indicator.style.backgroundColor = "#eab208";
 indicator1.style.backgroundColor = "#eab208";
 client.connect({ onSuccess: onConnect });
@@ -26,7 +26,7 @@ client.connect({ onSuccess: onConnect });
 // called when the client connects
 function onConnect() {
   document.getElementById("mqttStatus").innerHTML =
-    "Connesso alla stazione meteo, in attesa di dati...";
+    "$obs.label.mqttConnected";
   document.getElementById("indicator").style.backgroundColor = "#eab208";
   document.getElementById("indicator-1").style.backgroundColor = "#eab208";
   client.subscribe(topic);
@@ -52,7 +52,7 @@ function onMessageArrived(message) {
   lastUpdate = new Date(data["dateTime"] * 1000);
   document.getElementById(
     "mqttStatus"
-  ).innerHTML = `Ultimo aggiornamento live ${lastUpdate.toLocaleTimeString(
+  ).innerHTML = `$obs.label.mqttUpdate ${lastUpdate.toLocaleTimeString(
     "it-IT"
   )}`;
 
