@@ -50,11 +50,7 @@ function onMessageArrived(message) {
     data[chiave] = Math.round(data[chiave] * 100) / 100;
   }
   lastUpdate = new Date(data["dateTime"] * 1000);
-  document.getElementById(
-    "mqttStatus"
-  ).innerHTML = `$obs.label.mqttUpdate ${lastUpdate.toLocaleTimeString(
-    "it-IT"
-  )}`;
+  document.getElementById("mqttStatus").innerHTML = '$obs.label.mqttUpdate ' + lastUpdate.toLocaleTimeString("it-IT"); 
 
   updateData(data);
 }
