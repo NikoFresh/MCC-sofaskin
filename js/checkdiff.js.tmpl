@@ -50,9 +50,14 @@ function checkDiff(datestr) {
                                 />
                                 </svg>
 
-                                <strong class="text-lg"> Dati non aggiornati </strong>
+                                <strong class="text-lg"> $obs.label.dataNotUpdated </strong>
                                 </div>
-                                <a href="https://meteocentrocadore.cronitorstatus.com" class="underline mt-2">Controlla lo stato dei servizi</p>
+                                #if $getVar('Extras.cronitor_url', None)
+                                <a href="$Extras.cronitor_url" class="underline mt-2">$obs.label.checkStatus</p>
+                                #end if
+                                #if $getVar('Extras.web_url', None)
+                                <a href="$Extras.web_url" class="underline mt-2">$obs.label.reloadPage</p>
+                                #end if
                         </div>`;
     }
 
