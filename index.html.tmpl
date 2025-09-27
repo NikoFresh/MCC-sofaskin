@@ -37,7 +37,7 @@
           #set $has_radar = $getVar('Extras.radar_url', None)
           #set $has_both = $has_webcam and $has_radar
           #set $has_either = $has_webcam or $has_radar
-          <div class="grid grid-cols-1 #if $has_either then 'lg:grid-cols-2'# gap-4">
+          <div class="grid grid-cols-1 #if $has_either then 'lg:grid-cols-2' else ''# gap-4">
             <div class="lg:col-span-1">
               <!-- <div class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100 mb-4">
                 <span>
