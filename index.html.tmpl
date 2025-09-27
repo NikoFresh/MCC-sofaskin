@@ -33,7 +33,11 @@
         #end if
 
         <section class="mt-4 mb-4">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          #set $has_webcam = $getVar('Extras.webcam_url', None)
+          #set $has_radar = $getVar('Extras.radar_url', None)
+          #set $has_both = $has_webcam and $has_radar
+          #set $has_either = $has_webcam or $has_radar
+          <div class="grid grid-cols-1 #if $has_either then 'lg:grid-cols-2'# gap-4">
             <div class="lg:col-span-1">
               <!-- <div class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100 mb-4">
                 <span>
@@ -353,6 +357,7 @@
             </div>
 
             <!-- webcam -->
+            #if $has_either
             <div class="lg:col-span-1">
               <div
                 class="bg-gradient-to-br from-weather-cool/10 to-weather-warm/10 rounded-2xl p-4 flex flex-col"
@@ -374,9 +379,7 @@
 
                 <div class="weather-container">
                   <div class="lg:col-span-1">
-                  #set $has_webcam = $getVar('Extras.webcam_url', None)
-                  #set $has_radar = $getVar('Extras.radar_url', None)
-                  #set $has_both = $has_webcam and $has_radar
+
                     <div class="">
                       #if $has_both
                       <!-- Navigazione -->
@@ -422,6 +425,7 @@
                 </div>
               </div>
             </div>
+            #end if
           </div>
         </section>
 
