@@ -36,7 +36,7 @@ function updateElement(observationType, value, unit) {
   if (observationType.toLowerCase().includes("humidity")) {
     label = "%";
   }
-  element.innerHTML = value + " " + label;
+  element.innerHTML = formattedValue + " " + label;
 }
 
 function animateLight() {
