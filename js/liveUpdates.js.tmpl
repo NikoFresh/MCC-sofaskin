@@ -1,83 +1,120 @@
-clientID = "clientID - " + parseInt(Math.random() * 100);
-host = "$Extras.mqtt_broker";
-port = $Extras.mqtt_port;
-topic = "$Extras.mqtt_topic";
+const unitLabels = {
+  // Temperature
+  C: "°C",
+  F: "°F",
+  // Barometer
+  mbar: "mbar",
+  inHg: "inHg",
+  hPa: "hPa",
+  // Wind
+  kph: "km/h",
+  mph: "mph",
+  m_per_s: "m/s",
+  knot: "kn", 
+  // Rain
+  mm: "mm",
+  inch: "in",
+  // Rain rate
+  mm_per_hour: "mm/h",
+  in_per_hour: "in/h",
+  // Humidity
+  percent: "%"
+};
 
-client = new Paho.MQTT.Client(host, Number(port), clientID);
-client.onConnectionLost = onConnectionLost;
-client.onMessageArrived = onMessageArrived;
-client.connect({
-  onSuccess: onConnect,
-  useSSL: true,
-});
-
-client.onConnectionLost = onConnectionLost;
-client.onMessageArrived = onMessageArrived;
-
-indicator = document.getElementById("indicator");
-indicator1 = document.getElementById("indicator-1");
-
-document.getElementById("mqttStatus").innerHTML =
-  "$obs.label.mqttConnecting";
-indicator.style.backgroundColor = "#eab208";
-indicator1.style.backgroundColor = "#eab208";
-client.connect({ onSuccess: onConnect });
-
-// called when the client connects
-function onConnect() {
-  document.getElementById("mqttStatus").innerHTML =
-    "$obs.label.mqttConnected";
-  document.getElementById("indicator").style.backgroundColor = "#eab208";
-  document.getElementById("indicator-1").style.backgroundColor = "#eab208";
-  client.subscribe(topic);
+function getUnitLabel(unit) {
+  if (!unit) return "";
+  return unitLabels[unit] || unit;
 }
 
-// called when the client loses its connection
-function onConnectionLost(responseObject) {
-  if (responseObject.errorCode !== 0) {
-    console.log("onConnectionLost:" + responseObject.errorMessage);
+function updateElement(observationType, value, unit) {
+  const element = document.getElementById(observationType);
+  if (!element) {
+    return;
   }
-}
-
-// called when a message arrives
-function onMessageArrived(message) {
-  document.getElementById("indicator").style.backgroundColor = "#22c55e";
-  document.getElementById("indicator-1").style.backgroundColor = "#22c55e";
-  console.log("onMessageArrived:" + message.payloadString);
-  animateLight();
-  data = JSON.parse(message.payloadString);
-  for (let chiave in data) {
-    data[chiave] = Math.round(data[chiave] * 100) / 100;
+  let label = getUnitLabel(unit);
+  if (observationType.toLowerCase().includes("humidity")) {
+    label = "%";
   }
-  lastUpdate = new Date(data["dateTime"] * 1000);
-  document.getElementById("mqttStatus").innerHTML = '$obs.label.mqttUpdate ' + lastUpdate.toLocaleTimeString("it-IT"); 
-
-  updateData(data);
+  element.innerHTML = value + " " + label;
 }
 
 function animateLight() {
   var indicator = document.getElementById("indicator");
   indicator.classList.add("animate");
-  setTimeout(() => {
+  setTimeout(function() {
     indicator.classList.remove("animate");
   }, 1000);
 }
 
-function updateData(data) {
-  if ("outTemp_C" in data) {
-    document.getElementById("outTemp").innerHTML = data["outTemp_C"] + "°C";
-    document.getElementById("outHum").innerHTML = data["outHumidity"] + "%";
-    document.getElementById("pressure").innerHTML =
-      data["barometer_mbar"] + "mbar";
-    document.getElementById("dewPoint").innerHTML = data["dewpoint_C"] + "°C";
-    document.getElementById("windChill").innerHTML = data["windchill_C"] + "°C";
-    document.getElementById("heatIndex").innerHTML = data["heatindex_C"] + "°C";
+
+const clientID = "clientID-" + parseInt(Math.random() * 100);
+const host = "$Extras.mqtt_broker";
+const port = parseInt("$Extras.mqtt_port", 10);
+const topic = "$Extras.mqtt_topic";
+// const useSSL = "$Extras.mqtt_ws_ssl" === "true"; 
+
+const client = new Paho.MQTT.Client(host, port, clientID);
+
+client.onConnectionLost = onConnectionLost;
+client.onMessageArrived = onMessageArrived;
+
+const indicator = document.getElementById("indicator");
+const indicator1 = document.getElementById("indicator-1");
+const mqttStatusElem = document.getElementById("mqttStatus");
+
+const statusConnecting = "$obs.label.mqttConnecting";
+const statusConnected = "$obs.label.mqttConnected";
+const statusUpdate = "$obs.label.mqttUpdate";
+
+mqttStatusElem.innerHTML = statusConnecting;
+indicator.style.backgroundColor = "#eab208";
+indicator1.style.backgroundColor = "#eab208";
+client.connect({
+  onSuccess: onConnect,
+  // useSSL: useSSL, // Usa SSL se configurato
+  onFailure: onConnectionLost 
+});
+
+
+function onConnect() {
+  mqttStatusElem.innerHTML = statusConnected;
+  indicator.style.backgroundColor = "#eab208";
+  indicator1.style.backgroundColor = "#eab208";
+  client.subscribe(topic);
+}
+
+function onConnectionLost(responseObject) {
+  if (responseObject.errorCode !== 0) {
+    mqttStatusElem.innerHTML = "Connessione persa: " + responseObject.errorMessage;
+    indicator.style.backgroundColor = "#ef4444"; 
+    indicator1.style.backgroundColor = "#ef4444";
+    console.log("onConnectionLost: " + responseObject.errorMessage);
   }
-  if ("dayRain_mm" in data) {
-    document.getElementById("rain").innerHTML = data["dayRain_mm"] + "mm";
+}
+
+function onMessageArrived(message) {
+  indicator.style.backgroundColor = "#22c55e";
+  indicator1.style.backgroundColor = "#22c55e";
+  animateLight();
+
+  const data = JSON.parse(message.payloadString);
+
+  if ("dateTime" in data) {
+    const lastUpdate = new Date(data["dateTime"] * 1000);
+    mqttStatusElem.innerHTML = statusUpdate + ' ' + lastUpdate.toLocaleTimeString("$lang");
   }
-  document.getElementById("rainRate").innerHTML =
-    data["rainRate_mm_per_hour"] + "mm/h";
-  document.getElementById("windSpeed").innerHTML =
-    data["windSpeed_kph"] + "km/h";
+
+  for (const key in data) {
+    if (key === "dateTime" || key === "usUnits") {
+      continue;
+    }
+
+    // "outTemp_C" -> ["outTemp", "C"]
+    const parts = key.split('_');
+    const observationType = parts[0]; 
+    const unit = parts.slice(1).join('_');
+
+    const value = data[key];
+    updateElement(observationType, value, unit);
+  }
 }
