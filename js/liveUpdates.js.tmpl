@@ -51,7 +51,7 @@ const clientID = "clientID-" + parseInt(Math.random() * 100);
 const host = "$Extras.mqtt_broker";
 const port = parseInt("$Extras.mqtt_port", 10);
 const topic = "$Extras.mqtt_topic";
-// const useSSL = "$Extras.mqtt_ws_ssl" === "true"; 
+// const useSSL = "Extras.mqtt_ws_ssl" === "true"; 
 
 const client = new Paho.MQTT.Client(host, port, clientID);
 
