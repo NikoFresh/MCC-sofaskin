@@ -971,6 +971,13 @@
     #include "templates/footer.html.tmpl"
     <!-- End footer-->
 
+    #if $getVar('Extras.mqtt_enable', None) == 'true'
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"
+        type="text/javascript"
+        ></script>
+        <script src="./js/liveUpdates.js?v2.02"></script>
+    #end if
     <script src="./js/eplot.js?v1.3"></script>
   </body>
 </html>
