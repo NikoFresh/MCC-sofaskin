@@ -31,6 +31,7 @@ function updateElement(observationType, value, unit) {
   if (!element) {
     return;
   }
+  const formattedValue = parseFloat(value).toFixed(2); //TODO customize decimal places
   let label = getUnitLabel(unit);
   if (observationType.toLowerCase().includes("humidity")) {
     label = "%";
