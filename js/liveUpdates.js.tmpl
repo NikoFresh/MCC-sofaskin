@@ -71,7 +71,7 @@ indicator.style.backgroundColor = "#eab208";
 indicator1.style.backgroundColor = "#eab208";
 client.connect({
   onSuccess: onConnect,
-  // useSSL: useSSL, // Usa SSL se configurato
+  useSSL: true, 
   onFailure: onConnectionLost 
 });
 
