@@ -50,52 +50,70 @@ function initChart(elementId, option) {
 fetch("json/day.json")
   .then(response => response.json())
   .then(data => {
-    const labels = data.outTemp.map(entry => new Date(entry[0] * 1000));
 
-    // Funzione per estrarre e formattare i dati
-    const extractData = key => data[key].map((entry, index) => [labels[index], entry[1]]);
+    let archiveIntervalSeconds = 300; 
+    if (data.dateTime && data.dateTime.length > 1) {
+      archiveIntervalSeconds = data.dateTime[1] - data.dateTime[0];
+    }
+    let recordsPerHour = 12; 
+    if (archiveIntervalSeconds > 0) {
+      recordsPerHour = Math.round(3600 / archiveIntervalSeconds);
+    }
+
+    const extractData = key => {
+      // Controlla se la chiave esiste e se gli array hanno la stessa lunghezza
+      if (!data[key] || data.dateTime.length !== data[key].length) {
+        console.warn('Dati mancanti o non allineati per la chiave:', key);
+        return [];
+      }
+      return data.dateTime.map((timestamp, index) => [
+        new Date(timestamp * 1000),
+        data[key][index]
+      ]);
+    };
 
     function processWindData(windDir, windSpeed) {
       const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
       const speedRanges = [[0, 5], [5, 10], [10, 15], [15, 20], [20, Infinity]];
-      const data = Array(16).fill().map(() => Array(5).fill(0));
+      const roseData = Array(16).fill().map(() => Array(5).fill(0));
 
-      windDir.forEach((dirEntry, index) => {
-        const speedEntry = windSpeed[index];
-        
-        if (dirEntry && speedEntry && dirEntry[1] !== undefined && speedEntry[1] !== undefined) {
-          const dir = dirEntry[1];
-          const speed = speedEntry[1];
+      for (let i = 0; i < windDir.length; i++) {
+        const dir = windDir[i];
+        const speed = windSpeed[i];
+
+        if (dir !== null && speed !== null && !isNaN(dir) && !isNaN(speed)) {
+          const dirIndex = Math.round(dir / 22.5) % 16;
+          const speedIndex = speedRanges.findIndex(range => speed >= range[0] && speed < range[1]);
           
-          if (!isNaN(dir) && !isNaN(speed)) {
-            const dirIndex = Math.round(dir / 22.5) % 16;
-            const speedIndex = speedRanges.findIndex(range => speed >= range[0] && speed < range[1]);
-            
-            if (dirIndex >= 0 && dirIndex < 16 && speedIndex >= 0 && speedIndex < 5) {
-              data[dirIndex][speedIndex]++;
-            }
+          if (dirIndex >= 0 && speedIndex >= 0) {
+            roseData[dirIndex][speedIndex]++;
           }
         }
-      });
+      }
 
       return directions.map((dir, i) => ({
         name: dir,
-        data: speedRanges.map((_, j) => data[i][j])
+        data: speedRanges.map((_, j) => roseData[i][j])
       }));
     }
 
-    const [outTemp, outHumidity, dewpoint, windChill, heatIndex, windSpeed, gustSpeed, windDir, barometer, rainRate] = 
-      ['outTemp', 'outHumidity', 'dewpoint', 'windchill', 'heatindex', 'windSpeed', 'gustSpeed', 'windDir', 'barometer', 'rainrate']
-        .map(extractData);
-
-    // Calcolo pioggia oraria
-    const hourlyRain = data.rain.reduce((acc, [time, value], index, arr) => {
-      if (index % 12 === 0) {
-        const hourlyTotal = arr.slice(index, index + 12).reduce((sum, [_, val]) => sum + val, 0);
-        acc.push([new Date(time * 1000), hourlyTotal]);
+    const hourlyRain = [];
+    if (data.rain && recordsPerHour > 0) {
+      for (let i = 0; i < data.rain.length; i += recordsPerHour) {
+        const chunk = data.rain.slice(i, i + recordsPerHour);
+        if (chunk.length > 0) {
+          const hourlyTotal = chunk.reduce((sum, val) => sum + (val || 0), 0);
+          if (data.dateTime[i]) {
+            const timestamp = new Date(data.dateTime[i] * 1000);
+            hourlyRain.push([timestamp, hourlyTotal]);
+          }
+        }
       }
-      return acc;
-    }, []);
+    }
+    
+    const [outTemp, dewpoint, windChill, heatIndex, windSpeed, gustSpeed, barometer, rainRate] =
+      ['outTemp', 'dewpoint', 'windchill', 'heatindex', 'windSpeed', 'gustSpeed', 'barometer', 'rainrate']
+      .map(extractData);
 
     // Inizializzazione dei grafici
     initChart("outTempChart", {
