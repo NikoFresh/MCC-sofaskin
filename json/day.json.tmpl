@@ -1,20 +1,13 @@
-#set $all_series = $span($day_delta=1)
-#set $obs_to_include = {
-  "outTemp": $all_series.outTemp.round(2),
-  "outHumidity": $all_series.outHumidity.round(2),
-  "dewpoint": $all_series.dewpoint.round(2),
-  "barometer": $all_series.barometer.round(2),
-  "windchill": $all_series.windchill.round(2),
-  "heatindex": $all_series.heatindex.round(2),
-  "rain": $all_series.rain.round(2),
-  "rainrate": $all_series.rainRate.round(2),
-  "windSpeed": $all_series.windSpeed.round(2),
-  "gustSpeed": $all_series.windGust.round(2),
-  "windDir": $all_series.windDir.round(2)
-}
 {
-  "dateTime": $all_series.dateTime.raw,
-#for $key, $series in $obs_to_include.items()
-  "$key": $series.raw#if not $stop_for, #end if
-#end for
+    "outTemp": $span($day_delta=1).outTemp.series(time_series='start').round(2).json,
+    "outHumidity": $span($day_delta=1).outHumidity.series(time_series='start').round(2).json,
+    "dewpoint": $span($day_delta=1).dewpoint.series(time_series='start').round(2).json,
+    "barometer": $span($day_delta=1).barometer.series(time_series='start').round(2).json,
+    "windchill": $span($day_delta=1).windchill.series(time_series='start').round(2).json,
+    "heatindex": $span($day_delta=1).heatindex.series(time_series='start').round(2).json,
+    "rain": $span($day_delta=1).rain.series(time_series='start').round(2).json,
+    "rainrate": $span($day_delta=1).rainRate.series(time_series='start').round(2).json,
+    "windSpeed": $span($day_delta=1).windSpeed.series(time_series='start').round(2).json,
+    "gustSpeed": $span($day_delta=1).windGust.series(time_series='start').round(2).json,
+    "windDir": $span($day_delta=1).windvec.series(time_series='start').direction.json
 }
