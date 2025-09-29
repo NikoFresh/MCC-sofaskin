@@ -19,7 +19,7 @@ Please note that the skin is still in active development and it's not production
 - [ ] Make everything configurable via skin.conf
 - [x] Implement translation
 - [ ] Rework js plot implementation
-- [ ] Rework mqtt implementation
+- [x] Rework mqtt implementation
 - [ ] Auto install via weectl extension
 
 
