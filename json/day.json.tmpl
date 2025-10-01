@@ -1,13 +1,13 @@
 {
-    "outTemp": $span($day_delta=1).outTemp.series(time_series='start').round(2).json(direction='column'),
-    "outHumidity": $span($day_delta=1).outHumidity.series(time_series='start').round(2).json(direction='column'),
-    "dewpoint": $span($day_delta=1).dewpoint.series(time_series='start').round(2).json(direction='column'),
-    "barometer": $span($day_delta=1).barometer.series(time_series='start').round(2).json(direction='column'),
-    "windchill": $span($day_delta=1).windchill.series(time_series='start').round(2).json(direction='column'),
-    "heatindex": $span($day_delta=1).heatindex.series(time_series='start').round(2).json(direction='column'),
-    "rain": $span($day_delta=1).rain.series(time_series='start').round(2).json(direction='column'),
-    "rainrate": $span($day_delta=1).rainRate.series(time_series='start').round(2).json(direction='column'),
-    "windSpeed": $span($day_delta=1).windSpeed.series(time_series='start').round(2).json(direction='column'),
-    "gustSpeed": $span($day_delta=1).windGust.series(time_series='start').round(2).json(direction='column'),
-    "windDir": $span($day_delta=1).windvec.series(time_series='start').direction.json(direction='column')
+    "outTemp": $span($day_delta=1).outTemp.series(time_series='start').round(2).json(order_by='column'),
+    "outHumidity": $span($day_delta=1).outHumidity.series(time_series='start').round(2).json(order_by='column'),
+    "dewpoint": $span($day_delta=1).dewpoint.series(time_series='start').round(2).json(order_by='column'),
+    "barometer": $span($day_delta=1).barometer.series(time_series='start').round(2).json(order_by='column'),
+    "windchill": $span($day_delta=1).windchill.series(time_series='start').round(2).json(order_by='column'),
+    "heatindex": $span($day_delta=1).heatindex.series(time_series='start').round(2).json(order_by='column'),
+    "rain": $span($day_delta=1).rain.series(time_series='start').round(2).json(order_by='column'),
+    "rainrate": $span($day_delta=1).rainRate.series(time_series='start').round(2).json(order_by='column'),
+    "windSpeed": $span($day_delta=1).windSpeed.series(time_series='start').round(2).json(order_by='column'),
+    "gustSpeed": $span($day_delta=1).windGust.series(time_series='start').round(2).json(order_by='column'),
+    "windDir": $span($day_delta=1).windvec.series(time_series='start').order_by.json(order_by='column')
 }
