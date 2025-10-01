@@ -8,7 +8,7 @@ const globalConfig = {
     { type: "inside", start: 0, end: 100 },
     { type: "slider", start: 0, end: 100, height: 20 }
   ],
-  grid: { containLabel: true, left: 10, right: 10, top: 50, bottom: 50 }
+    grid: { containLabel: true, left: 10, right: 10, top: 50, bottom: 50}
 };
 
 // Funzione per creare opzioni di base per i grafici
@@ -50,67 +50,52 @@ function initChart(elementId, option) {
 fetch("json/day.json")
   .then(response => response.json())
   .then(data => {
-    // Funzione semplificata per estrarre e formattare i dati
-    const extractData = key => {
-      const [timestamps, values] = data[key];
-      return timestamps.map((timestamp, index) => [
-        new Date(timestamp * 1000),
-        values[index]
-      ]);
-    };
+    const labels = data.outTemp.map(entry => new Date(entry[0] * 1000));
 
-    function processWindData(windDirData, windSpeedData) {
+    // Funzione per estrarre e formattare i dati
+    const extractData = key => data[key].map((entry, index) => [labels[index], entry[1]]);
+
+    function processWindData(windDir, windSpeed) {
       const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
       const speedRanges = [[0, 5], [5, 10], [10, 15], [15, 20], [20, Infinity]];
-      const counts = Array(16).fill().map(() => Array(5).fill(0));
-      
-      const [dirTimestamps, dirValues] = windDirData;
-      const [speedTimestamps, speedValues] = windSpeedData;
-      
-      // Crea una mappa per velocità del vento basata su timestamp
-      const speedMap = new Map();
-      speedTimestamps.forEach((timestamp, index) => {
-        speedMap.set(timestamp, speedValues[index]);
-      });
-      
-      // Processa i dati di direzione del vento
-      dirTimestamps.forEach((timestamp, index) => {
-        const dir = dirValues[index];
-        const speed = speedMap.get(timestamp);
+      const data = Array(16).fill().map(() => Array(5).fill(0));
+
+      windDir.forEach((dirEntry, index) => {
+        const speedEntry = windSpeed[index];
         
-        if (dir !== undefined && speed !== undefined && !isNaN(dir) && !isNaN(speed)) {
-          const dirIndex = Math.round(dir / 22.5) % 16;
-          const speedIndex = speedRanges.findIndex(range => speed >= range[0] && speed < range[1]);
+        if (dirEntry && speedEntry && dirEntry[1] !== undefined && speedEntry[1] !== undefined) {
+          const dir = dirEntry[1];
+          const speed = speedEntry[1];
           
-          if (dirIndex >= 0 && dirIndex < 16 && speedIndex >= 0 && speedIndex < 5) {
-            counts[dirIndex][speedIndex]++;
+          if (!isNaN(dir) && !isNaN(speed)) {
+            const dirIndex = Math.round(dir / 22.5) % 16;
+            const speedIndex = speedRanges.findIndex(range => speed >= range[0] && speed < range[1]);
+            
+            if (dirIndex >= 0 && dirIndex < 16 && speedIndex >= 0 && speedIndex < 5) {
+              data[dirIndex][speedIndex]++;
+            }
           }
         }
       });
 
       return directions.map((dir, i) => ({
         name: dir,
-        data: speedRanges.map((_, j) => counts[i][j])
+        data: speedRanges.map((_, j) => data[i][j])
       }));
     }
 
-    // Estrai i dati
-    const outTemp = extractData('outTemp');
-    const dewpoint = extractData('dewpoint');
-    const windChill = extractData('windchill');
-    const heatIndex = extractData('heatindex');
-    const windSpeed = extractData('windSpeed');
-    const gustSpeed = extractData('gustSpeed');
-    const barometer = extractData('barometer');
-    const rainRate = extractData('rainrate');
+    const [outTemp, outHumidity, dewpoint, windChill, heatIndex, windSpeed, gustSpeed, windDir, barometer, rainRate] = 
+      ['outTemp', 'outHumidity', 'dewpoint', 'windchill', 'heatindex', 'windSpeed', 'gustSpeed', 'windDir', 'barometer', 'rainrate']
+        .map(extractData);
 
     // Calcolo pioggia oraria
-    const [rainTimestamps, rainValues] = data.rain;
-    const hourlyRain = [];
-    for (let i = 0; i < rainTimestamps.length; i += 12) {
-      const hourlyTotal = rainValues.slice(i, i + 12).reduce((sum, val) => sum + val, 0);
-      hourlyRain.push([new Date(rainTimestamps[i] * 1000), hourlyTotal]);
-    }
+    const hourlyRain = data.rain.reduce((acc, [time, value], index, arr) => {
+      if (index % 12 === 0) {
+        const hourlyTotal = arr.slice(index, index + 12).reduce((sum, [_, val]) => sum + val, 0);
+        acc.push([new Date(time * 1000), hourlyTotal]);
+      }
+      return acc;
+    }, []);
 
     // Inizializzazione dei grafici
     initChart("outTempChart", {
@@ -161,9 +146,9 @@ fetch("json/day.json")
       series: [createSeries("Pressione", barometer, "rgb(75, 192, 192)")]
     });
 
-    const windRoseData = processWindData(data.windDir, data.windSpeed);
+    const windRoseData = processWindData(windDir, windSpeed);
     initChart("windDirChart", {
-      tooltip: {
+       tooltip: {
         trigger: 'item',
         formatter: function(params) {
           const speedRanges = ['0-5', '5-10', '10-15', '15-20', '20+'];
@@ -175,17 +160,17 @@ fetch("json/day.json")
         data: ['0-5 km/h', '5-10 km/h', '10-15 km/h', '15-20 km/h', '20+ km/h']
       },
       polar: {
-        center: ['50%', '55%'],
-        radius: '70%'
+        center: ['50%', '55%'], // Sposta leggermente verso il basso il centro del grafico
+        radius: '70%' // Riduce il raggio del grafico
       },
       angleAxis: {
         type: 'category',
         data: windRoseData.map(item => item.name),
-        startAngle: 101,
-        clockwise: true
+        startAngle: 101, // Inizia da Nord (90 gradi)
+        clockwise: true // Ruota in senso antiorario
       },
       radiusAxis: {
-        show: false
+        show: false // Rimuove l'asse Y
       },
       series: [0, 1, 2, 3, 4].map(i => ({
         type: 'bar',
