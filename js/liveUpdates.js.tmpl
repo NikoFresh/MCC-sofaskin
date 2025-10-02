@@ -86,7 +86,7 @@ function onConnect() {
 
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0) {
-    mqttStatusElem.innerHTML = "Connessione persa";
+    mqttStatusElem.innerHTML = `$obs.label.mqttLost`;
     indicator.style.backgroundColor = "#ef4444"; 
     indicator1.style.backgroundColor = "#ef4444";
     console.log("onConnectionLost: " + responseObject.errorMessage);
