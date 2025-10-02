@@ -148,7 +148,7 @@ fetch("json/day.json")
         formatter: function(params) {
           const speedRanges = ['0-5', '5-10', '10-15', '15-20', '20+'];
           const speedIndex = params.componentIndex;
-          return `${params.name}<br/>${speedRanges[speedIndex]} km/h`;
+          return `\${params.name}<br/>\${speedRanges[speedIndex]} km/h`;
         }
       },
       legend: {
