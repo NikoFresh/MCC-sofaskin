@@ -240,7 +240,7 @@
                   $week.extraTemp1.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $week.UV.has_data
               <tr class="hover:bg-weather-cool/10">
@@ -278,7 +278,7 @@
                   $week.UV.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $week.ET.has_data and $week.ET.sum.raw > 0.0
               <tr class="hover:bg-weather-cool/10">
@@ -315,7 +315,7 @@
                   $week.ET.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $week.radiation.has_data
               <tr class="hover:bg-weather-cool/10">
@@ -621,7 +621,7 @@
                   $yesterday.extraTemp1.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $yesterday.UV.has_data
               <tr class="hover:bg-weather-cool/10">
@@ -658,7 +658,7 @@
                   $yesterday.UV.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $day.radiation.has_data
               <tr class="hover:bg-weather-cool/10">
@@ -754,22 +754,22 @@
 
             <img src="weekuv.png" alt="UV index" />
 
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $week.radiation.has_data
 
             <img src="weekradiation.png" alt="Radiation" />
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $week.UV.has_data
 
             <img src="weekuv.png" alt="UV Index" />
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $week.rxCheckPercent.has_data
 
             <img src="weekrx.png" alt="week rx percent" />
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $week.extraTemp1.has_data
 

@@ -362,7 +362,7 @@
               <div
                 class="bg-gradient-to-br from-weather-cool/10 to-weather-warm/10 rounded-2xl p-4 flex flex-col"
               >
-                <!-- Radio buttons prima del container -->
+                <!-- Radio buttons -->
                 <input
                   type="radio"
                   id="webcam"
@@ -382,7 +382,7 @@
 
                     <div class="">
                       #if $has_both
-                      <!-- Navigazione -->
+                      <!-- Navigation -->
                       <div class="mb-3 flex justify-center">
                         <div
                           class="bg-white/20 rounded-lg p-1 flex gap-1"
@@ -403,7 +403,7 @@
                       </div>
                       #end if
 
-                      <!-- Immagini -->
+                      <!-- Img -->
                       <div class="flex-1 overflow-hidden">
                         #if $has_webcam
                         <img
@@ -436,7 +436,6 @@
             >
               <!-- One year ago -->
               <!--Leap Year Code -->
-              <!-- prettier-ignore -->
               #set $yr = int($day.dateTime.format("%Y"))%4
             #if $yr == 0
               #if $yr % 100 == 0
@@ -474,7 +473,7 @@
                 #set $n = 365
               #end if
             #end if
-              <!-- prettier-ignore-end -->
+              
               <h1 class="text-xl text-gray-800 px-4 pt-4">
                 $obs.label.oneYearAgo ($days_ago($days_ago=$n).dateTime.format("%d-%b(%Y)"))
               </h1>
@@ -605,14 +604,14 @@
             <div
               class="lg:col-span-2 bg-weather-cool/6 rounded-2xl border border-gray-100"
             >
-              <!-- prettier-ignore -->
+              
               #set $sun_altitude = $almanac.sun.alt
               #if $sun_altitude < 0
               #set $sun_None="<i>(Always down)</i>"
               #else
               #set $sun_None="<i>(Always up)</i>"
               #end if
-              <!-- prettier-ignore-end -->
+              
 
               <h1 class="text-xl px-4 pt-4">$obs.label.almanac</h1>
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
@@ -950,7 +949,7 @@
 
         <hr class="h-px mt-8 mb-8 bg-blue-200 border-0" />
 
-        <!-- Grafici -->
+        <!-- Charts -->
         <div class="mb-4">
           <h1 class="text-xl p-4 md:p-4">
             <i class="fa fa-line-chart m-gruen"></i> $obs.label.charts

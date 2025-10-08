@@ -330,7 +330,7 @@
                   $year.extraTemp1.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $year.UV.has_data
 
@@ -373,7 +373,7 @@
                   $year.UV.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $year.ET.has_data and $year.ET.sum.raw >0.0
 
@@ -416,7 +416,7 @@
                   $year.ET.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $year.radiation.has_data
 
@@ -859,7 +859,7 @@
                   $year($years_ago=1).extraTemp1.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $year($years_ago=1).UV.has_data
 
@@ -902,7 +902,7 @@
                   $year($years_ago=1).UV.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if 
               #if $year($years_ago=1).ET.has_data and $year($years_ago=1).ET.sum.raw > 0.0
 
@@ -945,7 +945,7 @@
                   $year($years_ago=1).ET.mintime
                 </td>
               </tr>
-              <!-- prettier-ignore -->
+              
               #end if
               #if $year($years_ago=1).radiation.has_data
 
@@ -1052,22 +1052,22 @@
             #if $year.UV.has_data
 
             <img src="yearuv.png" alt="UV Index" />
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $year.radiation.has_data
 
             <img src="yearradiation.png" alt="Radiation" />
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $year.UV.has_data
 
             <img src="yearuv.png" alt="UV Index" />
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $year.rxCheckPercent.has_data
 
             <img src="yearrx.png" alt="year rx percent" />
-            <!-- prettier-ignore -->
+            
             #end if 
             #if $year.extraTemp1.has_data
 
