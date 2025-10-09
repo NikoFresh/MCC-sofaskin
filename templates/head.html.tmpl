@@ -47,12 +47,14 @@
     <!-- <script src="./js/forecast.js?v1.01"></script> -->
     <script src="./js/checkdiff.js?v2.13"></script>
 
+    #if $getVar('Extras.umami_enable', None) == 'true'
     <!-- Umami -->
     <script
     async
     src="https://analytics.umami.is/script.js"
     data-website-id="$Extras.umami_id"
     ></script>
+    #end if
 
     #if $page == "index"
     <!-- Mqtt status animation -->
