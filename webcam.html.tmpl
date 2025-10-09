@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="it">
+<html lang="$lang">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webcam Calalzo di Cadore</title>
+    <title>Webcam $station.location</title>
     <style>
       body,
       html {
@@ -38,22 +38,23 @@
         background-color: #00d5f1;
       }
     </style>
+
     <!-- Umami -->
     <script
       async
       src="https://analytics.umami.is/script.js"
-      data-website-id="2e66cfde-2766-46b3-9883-193bcb330af9"
+      data-website-id="$Extras.umami_id"
     ></script>
   </head>
   <body>
     <img
       id="webcam_img"
       class="responsive_image"
-      src="webcam/webcam.jpg?$current.dateTime.raw"
+      src="$Extras.webcam_url?$current.dateTime.raw"
       alt="Webcam Live"
       title="Webcam Live"
     />
-    <a href="/" class="button" ata-umami-event="live-data-webcam">Dati meteo live</a>
+    <a href="/" class="button" ata-umami-event="live-data-webcam">$obs.label.webcam_go_to_index</a>
   </body>
 </html>
 
