@@ -240,7 +240,7 @@ class MyXSearch(SearchList):
             else:
                 format_string = reading.formatter.unit_format_dict[unit_type]
 
-        htmlText = '<table class="w-full table-fixed border-collapse min-w-[700px]">'
+        htmlText = '<table class="w-full table-fixed border-collapse min-w-[500px]">'
         htmlText += "    <thead>"
         htmlText += "        <tr>"
         htmlText += "        <th>%s</th>" % unit_formatted
