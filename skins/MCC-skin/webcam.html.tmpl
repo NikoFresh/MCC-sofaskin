@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="$lang">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webcam $station.location</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+      }
+      .responsive_image {
+        max-width: 100%;
+        max-height: calc(100vh - 100px); /* Leave space for the button */
+        width: auto;
+        height: auto;
+        display: block;
+      }
+      .button {
+        margin: 12px;
+        padding: 12px 9px;
+        border: none;
+        border-radius: 8px;
+        background-color: #98f6fe;
+        text-decoration: none;
+        color: #2e4354;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      .button:hover {
+        background-color: #00d5f1;
+      }
+    </style>
+
+    #if $getVar('Extras.umami_enable', None) == 'true'
+    <!-- Umami -->
+    <script
+    async
+    src="https://analytics.umami.is/script.js"
+    data-website-id="$Extras.umami_id"
+    ></script>
+    #end if
+  </head>
+  <body>
+    <img
+      id="webcam_img"
+      class="responsive_image"
+      src="$Extras.webcam_url?$current.dateTime.raw"
+      alt="Webcam Live"
+      title="Webcam Live"
+    />
+    <a href="/" class="button" ata-umami-event="live-data-webcam">$obs.label.webcam_go_to_index</a>
+  </body>
+</html>
+

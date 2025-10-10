@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head itemscope itemtype="http://schema.org/Website">
+    <?php
+      //Gets file name from url
+      
+      if(empty(\$_REQUEST["report"])) { 
+           //if empty then grab the latest years report
+           \$year = date("Y");
+           \$report = "NOAA/NOAA-".\$year.".txt";
+        } else {  
+           \$report = filter_var(\$_REQUEST["report"],FILTER_SANITIZE_URL);
+      }
+      
+      //Get labels for meta and page titles
+      \$labels = preg_split("/[\s-.]/", \$report);
+      \$count = count(\$labels);
+      
+      if (\$count == 3){
+        \$title = \$labels[1];
+      }
+      
+      if (\$count == 4){
+        \$title = date("F Y", mktime(0, 0, 0, \$labels[2], 1, \$labels[1]));
+      }
+      ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Refresh" content="180">
+    #if $Extras.has_key('cwop')
+    <meta name="description" content="$station.location Weather Station ($Extras.cwop) - weather web site powered by WeeWX">
+    #else
+    <meta name="description" content="$station.location Weather Station - weather web site powered by WeeWX">
+    #end if
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    #if $Extras.has_key('web_url')
+    <link rel="canonical" href="$Extras.web_url/summary.html"/>
+    #end if
+    #if $Extras.has_key('cwop')
+    <?php
+      echo"<title>$station.location ($Extras.cwop) Climate Summary for \$title </title>";
+    ?>
+    #else
+    <?php
+      echo"<title>$station.location Climate Summary for \$title </title>";
+    ?>
+    #end if
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="$station.location Summaries and Records" />
+    <meta property="og:title" content="Climate Summaries"/>
+    #if $Extras.has_key('web_url')
+    <meta property="og:url" content="$Extras.web_url/summary.html"/>
+    #end if
+    <meta property="og:description" content="Climate Summaries for $station.location - weather web site powered by WeeWX" />
+    <meta property="og:type" content="website" />
+    <!-- Icons -->
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="apple-touch-icon" href="touch-icon.png"/>
+    <!-- Styles -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="build.css">
+    <!-- Script -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="js/checkdiff.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    #include "templates/header.html.tmpl"
+    <!-- End header -->
+
+    <!-- Main container -->
+    <div class="main" >
+      <div class="container" >
+        <div class="center" >
+          <div class="card">
+            <?php
+              if(file_exists(\$report)){
+              echo "<pre class=\"noaareport\">";
+              			echo file_get_contents(\$report);
+              echo "</pre>";
+              }
+              ?>  
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    #include "templates/footer.html.tmpl"
+    <!-- End footer-->
+  </body>
+</html>
+

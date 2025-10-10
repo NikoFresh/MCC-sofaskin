@@ -1,0 +1,982 @@
+#set global $page = "index"
+
+<!DOCTYPE html>
+<html lang="$lang">
+  #include "templates/head.html.tmpl"
+  <body class="bg-weather-bg">
+    <!-- Header -->
+    #include "templates/header.html.tmpl"
+    <!-- End header -->
+    <main class="mx-4">
+      <div class="container mx-auto mb-4">
+        <p id="freshweather"></p>
+          <script>
+            window.onload = checkDiff("$current.dateTime.format('%m/%d/%Y %I:%M:%S %p (%Z)')");
+          </script>
+        #if $getVar('Extras.mqtt_enable', None) == 'true'
+        <!-- Mqtt -->
+        <div class="">
+          <div
+            class="online-indicator mx-7 mt-1.5 md:ml-0"
+            id="indicator"
+          >
+            <span
+              class="w-2 h-2 bg-red-500 rounded-full animate-pulse"
+              id="indicator-1"
+            ></span>
+
+          </div>
+          <p id="mqttStatus" class="inline-block align-middle mb-1"
+            >$obs.label.mqttConnecting</p
+          >
+        </div>
+        #end if
+
+        <section class="mt-4 mb-4">
+          #set $has_webcam = $getVar('Extras.webcam_url', None)
+          #set $has_radar = $getVar('Extras.radar_url', None)
+          #set $has_both = $has_webcam and $has_radar
+          #set $has_either = $has_webcam or $has_radar
+          <div class="grid grid-cols-1 #if $has_either then 'lg:grid-cols-2' else ''# gap-4">
+            <div class="lg:col-span-1">
+              <!-- <div class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100 mb-4">
+                <span>
+                    #if ($current.outTemp.raw - $day.outTemp.avg($days_ago=1).raw) > 1.0
+                        Temperature superiori rispetto a ieri
+                    #elif ($day.outTemp.avg($days_ago=1).raw - $current.outTemp.raw) > 1.0
+                        Temperature inferiori rispetto a ieri
+                    #else
+                        Temperature simili a ieri
+                    #end if
+                </span>
+                <span>
+                    #if $trend.outTemp.raw > 0.05
+                        e attualmente in aumento.
+                    #elif $trend.outTemp.raw < -0.05
+                        e attualmente in calo.
+                    #else
+                        e attualmente stabili.
+                    #end if
+                </span>
+                <span>
+                    #if $current.rainRate.raw > 0
+                        Sta piovendo.
+                    #elif $day.rain.sum.raw > 0
+                        Ha piovuto.
+                    #else
+                        Non ha piovuto.
+                    #end if
+                </span>
+              </div> -->
+              <div
+                class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4"
+              >
+                <!-- Tempeartura -->
+                <div
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                >
+                  <div
+                    class="flex items-center justify-between mb-2"
+                  >
+                    <div class="text-sm text-gray-800">$obs.label.outTemp</div>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-gray-800 mb-2"
+                    id="outTemp"
+                  >
+                    $current.outTemp
+                  </div>
+                  <div class="text-s text-gray-500 mb-2">
+                    $obs.label.appTemp:
+                    <span class="" id="heatIndex"
+                      >$current.appTemp</span
+                    >
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <div>
+                      $obs.label.maxAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.outTemp.max</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.outTemp.maxtime.format("%H:%M"))</span
+                      >
+                    </div>
+                    <div>
+                      $obs.label.minAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.outTemp.min</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.outTemp.mintime.format("%H:%M"))</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- umidità -->
+                <div
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                >
+                  <div
+                    class="flex items-center justify-between mb-2"
+                  >
+                    <div class="text-sm text-gray-800">$obs.label.outHumidity</div>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-gray-800 mb-2"
+                    id="outHumidity"
+                  >
+                    $current.outHumidity
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <div>
+                      $obs.label.maxAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.outHumidity.max</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.outHumidity.maxtime.format("%H:%M"))</span
+                      >
+                    </div>
+                    <div>
+                      $obs.label.minAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.outHumidity.min</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.outHumidity.mintime.format("%H:%M"))</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pressione -->
+                <div
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                >
+                  <div
+                    class="flex items-center justify-between mb-2"
+                  >
+                    <div class="text-sm text-gray-800">$obs.label.barometer</div>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-gray-800"
+                    id="barometer"
+                  >
+                    $current.barometer
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <div>
+                      $obs.label.maxAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.barometer.max</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.barometer.maxtime.format("%H:%M"))</span
+                      >
+                    </div>
+                    <div>
+                      $obs.label.minAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.barometer.min</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.barometer.mintime.format("%H:%M"))</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Vento -->
+                <div
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                >
+                  <div
+                    class="flex items-center justify-between mb-2"
+                  >
+                    <div class="text-sm text-gray-800">$obs.label.wind</div>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-grey-800"
+                    id="windSpeed"
+                  >
+                    $current.windSpeed
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <div>
+                      $current.windDir.ordinal_compass
+                    </div>
+                    <div>
+                      $obs.label.maxAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.windGust.max</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.windGust.maxtime.format("%H:%M"))</span
+                      >
+                    </div>
+                    <div>
+                      $obs.label.avgAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.windSpeed.avg</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- pioggia -->
+                <div
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                >
+                  <div
+                    class="flex items-center justify-between mb-2"
+                  >
+                    <div class="text-sm text-gray-800">$obs.label.rain</div>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-grey-800"
+                    id="dayRain"
+                  >
+                    $day.rain.sum
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <div>
+                      $obs.label.rainRate:
+                      <span class="font-medium" id="rainRate"
+                        >$current.rainRate</span
+                      >
+                    </div>
+                    <div>
+                      $obs.label.rainRate $obs.label.maxAbbr:
+                      <span class="font-medium"
+                        >$day.rainRate.max</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dew Point -->
+                <div
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                >
+                  <div
+                    class="flex items-center justify-between mb-2"
+                  >
+                    <div class="text-sm text-gray-800">
+                      $obs.label.dewpoint
+                    </div>
+                    <span class="relative ml-2 group">
+                      <i
+                        class="fas fa-question-circle text-gray-600 cursor-pointer"
+                        tabindex="0"
+                        aria-label="Informazioni sul punto di rugiada"
+                      ></i>
+                      <span
+                        class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      >
+                        $obs.label.dewPointTooltip
+                      </span>
+                    </span>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-grey-800"
+                    id="dewpoint"
+                  >
+                    $current.dewpoint
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <div>
+                      $obs.label.maxAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.dewpoint.max</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.dewpoint.maxtime.format("%H:%M"))</span
+                      >
+                    </div>
+                    <div>
+                      $obs.label.minAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.dewpoint.min</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.dewpoint.mintime.format("%H:%M"))</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Wind Chill -->
+                <div
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                >
+                  <div
+                    class="flex items-center justify-between mb-2"
+                  >
+                    <div class="text-sm text-gray-800">$obs.label.windChill</div>
+                    <span class="relative ml-2 group">
+                      <i
+                        class="fas fa-question-circle text-gray-600 cursor-pointer"
+                        tabindex="0"
+                        aria-label="Informazioni sul punto di rugiada"
+                      ></i>
+                      <span
+                        class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      >
+                      $obs.label.windChillTooltip 
+                      </span>
+                    </span>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-grey-800"
+                    id="windchill"
+                  >
+                    $current.windchill
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <div>
+                      $obs.label.maxAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.windchill.max</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.windchill.maxtime.format("%H:%M"))</span
+                      >
+                    </div>
+                    <div>
+                      $obs.label.minAbbr.capitalize():
+                      <span class="font-medium"
+                        >$day.windchill.min</span
+                      >
+                      <span class="text-gray-400"
+                        >($day.windchill.mintime.format("%H:%M"))</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- webcam -->
+            #if $has_either
+            <div class="lg:col-span-1">
+              <div
+                class="bg-gradient-to-br from-weather-cool/10 to-weather-warm/10 rounded-2xl p-4 flex flex-col"
+              >
+                <!-- Radio buttons -->
+                <input
+                  type="radio"
+                  id="webcam"
+                  name="weather-view"
+                  style="display: none"
+                  checked
+                />
+                <input
+                  type="radio"
+                  id="radar"
+                  name="weather-view"
+                  style="display: none"
+                />
+
+                <div class="weather-container">
+                  <div class="lg:col-span-1">
+
+                    <div class="">
+                      #if $has_both
+                      <!-- Navigation -->
+                      <div class="mb-3 flex justify-center">
+                        <div
+                          class="bg-white/20 rounded-lg p-1 flex gap-1"
+                        >
+                          <label
+                            for="webcam"
+                            class="webcam-btn px-3 py-1 rounded text-sm font-medium transition-colors cursor-pointer hover:bg-white/20 bg-white/30 text-gray-800"
+                          >
+                            📹 Webcam
+                          </label>
+                          <label
+                            for="radar"
+                            class="radar-btn px-3 py-1 rounded text-sm font-medium transition-colors cursor-pointer hover:bg-white/20 text-gray-600"
+                          >
+                            🌦️ Radar
+                          </label>
+                        </div>
+                      </div>
+                      #end if
+
+                      <!-- Img -->
+                      <div class="flex-1 overflow-hidden">
+                        #if $has_webcam
+                        <img
+                          class="webcam-image w-full object-cover block rounded-xl"
+                          src="$Extras.webcam_url?$current.dateTime.raw"
+                          alt="Live weather camera"
+                        />
+                        #end if
+                        #if $has_radar
+                        <img
+                          class="radar-image w-full object-contain #if $has_both then 'hidden' else 'block'# lg:max-h-[25vw] rounded-xl"
+                          src="$Extras.radar_url?$current.dateTime.raw"
+                          alt="Weather radar"
+                        />
+                        #end if
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            #end if
+          </div>
+        </section>
+
+        <section>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div
+              class="md:col-span-1 bg-weather-cool/6 rounded-2xl border border-gray-100"
+            >
+              <!-- One year ago -->
+              <!--Leap Year Code -->
+              #set $yr = int($day.dateTime.format("%Y"))%4
+            #if $yr == 0
+              #if $yr % 100 == 0
+                #if $yr % 400 == 0
+                  #if $day.dateTime.format("%d-%b") == '29-Feb'
+                    #set $n = 1461
+                  #else if $day.dateTime.format("%d-%b") >= '01-Mar'
+                    #set $n = 366
+                  #else
+                    #set $n = 365
+                  #end if
+                #else
+                  #set $n = 365
+                #end if
+              #else
+                #if $day.dateTime.format("%d-%b") == '29-Feb'
+                  #set $n = 1461
+                #else if $day.dateTime.format("%d-%b") >= '01-Mar'
+                  #set $n = 366
+                #else
+                  #set $n = 365
+                #end if
+              #end if
+            #else
+              #set $yrNew = ($yr - 1)
+            #if $yrNew % 100 == 0
+              #if $yrNew % 400 == 0
+                #if $day.dateTime.format("%d-%b") < '01-Mar'
+                  #set $n = 366
+                #else
+                  #set $n = 365
+                #end if
+              #end if
+              #else
+                #set $n = 365
+              #end if
+            #end if
+              
+              <h1 class="text-xl text-gray-800 px-4 pt-4">
+                $obs.label.oneYearAgo ($days_ago($days_ago=$n).dateTime.format("%d-%b(%Y)"))
+              </h1>
+
+              <table
+                class="w-full table-fixed border-collapse mt-2"
+              >
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.outTemp $obs.label.maxF:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outTemp.max
+                    $days_ago($days_ago=$n).outTemp.maxtime
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.outTemp $obs.label.minF:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outTemp.min
+                    $days_ago($days_ago=$n).outTemp.mintime
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.outHumidity $obs.label.maxF:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outHumidity.max
+                    $days_ago($days_ago=$n).outHumidity.maxtime
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.outHumidity $obs.label.minF:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).outHumidity.min
+                    $days_ago($days_ago=$n).outHumidity.mintime
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.barometer $obs.label.maxM:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).barometer.max
+                    $days_ago($days_ago=$n).barometer.maxtime
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.barometer $obs.label.minM:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).barometer.min
+                    $days_ago($days_ago=$n).barometer.mintime
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.rain $obs.label.total:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).rain.sum
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                  >
+                    $obs.label.rainRate $obs.label.maxF:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 border-b border-gray-200"
+                  >
+                    $days_ago($days_ago=$n).rainRate.max
+                    $days_ago($days_ago=$n).rainRate.maxtime
+                  </td>
+                </tr>
+                <tr class="hover:bg-weather-cool/5 group">
+                  <td
+                    class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
+                  >
+                    $obs.label.wind $obs.label.maxM:
+                  </td>
+                  <td
+                    class="py-2 text-gray-900 group-hover:rounded-br-2xl"
+                  >
+                    $days_ago($days_ago=$n).wind.max $day.wind.gustdir
+                    $days_ago($days_ago=$n).wind.maxtime
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Almanac -->
+            <div
+              class="lg:col-span-2 bg-weather-cool/6 rounded-2xl border border-gray-100"
+            >
+              
+              #set $sun_altitude = $almanac.sun.alt
+              #if $sun_altitude < 0
+              #set $sun_None="<i>(Always down)</i>"
+              #else
+              #set $sun_None="<i>(Always up)</i>"
+              #end if
+              
+
+              <h1 class="text-xl px-4 pt-4">$obs.label.almanac</h1>
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                <div>
+                  <h1 class="text-xl text-gray-800 px-4 pt-4">
+                    $obs.label.sun
+                  </h1>
+
+                  <table
+                    class="w-full table-fixed border-collapse mt-2"
+                  >
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.startCivilTwilight:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac(horizon=-6).sun(use_center=1).rise
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.sunrise:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.sun.rise.string($sun_None)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.sunTransit:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.sun.transit
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.sunset:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.sun.set.string($sun_None)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.endCivilTwilight:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac(horizon=-6).sun(use_center=1).set
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.azimuth:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.sun.az)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.altitude:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $sun_altitude)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.rightAscension:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.sun.ra)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.declination:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.sun.dec)
+                      </td>
+                    </tr>
+                    #if $almanac.next_equinox.raw > $almanac.next_solstice.raw
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.solstice:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.next_solstice
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.equinox:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.next_equinox
+                      </td>
+                    </tr>
+                    #else
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.equinox:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.next_equinox
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5 group">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
+                      >
+                        $obs.label.solstice:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 group-hover:rounded-br-2xl"
+                      >
+                        $almanac.next_solstice
+                      </td>
+                    </tr>
+                    #end if
+                  </table>
+                </div>
+
+                <div>
+                  <h1 class="text-xl text-gray-800 px-4 pt-4">
+                    $obs.label.moon
+                  </h1>
+
+                  <table
+                    class="w-full table-fixed border-collapse mt-2"
+                  >
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.moonrise:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.moon.rise
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.moonTransit:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.moon.transit
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.moonset:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.moon.set
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.azimuth:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.az)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.altitude:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.alt)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.rightAscension:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.ra)
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.declination:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $("%.1f&deg;" % $almanac.moon.dec)
+                      </td>
+                    </tr>
+                    #if $almanac.next_full_moon.raw < $almanac.next_new_moon.raw
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.moonFull:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.next_full_moon
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.moonNew:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.next_new_moon
+                      </td>
+                    </tr>
+                    #else
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.moonNew:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.next_new_moon
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-weather-cool/5">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 border-b border-gray-200 pl-4"
+                      >
+                        $obs.label.moonFull:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 border-b border-gray-200"
+                      >
+                        $almanac.next_full_moon
+                      </td>
+                    </tr>
+                    #end if
+                    <tr class="hover:bg-weather-cool/5 group">
+                      <td
+                        class="pr-10 py-2 font-medium text-gray-900 pl-4 group-hover:rounded-bl-2xl"
+                      >
+                        $obs.label.moonPhase:
+                      </td>
+                      <td
+                        class="py-2 text-gray-900 group-hover:rounded-br-2xl"
+                      >
+                        $almanac.moon_phase ($almanac.moon_fullness% full)
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="h-px mt-8 mb-8 bg-blue-200 border-0" />
+
+        <!-- Charts -->
+        <div class="mb-4">
+          <h1 class="text-xl p-4 md:p-4">
+            <i class="fa fa-line-chart m-gruen"></i> $obs.label.charts
+          </h1>
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div id="outTempChart" class="h-[40vh]"></div>
+            <div id="rainChart" class="h-[40vh]"></div>
+            <div id="windChart" class="h-[40vh]"></div>
+            <div id="windDirChart" class="h-[40vh]"></div>
+            <div id="heatIndexChart" class="h-[40vh]"></div>
+            <div id="barometerChart" class="h-[40vh]"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    #include "templates/footer.html.tmpl"
+    <!-- End footer-->
+
+    #if $getVar('Extras.mqtt_enable', None) == 'true'
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"
+        type="text/javascript"
+        ></script>
+        <script src="./js/liveUpdates.js?v2.05"></script>
+    #end if
+    <script src="./js/charts.js?v1"></script>
+  </body>
+</html>
