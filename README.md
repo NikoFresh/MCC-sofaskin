@@ -1,4 +1,4 @@
-# MCC-sofaskin 
+# MCC-sofaskin
 
 This is a custom WeeWX skin based on [Sofaskin-CW9009](https://github.com/weatherstorm/Sofaskin-CW9009)
 
