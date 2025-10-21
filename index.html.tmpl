@@ -964,31 +964,31 @@
           </div>
           <noscript>
             <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
-              <img src="daytempdew.png" alt="temperatures" />
-              <img src="dayrain.png" alt="rain" />
-              <img src="daywind.png" alt="wind" />
-              <img src="daywinddir.png" alt="Hi Wind" />
-              <img src="daywindvec.png" alt="Wind Vector" />
-              <img src="daytempheat.png" alt="Heat index / Wind Chill" />
-              <img src="daybarometer.png" alt="barometer"/>
+              <img src="daytempdew.png" alt="temperatures" class="rounded-l"/>
+              <img src="dayrain.png" alt="rain" class="rounded-l"/>
+              <img src="daywind.png" alt="wind" class="rounded-l"/>
+              <img src="daywinddir.png" alt="Hi Wind" class="rounded-l"/>
+              <img src="daywindvec.png" alt="Wind Vector" class="rounded-l"/>
+              <img src="daytempheat.png" alt="Heat index / Wind Chill" class="rounded-l"/>
+              <img src="daybarometer.png" alt="barometer" class="rounded-l"/>
               #if $day.inTemp.has_data
-              <img src="dayinside.png" alt="Inside" />
+              <img src="dayinside.png" alt="Inside" class="rounded-l"/>
               #end if
-              <img src="dayinhumid.png" alt="Inside/Outside Humidity" />
+              <img src="dayinhumid.png" alt="Inside/Outside Humidity" class="rounded-l"/>
               #if $day.radiation.has_data
-              <img src="dayradiation.png" alt="Radiation" />
+              <img src="dayradiation.png" alt="Radiation" class="rounded-l"/>
               #end if
               #if $day.UV.has_data
-              <img src="dayuv.png" alt="UV Index" />
+              <img src="dayuv.png" alt="UV Index" class="rounded-l"/>
               #end if
               #if $day.rxCheckPercent.has_data
-              <img src="dayrx.png" alt="day rx percent"/>
+              <img src="dayrx.png" alt="day rx percent" class="rounded-l"/>
               #end if
               #if $day.lightning_strike_count.has_data
-              <img src="daylightning.png" alt="Lightning" />
+              <img src="daylightning.png" alt="Lightning" class="rounded-l"/>
               #end if
               #if $day.extraTemp1.has_data
-              <img src="daypond.png" alt="Pond Temperatures" />
+              <img src="daypond.png" alt="Pond Temperatures" class="rounded-l"/>
               #end if
             </div>
           </noscript>
