@@ -962,6 +962,36 @@
             <div id="heatIndexChart" class="h-[40vh]"></div>
             <div id="barometerChart" class="h-[40vh]"></div>
           </div>
+          <noscript>
+            <div class="grid grid-cols-1 gap-2 md:grid-cols-2 no-js">
+              <img src="daytempdew.png" alt="temperatures" />
+              <img src="dayrain.png" alt="rain" />
+              <img src="daywind.png" alt="wind" />
+              <img src="daywinddir.png" alt="Hi Wind" />
+              <img src="daywindvec.png" alt="Wind Vector" />
+              <img src="daytempheat.png" alt="Heat index / Wind Chill" />
+              <img src="daybarometer.png" alt="barometer"/>
+              #if $day.inTemp.has_data
+              <img src="dayinside.png" alt="Inside" />
+              #end if
+              <img src="dayinhumid.png" alt="Inside/Outside Humidity" />
+              #if $day.radiation.has_data
+              <img src="dayradiation.png" alt="Radiation" />
+              #end if
+              #if $day.UV.has_data
+              <img src="dayuv.png" alt="UV Index" />
+              #end if
+              #if $day.rxCheckPercent.has_data
+              <img src="dayrx.png" alt="day rx percent"/>
+              #end if
+              #if $day.lightning_strike_count.has_data
+              <img src="daylightning.png" alt="Lightning" />
+              #end if
+              #if $day.extraTemp1.has_data
+              <img src="daypond.png" alt="Pond Temperatures" />
+              #end if
+            </div>
+          </noscript>
         </div>
       </div>
     </main>
