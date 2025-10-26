@@ -270,8 +270,7 @@
                         tabindex="0"
                         aria-label="Informazioni sul punto di rugiada"
                       ></i>
-                      <span
-                        class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      <span class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none max-sm:left-auto max-sm:right-0 max-sm:translate-x-0"
                       >
                         $obs.label.dewPointTooltip
                       </span>
@@ -319,8 +318,7 @@
                         tabindex="0"
                         aria-label="Informazioni sul punto di rugiada"
                       ></i>
-                      <span
-                        class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      <span class="absolute w-56 bg-gray-800 text-white text-center rounded py-2 px-3 bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"
                       >
                       $obs.label.windChillTooltip 
                       </span>
@@ -954,7 +952,7 @@
           <h1 class="text-xl p-4 md:p-4">
             <i class="fa fa-line-chart m-gruen"></i> $obs.label.charts
           </h1>
-          <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 no-js">
             <div id="outTempChart" class="h-[40vh]"></div>
             <div id="rainChart" class="h-[40vh]"></div>
             <div id="windChart" class="h-[40vh]"></div>
@@ -962,6 +960,36 @@
             <div id="heatIndexChart" class="h-[40vh]"></div>
             <div id="barometerChart" class="h-[40vh]"></div>
           </div>
+          <noscript>
+            <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
+              <img src="daytempdew.png" alt="temperatures" class="rounded-l"/>
+              <img src="dayrain.png" alt="rain" class="rounded-l"/>
+              <img src="daywind.png" alt="wind" class="rounded-l"/>
+              <img src="daywinddir.png" alt="Hi Wind" class="rounded-l"/>
+              <img src="daywindvec.png" alt="Wind Vector" class="rounded-l"/>
+              <img src="daytempheat.png" alt="Heat index / Wind Chill" class="rounded-l"/>
+              <img src="daybarometer.png" alt="barometer" class="rounded-l"/>
+              #if $day.inTemp.has_data
+              <img src="dayinside.png" alt="Inside" class="rounded-l"/>
+              #end if
+              <img src="dayinhumid.png" alt="Inside/Outside Humidity" class="rounded-l"/>
+              #if $day.radiation.has_data
+              <img src="dayradiation.png" alt="Radiation" class="rounded-l"/>
+              #end if
+              #if $day.UV.has_data
+              <img src="dayuv.png" alt="UV Index" class="rounded-l"/>
+              #end if
+              #if $day.rxCheckPercent.has_data
+              <img src="dayrx.png" alt="day rx percent" class="rounded-l"/>
+              #end if
+              #if $day.lightning_strike_count.has_data
+              <img src="daylightning.png" alt="Lightning" class="rounded-l"/>
+              #end if
+              #if $day.extraTemp1.has_data
+              <img src="daypond.png" alt="Pond Temperatures" class="rounded-l"/>
+              #end if
+            </div>
+          </noscript>
         </div>
       </div>
     </main>
