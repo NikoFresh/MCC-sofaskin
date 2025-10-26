@@ -89,7 +89,8 @@ function onConnectionLost(responseObject) {
     mqttStatusElem.innerHTML = `$obs.label.mqttLost
                                 #if $getVar('Extras.web_url', None)
                                   <a href="$Extras.web_url" class="underline ml-2">$obs.label.reloadPage</p>
-                                #end if`;
+                                #end if
+                                `;
     indicator.style.backgroundColor = "#ef4444"; 
     indicator1.style.backgroundColor = "#ef4444";
     console.log("onConnectionLost: " + responseObject.errorMessage);

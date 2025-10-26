@@ -111,19 +111,22 @@
 
             <!-- IG e aduepassi -->
             <div class="flex items-center gap-3">
+            #if $getVar('Extras.instagram_enable', None) == 'true'
             <a
-                href="https://www.instagram.com/meteocentrocadore/?hl=it"
+                href="$Extras.instagram_url"
                 class="p-2 text-white/80 text-xl transition-colors hover:text-white hover:bg-white/10 rounded-lg"
                 ><i class="fab fa-instagram"></i
             ></a>
+            #end if
+            #if $getVar('Extras.extra_btn_enable', None) == 'true'
             <a
-                data-umami-event="A due passi"
-                href="https://aduepassidallaciclabile.it"
+                data-umami-event="extra_header_btn"
+                href="$Extras.extra_btn_url"
                 class="bg-lime-400 text-gray-900 rounded-full px-4 py-2 text-sm font-medium transition-all hover:bg-lime-300 hover:shadow-lg shadow-lime-500/25"
             >
-                <i class="fa-brands fa-airbnb mr-1.5"></i> A due passi dalla
-                ciclabile
+                <i class="$Extras.extra_btn_icon mr-1.5"></i> $Extras.extra_btn_text
             </a>
+            #end if
             </div>
         </div>
 
