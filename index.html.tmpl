@@ -39,35 +39,6 @@
           #set $has_either = $has_webcam or $has_radar
           <div class="grid grid-cols-1 #if $has_either then 'lg:grid-cols-2' else ''# gap-4">
             <div class="lg:col-span-1">
-              <!-- <div class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100 mb-4">
-                <span>
-                    #if ($current.outTemp.raw - $day.outTemp.avg($days_ago=1).raw) > 1.0
-                        Temperature superiori rispetto a ieri
-                    #elif ($day.outTemp.avg($days_ago=1).raw - $current.outTemp.raw) > 1.0
-                        Temperature inferiori rispetto a ieri
-                    #else
-                        Temperature simili a ieri
-                    #end if
-                </span>
-                <span>
-                    #if $trend.outTemp.raw > 0.05
-                        e attualmente in aumento.
-                    #elif $trend.outTemp.raw < -0.05
-                        e attualmente in calo.
-                    #else
-                        e attualmente stabili.
-                    #end if
-                </span>
-                <span>
-                    #if $current.rainRate.raw > 0
-                        Sta piovendo.
-                    #elif $day.rain.sum.raw > 0
-                        Ha piovuto.
-                    #else
-                        Non ha piovuto.
-                    #end if
-                </span>
-              </div> -->
               <div
                 class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4"
               >
@@ -161,8 +132,7 @@
                   </div>
                   <div
                     class="text-2xl font-bold text-gray-800"
-                    id="barometer"
-                  >
+                    id="barometer">
                     $current.barometer
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
