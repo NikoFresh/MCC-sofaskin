@@ -39,6 +39,7 @@
           #set $has_either = $has_webcam or $has_radar
           <div class="grid grid-cols-1 #if $has_either then 'lg:grid-cols-2' else ''# gap-4">
             <div class="lg:col-span-1">
+            #include "templates/precipAlert.html.tmpl"
               <div
                 class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4"
               >

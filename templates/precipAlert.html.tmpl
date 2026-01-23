@@ -1,0 +1,38 @@
+<div class="w-150 p-40 bg-gray-900">
+    <div id="rain-alert" class="bg-blue-300 flex cursor-pointer items-center justify-between p-4 rounded-xl hidden" onclick="toggleRainModal(true)">
+            <div class="flex items-center">
+                <p id="alert-icon" class="bg-white rounded-xl p-2">Icona</p>
+                <p id="alert-summary" class="ml-4">Caricamento...</p>
+            </div>
+            
+            <p class="">Dettagli &rarr;</p>
+        </div>
+</div>
+
+<div id="rain-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-75" onclick="toggleRainModal(false)"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+            
+            <div class="relative transform overflow-hidden rounded-lg bg-white text-left sm:my-8 sm:w-full sm:max-w-lg">
+                
+                <div class="bg-blue-300 px-4 py-3 sm:px-6 flex justify-between items-center">
+                    <h3 class="text-base font-semibold" id="modal-title">Dettaglio Precipitazioni</h3>
+                    <button onclick="toggleRainModal(false)" class="cursor-pointer text-2xl font-bold">&times;</button>
+                </div>
+
+                <div class="px-4 py-2 max-h-[60vh] overflow-y-auto">
+                    <ul id="rain-details-list" class="divide-y divide-gray-200">
+                        </ul>
+                    
+                    <div id="no-rain-msg" class="hidden text-center text-gray-500 py-4">
+                        Nessuna precipitazione rilevante prevista.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/forecast.js"></script>
