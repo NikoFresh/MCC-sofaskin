@@ -72,7 +72,7 @@ function processData(hourly) {
       (globalSnowSum > 0.1 ? '<i class="qi-499-fill text-blue-300"></i>' : "");
 
     document.getElementById("alert-summary").innerHTML =
-      `Previsti <span class="font-bold text-blue-900">${globalRainSum.toFixed(1)} mm</span> di pioggia e <span class="font-bold text-cyan-700">${globalSnowSum.toFixed(1)} cm</span> di neve nei prossimi giorni.`;
+      `Previsti <span class="font-bold text-blue-900">${globalRainSum.toFixed(1)} mm</span> di pioggia e <span class="font-bold text-blue-900">${globalSnowSum.toFixed(1)} cm</span> di neve nei prossimi giorni.`;
 
     populateModalList(dailyGroups);
   } else {
