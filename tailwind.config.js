@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // prefix: "tw",
-  content: ["./*.html", "./js/*.js", "./*.html.tmpl", "./bin/user/historygenerator.py"],
+  content: [
+    "./*.html",
+    "./js/*.js",
+    "./*.html.tmpl",
+    "./bin/user/historygenerator.py",
+  ],
   theme: {
     container: {
       padding: {
@@ -21,6 +26,7 @@ module.exports = {
         "weather-cool": "#0ea5e9",
         "weather-neutral": "#64748b",
         "weather-bg": "#f8fafc",
+        "header-bg": "#3db6ec",
       },
     },
   },
