@@ -1,112 +1,150 @@
-const iconsName = {
-  0: ["qi-sunny", "Sereno"],
-  1: ["qi-few-clouds", "Quasi sereno"],
-  2: ["qi-cloudy", "Poco nuvoloso"],
-  3: ["qi-overcast", "Nuvoloso"],
-  45: ["qi-heavy-fog-warning", "Nebbia"],
-  48: ["qi-frost", "Nebbia ghiacciata"],
-  51: ["qi-drizzle-rain", "Debole pioviggine"],
-  53: ["qi-drizzle-rain", "Pioviggine"],
-  55: ["qi-drizzle-rain", "Pioviggine intensa"],
-  56: ["qi-drizzle-rain", "Pioviggine ghiacciata"],
-  57: ["qi-drizzle-rain", "Pioviggine ghiacciata"],
-  61: ["qi-light-rain", "Pioggia debole"],
-  63: ["qi-moderate-rain", "Pioggia"],
-  65: ["qi-heavy-rain", "Pioggia intensa"],
-  66: ["qi-freezing-rain", "Pioggia ghiacciata"],
-  67: ["qi-freezing-rain", "Pioggia ghiacciata"],
-  71: ["qi-light-snow", "Neve debole"],
-  73: ["qi-moderate-snow", "Neve"],
-  75: ["qi-heavy-snow", "Neve intensa"],
-  77: ["qi-snow-flurry", "Nevischio"],
-  80: ["qi-shower-rain", "Deboli rovesci di pioggia"],
-  81: ["qi-shower-rain", "Rovesci di pioggia"],
-  82: ["qi-heavy-shower-rain", "Rovesci di pioggia"],
-  85: ["qi-snow-flurry", "Neve"],
-  86: ["qi-snow-flurry", "Neve intensa"],
-  95: ["qi-heavy-thunderstorm", "Temporale"],
-  96: ["qi-thundershower-with-hail", "Temporale e grandine"],
-  99: ["qi-thundershower-with-hail", "Temporale e grandine"],
-};
+const LAT = 46.4464;
+const LON = 12.3818;
+const PRECIPITATION_THRESHOLD = 0.1;
 
-window.addEventListener("load", () => {
-  const base = `https://api.open-meteo.com/v1/forecast?`;
-  let api =
-    base +
-    // `latitude=46.45&longitude=12.38&minutely_15=precipitation&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,windspeed_10m_max,windgusts_10m_max&timezone=Europe%2FBerlin
-    //`;
-    `latitude=46.45&longitude=12.38&current=precipitation&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=Europe%2FBerlin`;
-  fetch(api)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      showWeather(data);
-    });
-});
+async function checkRainForecast() {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&hourly=precipitation,rain,showers,snowfall,temperature_2m&models=italia_meteo_arpae_icon_2i&forecast_days=4&timezone=auto`;
+  console.log(url);
 
-function showWeather(data) {
-  console.log(data);
-  data.daily.time.forEach((day, i) => {
-    if (i < 5) {
-      const giorno = new Date(day).toLocaleDateString("it-IT", {
-        weekday: "long",
-      });
-      const giornoMaiusc = giorno.charAt(0).toUpperCase() + giorno.slice(1);
-
-      let tableDay = document.getElementById("table-days");
-      let tableForecast = document.getElementById("table-forecast");
-      let tableTemp = document.getElementById("table-temp");
-      let tableWind = document.getElementById("table-wind");
-      let tablePrec = document.getElementById("table-prec");
-
-      tableDay.innerHTML += `<div class="table-cell p-2">${giornoMaiusc}</div>`;
-      tableForecast.innerHTML += `<div class="table-cell p-2"><i class="${
-        iconsName[data.daily.weather_code[i]][0]
-      } text-lg"></i><br>${iconsName[data.daily.weather_code[i]][1]}</div>`;
-      tableTemp.innerHTML += `<div class="table-cell p-2">${data.daily.temperature_2m_max[i]}${data.daily_units.temperature_2m_max} <br> ${data.daily.temperature_2m_min[i]}${data.daily_units.temperature_2m_min}</div>`;
-      tableWind.innerHTML += `<div class="table-cell p-2">${data.daily.wind_speed_10m_max[i]}${data.daily_units.wind_speed_10m_max} <br> (${data.daily.wind_gusts_10m_max[i]}${data.daily_units.wind_gusts_10m_max})</div>`;
-      if ([71, 73, 75].includes(data.daily.weather_code[i])) {
-        tablePrec.innerHTML += `<div class="table-cell p-2">${data.daily.snowfall_sum[i]}${data.daily_units.snowfall_sum}</div>`;
-      } else {
-        tablePrec.innerHTML += `<div class="table-cell p-2">${data.daily.precipitation_sum[i]}${data.daily_units.precipitation_sum}</div>`;
-      }
-    }
-  });
-
-  /*
-  let skip = false;
-  data.current.time.forEach((time, i) => {
-    if (skip) {
-      return;
-    }
-
-    const htmlMinutely = document.getElementById("minutely");
-    const forecastTime = new Date(time);
-    const timeToRain = Math.floor((forecastTime - new Date()) / 1000 / 60);
-
-    if (
-      data.minutely_15.precipitation[i] != 0 &&
-      timeToRain > 0 &&
-      timeToRain <= 15
-    ) {
-      skip = true;
-      htmlMinutely.innerHTML = `Pioggia prevista ora`;
-    }
-
-    if (
-      data.minutely_15.precipitation[i] != 0 &&
-      timeToRain > 15 &&
-      timeToRain < 180
-    ) {
-      skip = true;
-      htmlMinutely.innerHTML = `Precipitazioni previste intorno alle <span class="underline">${forecastTime.toLocaleTimeString(
-        "it-IT",
-        { hour: "2-digit", minute: "2-digit" }
-      )}</span>`;
-    }
-  });*/
-  if (data.current.precipitation > 0) {
-    htmlMinutely.innerHTML = `Pioggia prevista ora`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    processData(data.hourly);
+  } catch (error) {
+    console.error("Errore meteo:", error);
   }
 }
+
+function processData(hourly) {
+  const now = new Date();
+  let globalWaterEq = 0;
+  let globalRainSum = 0;
+  let globalSnowSum = 0;
+  let nextEvent = null;
+  const dailyGroups = {};
+
+  for (let i = 0; i < hourly.time.length; i++) {
+    const time = new Date(hourly.time[i]);
+    const precip = hourly.precipitation[i] || 0;
+    const snowfall = hourly.snowfall[i] || 0;
+    const rainOnly = (hourly.rain[i] || 0) + (hourly.showers[i] || 0);
+    const temp = hourly.temperature_2m[i] || 0;
+
+    // Totale giornaliero
+    const dateKey = time.toLocaleDateString("it-IT", {
+      weekday: "long",
+      day: "numeric",
+    });
+
+    if (!dailyGroups[dateKey]) {
+      dailyGroups[dateKey] = { rainSum: 0, snowSum: 0, events: [] };
+    }
+
+    dailyGroups[dateKey].rainSum += rainOnly;
+    dailyGroups[dateKey].snowSum += snowfall;
+
+    // Solo dati futuri
+    if (time >= now) {
+      if (precip > 0.05 || snowfall > 0.05) {
+        globalWaterEq += precip;
+        globalRainSum += rainOnly;
+        globalSnowSum += snowfall;
+
+        const eventObj = {
+          time: time,
+          rain: rainOnly > 0.05 ? rainOnly : 0,
+          snow: snowfall > 0.05 ? snowfall : 0,
+          isShower: (hourly.showers[i] || 0) > 0,
+          temp: temp,
+        };
+
+        if (!nextEvent) nextEvent = eventObj;
+        dailyGroups[dateKey].events.push(eventObj);
+      }
+    }
+  }
+
+  const alertBox = document.getElementById("rain-alert");
+  if (globalWaterEq > PRECIPITATION_THRESHOLD) {
+    alertBox.classList.remove("hidden");
+    document.getElementById("alert-icon").innerHTML =
+      (globalRainSum > 0.1 ? '<i class="qi-399-fill text-blue-300"></i>' : "") +
+      (globalSnowSum > 0.1 ? '<i class="qi-499-fill text-blue-300"></i>' : "");
+
+    document.getElementById("alert-summary").innerHTML =
+      `Previsti <span class="font-bold text-blue-900">${globalRainSum.toFixed(1)} mm</span> di pioggia e <span class="font-bold text-blue-900">${globalSnowSum.toFixed(1)} cm</span> di neve nei prossimi giorni.`;
+
+    populateModalList(dailyGroups);
+  } else {
+    alertBox.classList.add("hidden");
+  }
+}
+
+function populateModalList(dailyGroups) {
+  const listContainer = document.getElementById("rain-details-list");
+  listContainer.innerHTML = "";
+
+  for (const [dateStr, data] of Object.entries(dailyGroups)) {
+    if (data.events.length === 0) continue;
+
+    let totalsHtml = "";
+    if (data.rainSum > 0)
+      totalsHtml += `<span class="ml-2 text-blue-800 bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">💧 ${data.rainSum.toFixed(1)} mm</span>`;
+    if (data.snowSum > 0)
+      totalsHtml += `<span class="ml-2 text-cyan-800 bg-cyan-100 px-2 py-0.5 rounded-full whitespace-nowrap">❄️ ${data.snowSum.toFixed(1)} cm</span>`;
+
+    listContainer.innerHTML += `
+      <li class="bg-gray-100 py-2 px-3 mt-4 rounded flex justify-between items-center sticky top-0 z-10 border-b border-gray-200">
+          <span class="text-xs font-bold text-gray-600 uppercase tracking-wider">${dateStr}</span>
+          <div class="text-[10px] font-bold flex gap-1">
+              ${totalsHtml}
+          </div>
+      </li>`;
+
+    data.events.forEach((event) => {
+      const timeStr = event.time.toLocaleTimeString("it-IT", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      let label =
+        event.rain > 0 && event.snow > 0
+          ? "Pioggia/Neve"
+          : event.snow > 0
+            ? "Neve"
+            : "Pioggia";
+      let icons =
+        (event.rain > 0 ? '<i class="qi-399-fill text-blue-400"></i>' : "") +
+        (event.snow > 0 ? '<i class="qi-499-fill text-cyan-300"></i>' : "");
+
+      listContainer.innerHTML += `
+        <li class="py-3 flex justify-between items-center hover:bg-blue-50 transition border-b border-gray-50 last:border-0 px-2">
+            <div class="flex items-center gap-3">
+                <span class="text-gray-800 font-mono text-sm">${timeStr}</span>
+                <div class="flex items-center gap-1.5">
+                  <span class="flex gap-0.5">${icons}</span>
+                  <span class="text-[10px] uppercase tracking-wider font-semibold text-gray-500">${label}</span>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                ${event.rain > 0 ? `<div class="text-blue-700 text-sm font-medium">${event.rain.toFixed(1)} mm</div>` : ""}
+                ${event.snow > 0 ? `<div class="text-cyan-700 text-sm font-medium border-l pl-2 border-gray-200">${event.snow.toFixed(1)} cm</div>` : ""}
+                <div class="text-gray-700 text-sm font-medium border-l pl-2 border-gray-200">${event.temp.toFixed(1)}°C</div>
+            </div>
+        </li>`;
+    });
+  }
+}
+
+// Toggle popup
+function toggleRainModal(show) {
+  const modal = document.getElementById("rain-modal");
+  if (show) {
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  } else {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", checkRainForecast);
