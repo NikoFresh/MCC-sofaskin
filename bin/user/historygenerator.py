@@ -240,13 +240,13 @@ class MyXSearch(SearchList):
             else:
                 format_string = reading.formatter.unit_format_dict[unit_type]
 
-        htmlText = '<table class="w-full table-fixed border-collapse min-w-[500px]">'
+        htmlText = '<table class="w-full border-collapse min-w-max">'
         htmlText += "    <thead>"
         htmlText += "        <tr>"
-        htmlText += "        <th>%s</th>" % unit_formatted
+        htmlText += '        <th class="px-3 py-2 whitespace-nowrap" >%s</th>' % unit_formatted
 
         for mon in table_options.get('monthnames', ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']):
-            htmlText += "        <th>%s</th>" % mon
+            htmlText += '        <th class="px-3 py-2 whitespace-nowrap text-center">%s</th>' % mon
 
         htmlText += "    </tr>"
         htmlText += "    </thead>"
@@ -261,7 +261,7 @@ class MyXSearch(SearchList):
                 htmlLine += (' ' * 12) + "%s\n" % \
                                          self._NoaaYear(datetime.fromtimestamp(year.timespan[0]), table_options)
             else:
-                htmlLine += (' ' * 12) + "<td>%d</td>\n" % year_number
+                htmlLine += (' ' * 12) + '<td class="px-3 py-2 whitespace-nowrap">%d</td>\n' % year_number
 
             for month in year.months():
                 if NOAA is True:
@@ -270,7 +270,7 @@ class MyXSearch(SearchList):
 
                     if (month.timespan[1] < table_stats.timespan.start) or (month.timespan[0] > table_stats.timespan.stop):
                         # print "No data for... %d, %d" % (year_number, datetime.fromtimestamp(month.timespan[0]).month)
-                        htmlLine += "<td>-</td>\n"
+                        htmlLine += '<td class="px-3 py-2 whitespace-nowrap text-center">-</td>\n'
                     else:
                         htmlLine += self._NoaaCell(datetime.fromtimestamp(month.timespan[0]), table_options)
                 else:
@@ -304,7 +304,7 @@ class MyXSearch(SearchList):
         """
 
         if value is not None:
-            cellText = "<td"
+            cellText = '<td class="px-3 py-2 whitespace-nowrap text-center"'
 
 	    #changed background color code to HTML5
             for c in bgColours:
@@ -319,7 +319,7 @@ class MyXSearch(SearchList):
             cellText += "> %s </td>" % formatted_value
 
         else:
-            cellText = "<td>-</td>\n"
+            cellText = '<td class="px-3 py-2 whitespace-nowrap text-center">-</td>\n'
 
         return cellText
 
