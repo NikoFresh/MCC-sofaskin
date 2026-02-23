@@ -5,7 +5,7 @@ module.exports = {
     "./*.html",
     "./js/*.js",
     "./*.html.tmpl",
-    "./bin/user/historygenerator.py",
+    "../../bin/user/historygenerator.py"
   ],
   theme: {
     container: {
