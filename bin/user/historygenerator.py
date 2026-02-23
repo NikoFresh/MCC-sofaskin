@@ -270,7 +270,7 @@ class MyXSearch(SearchList):
 
                     if (month.timespan[1] < table_stats.timespan.start) or (month.timespan[0] > table_stats.timespan.stop):
                         # print "No data for... %d, %d" % (year_number, datetime.fromtimestamp(month.timespan[0]).month)
-                        htmlLine += '<td class="px-3 py-2 whitespace-nowrap text-center">-</td>\n'
+                        htmlLine += '<td class="p-1 whitespace-nowrap text-center">-</td>\n'
                     else:
                         htmlLine += self._NoaaCell(datetime.fromtimestamp(month.timespan[0]), table_options)
                 else:
@@ -304,7 +304,7 @@ class MyXSearch(SearchList):
         """
 
         if value is not None:
-            cellText = '<td class="px-3 py-2 whitespace-nowrap text-center"'
+            cellText = '<td class="p-1 whitespace-nowrap text-center"'
 
 	    #changed background color code to HTML5
             for c in bgColours:
@@ -319,7 +319,7 @@ class MyXSearch(SearchList):
             cellText += "> %s </td>" % formatted_value
 
         else:
-            cellText = '<td class="px-3 py-2 whitespace-nowrap text-center">-</td>\n'
+            cellText = '<td class="p-1 whitespace-nowrap text-center">-</td>\n'
 
         return cellText
 
