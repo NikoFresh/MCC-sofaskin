@@ -180,7 +180,7 @@ class MyXSearch(SearchList):
         all_stats: Link to all_stats TimespanBinder
         """
 
-        bgColours = zip(table_options['minvalues'], table_options['maxvalues'], table_options['colours'])
+        bgColours = list(zip(table_options['minvalues'], table_options['maxvalues'], table_options['colours']))
 
         if NOAA is True:
             unit_formatted = ""
