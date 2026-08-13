@@ -219,7 +219,6 @@ class MyXSearch(SearchList):
                     return "Could not generate table %s" % table_name
 
             unit_type = reading.converter.group_unit_dict[reading.value_t[2]]
-
             unit_formatted = ''
 
             # 'units' option in skin.conf?
@@ -231,8 +230,6 @@ class MyXSearch(SearchList):
                 else:
                     if unit_type in reading.formatter.unit_label_dict:
                         unit_formatted = reading.formatter.unit_label_dict[unit_type]
-
-            # For aggregrate types which return number of occurrences (e.g. max_ge), set format to integer
 
             # Don't catch error here - we absolutely need the string format
             if unit_type == 'count':
@@ -248,13 +245,23 @@ class MyXSearch(SearchList):
         for mon in table_options.get('monthnames', ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']):
             htmlText += '        <th class="px-3 py-2 whitespace-nowrap text-center">%s</th>' % mon
 
+        # --- MODIFICA: Intestazione ultima colonna: "Media" per avg/min/max, "Totale" per sum/count ---
+        if NOAA is False:
+            recap_header = "Media" if aggregate_type in ('avg', 'min', 'max') else "Totale"
+            htmlText += '        <th class="px-3 py-2 whitespace-nowrap text-center">%s</th>' % recap_header
+
         htmlText += "    </tr>"
         htmlText += "    </thead>"
         htmlText += "    <tbody>"
 
+        # --- MODIFICA: Variabili per accumulare i totali e contare i mesi validi ---
+        monthly_totals = {m: 0.0 for m in range(1, 13)}
+        monthly_counts = {m: 0 for m in range(1, 13)}
+        yearly_total_sum = 0.0
+        yearly_count = 0
+
         for year in table_stats.years():
             year_number = datetime.fromtimestamp(year.timespan[0]).year
-
             htmlLine = (' ' * 8) + "<tr>\n"
 
             if NOAA is True:
@@ -265,11 +272,7 @@ class MyXSearch(SearchList):
 
             for month in year.months():
                 if NOAA is True:
-                    #for property, value in vars(month.dateTime.value_t[0]).iteritems():
-                    #    print property, ": ", value
-
                     if (month.timespan[1] < table_stats.timespan.start) or (month.timespan[0] > table_stats.timespan.stop):
-                        # print "No data for... %d, %d" % (year_number, datetime.fromtimestamp(month.timespan[0]).month)
                         htmlLine += '<td class="p-1 whitespace-nowrap text-center">-</td>\n'
                     else:
                         htmlLine += self._NoaaCell(datetime.fromtimestamp(month.timespan[0]), table_options)
@@ -282,14 +285,56 @@ class MyXSearch(SearchList):
                     else:
                         value = converter.convert(getattr(getattr(month, obs_type), aggregate_type).value_t)
 
-                    htmlLine += (' ' * 12) + self._colorCell(value[0], format_string, bgColours)
+                    val = value[0]
+                    htmlLine += (' ' * 12) + self._colorCell(val, format_string, bgColours)
+
+                    # --- MODIFICA: Accumuliamo il valore per la riga delle medie ---
+                    m_idx = datetime.fromtimestamp(month.timespan[0]).month
+                    if val is not None:
+                        monthly_totals[m_idx] += val
+                        monthly_counts[m_idx] += 1
+
+            # --- MODIFICA: Cella recap annuale SENZA colore ---
+            if NOAA is False:
+                if unit_type == 'count':
+                    try:
+                        y_value = getattr(getattr(year, obs_type), aggregate_type)((threshold_value, threshold_units)).value_t
+                    except:
+                        y_value = [0, 'count']
+                else:
+                    y_value = converter.convert(getattr(getattr(year, obs_type), aggregate_type).value_t)
+
+                y_val = y_value[0]
+                htmlLine += (' ' * 12) + self._plainCell(y_val, format_string)
+
+                if y_val is not None:
+                    yearly_total_sum += y_val
+                    yearly_count += 1
 
             htmlLine += (' ' * 8) + "</tr>\n"
-
             htmlText += htmlLine
 
-	#extra </tr> that's not needed
-        #htmlText += (' ' * 8) + "</tr>\n"
+        # --- MODIFICA: Riga finale con le Medie Mensili ---
+        if NOAA is False:
+            htmlText += (' ' * 8) + '<tr style="border-top: 2px solid #e5e7eb; font-weight: bold;">\n'
+            htmlText += (' ' * 12) + '<td class="px-3 py-2 whitespace-nowrap">Media</td>\n'
+
+            for m in range(1, 13):
+                if monthly_counts[m] > 0:
+                    avg_val = monthly_totals[m] / monthly_counts[m]
+                else:
+                    avg_val = None
+                htmlText += (' ' * 12) + self._colorCell(avg_val, format_string, bgColours)
+
+            # Cella finale in basso a destra: colorata come le altre celle della riga Media
+            if yearly_count > 0:
+                avg_yearly = yearly_total_sum / yearly_count
+            else:
+                avg_yearly = None
+            htmlText += (' ' * 12) + self._colorCell(avg_yearly, format_string, bgColours)
+
+            htmlText += (' ' * 8) + '</tr>\n'
+
         htmlText += (' ' * 4) + "</tbody>\n"
         htmlText += "</table>\n"
 
@@ -306,18 +351,30 @@ class MyXSearch(SearchList):
         if value is not None:
             cellText = '<td class="p-1 whitespace-nowrap text-center"'
 
-	    #changed background color code to HTML5
+            #changed background color code to HTML5
             for c in bgColours:
                 if (value >= int(c[0])) and (value <= int(c[1])):
                     cellText += " style=\"background-color: %s\"" % c[2]
 
-            #for c in bgColours:
-            #    if (value >= int(c[0])) and (value <= int(c[1])):
-            #        cellText += " bgcolor = \"%s\"" % c[2]
-
             formatted_value = format_string % value
             cellText += "> %s </td>" % formatted_value
 
+        else:
+            cellText = '<td class="p-1 whitespace-nowrap text-center">-</td>\n'
+
+        return cellText
+
+    def _plainCell(self, value, format_string):
+        """Returns a plain '<td> y.yy </td>' html table entry string WITHOUT any background colour.
+        Used for recap columns (yearly totals/averages and bottom-row averages).
+
+        value: Numeric value for the observation
+        format_string: How the numeric value should be represented in the table cell.
+        """
+
+        if value is not None:
+            formatted_value = format_string % value
+            cellText = '<td class="p-1 whitespace-nowrap text-center font-semibold"> %s </td>' % formatted_value
         else:
             cellText = '<td class="p-1 whitespace-nowrap text-center">-</td>\n'
 

@@ -71,8 +71,16 @@ function processData(hourly) {
       (globalRainSum > 0.1 ? '<i class="qi-399-fill text-blue-300"></i>' : "") +
       (globalSnowSum > 0.1 ? '<i class="qi-499-fill text-blue-300"></i>' : "");
 
-    document.getElementById("alert-summary").innerHTML =
-      `Previsti <span class="font-bold text-blue-900">${globalRainSum.toFixed(1)} mm</span> di pioggia e <span class="font-bold text-blue-900">${globalSnowSum.toFixed(1)} cm</span> di neve nei prossimi giorni.`;
+    const rainText = globalRainSum > 0.1
+                   ? `<span class="font-bold">${globalRainSum.toFixed(1)} mm</span> di pioggia`
+                   : "";
+    console.log(globalRainSum, globalSnowSum)
+    const snowText = globalSnowSum > 0.1
+                   ? `<span class="font-bold">${globalSnowSum.toFixed(1)} cm</span> di neve`
+                   : "";
+    const separator = (globalRainSum > 0.1 && globalSnowSum > 0.1) ? " e " : "";
+
+    document.getElementById("alert-summary").innerHTML = `Previsti ${rainText}${separator}${snowText} nei prossimi giorni.`;
 
     populateModalList(dailyGroups);
   } else {
@@ -141,6 +149,7 @@ function toggleRainModal(show) {
   if (show) {
     modal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
+    umami.track('Weather');
   } else {
     modal.classList.add("hidden");
     document.body.style.overflow = "";

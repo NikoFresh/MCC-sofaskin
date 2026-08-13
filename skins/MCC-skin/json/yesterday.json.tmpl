@@ -1,0 +1,46 @@
+{
+  "title": "Current Values",
+  "location": "$station.location",
+  "time": "$current.dateTime.format('%d/%m/%Y %H:%M:%S')",
+  "lat": "$station.latitude_f",
+  "lon": "$station.longitude_f",
+  "alt": "$station.altitude",
+  "hardware": "$station.hardware",
+  "weewxVersion": "$station.version",
+  "yesterday": {
+    "tempMaxValue": "$yesterday.outTemp.max.formatted",
+    "tempMaxTime": "$yesterday.outTemp.maxtime.format('%H:%M:%S')",
+    "tempMinValue": "$yesterday.outTemp.min.formatted",
+    "tempMinTime": "$yesterday.outTemp.mintime.format('%H:%M:%S')",
+    "windchillMinValue": "$yesterday.windchill.min.formatted",
+    "windchillMinTime": "$yesterday.windchill.mintime.format('%H:%M:%S')",
+    "humidityMaxValue": "$yesterday.outHumidity.max.formatted",
+    "humidityMaxTime": "$yesterday.outHumidity.maxtime.format('%H:%M:%S')",
+    "humidityMinValue": "$yesterday.outHumidity.min.formatted",
+    "humidityMinTime": "$yesterday.outHumidity.mintime.format('%H:%M:%S')",
+    "dewpointMaxValue": "$yesterday.dewpoint.max.formatted",
+    "dewpointMaxTime": "$yesterday.dewpoint.maxtime.format('%H:%M:%S')",
+    "dewpointMinValue": "$yesterday.dewpoint.min.formatted",
+    "dewpointMinTime": "$yesterday.dewpoint.mintime.format('%H:%M:%S')",
+    "barometerMaxValue": "$yesterday.barometer.max.formatted",
+    "barometerMaxTime": "$yesterday.barometer.maxtime.format('%H:%M:%S')",
+    "barometerMinValue": "$yesterday.barometer.min.formatted",
+    "barometerMinTime": "$yesterday.barometer.mintime.format('%H:%M:%S')",
+    "rainSum": "$yesterday.rain.sum.formatted",
+    "rainRateMaxValue": "$yesterday.rainRate.max.formatted",
+    "rainRateMaxTime": "$yesterday.rainRate.maxtime.format('%H:%M:%S')",
+    "windMaxValue": "$yesterday.windGust.max.formatted",
+    "windMaxTime": "$yesterday.windGust.maxtime.format('%H:%M:%S')",
+    "windAvg": "$yesterday.windSpeed.avg.formatted"
+  },
+  "almanac": {
+    "sun": {
+      "sunrise": "$almanac.sunrise.format('%H:%M:%S')",
+      "sunset": "$almanac.sunset.format('%H:%M:%S')"
+    },
+    "moon": {
+      "phase": "$almanac.moon_phase",
+      "fullness": "$almanac.moon_fullness%"
+    }
+  }
+}

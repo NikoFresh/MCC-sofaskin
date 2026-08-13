@@ -1,14 +1,14 @@
 <div
     id="rain-alert"
-    class="bg-header-bg pb-4 flex cursor-pointer items-center justify-between p-4 rounded-xl hidden"
+    class="bg-header-bg mb-4 pb-4 flex cursor-pointer items-center justify-between p-4 rounded-xl hidden"
     onclick="toggleRainModal(true)"
 >
-    <div class="flex items-center">
+    <div class="flex items-center text-white">
         <p id="alert-icon" class="bg-white rounded-xl p-2">Icona</p>
         <p id="alert-summary" class="ml-4">Caricamento...</p>
     </div>
 
-    <p class="">Dettagli &rarr;</p>
+    <p class="text-white">Dettagli &rarr;</p>
 </div>
 
 <div
@@ -17,21 +17,26 @@
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
+    onclick="if(event.target === this) toggleRainModal(false)"
 >
     <div
-        class="fixed inset-0 bg-gray-900 bg-opacity-75"
+        class="fixed inset-0 bg-gray-900/20 backdrop-blur-sm"
         onclick="toggleRainModal(false)"
     ></div>
 
-    <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div 
+        class="fixed inset-0 z-10 overflow-y-auto"
+        onclick="if(event.target === this) toggleRainModal(false)"
+    >
         <div
             class="flex min-h-full w-full items-center justify-center p-4 text-center"
+            onclick="if(event.target === this) toggleRainModal(false)"
         >
             <div
                 class="relative transform overflow-hidden rounded-lg bg-white text-left w-full sm:max-w-2xl"
             >
                 <div
-                    class="bg-blue-300 px-4 py-3 sm:px-6 flex justify-between items-center"
+                    class="bg-header-bg text-white px-4 py-3 sm:px-6 flex justify-between items-center"
                 >
                     <h3 class="text-base font-semibold" id="modal-title">
                         Dettaglio Precipitazioni
@@ -69,7 +74,7 @@
                                 href="https://www.agenziaitaliameteo.it/agenzia/news-e-gallery/news/disponibili-le-nuove-mappe-di-previsione-sullitalia-realizzate-con-icon-2i/"
                                 class="text-blue-900 hover:underline font-medium"
                                 target="_blank"
-                                >Maggiori informzioni</a
+                                >Maggiori informazioni</a
                             >
                         </p>
                         <p class="mt-2">
@@ -95,4 +100,4 @@
         </div>
     </div>
 </div>
-<script src="js/forecast.js?v1.1"></script>
+<script src="js/forecast.js?v1.3"></script>

@@ -1,0 +1,57 @@
+{
+  "title": "Current Values",
+  "location": "$station.location",
+  "time": "$current.dateTime.format('%d/%m/%Y %H:%M:%S')",
+  "lat": "$station.latitude_f",
+  "lon": "$station.longitude_f",
+  "alt": "$station.altitude",
+  "hardware": "$station.hardware",
+  "weewxVersion": "$station.version",
+  "current": {
+    "outTemp": "$current.outTemp.formatted",
+    "insideTemp": "$current.inTemp.formatted",
+    "windchill": "$current.windchill.formatted",
+    "dewpoint": "$current.dewpoint.formatted",
+    "humidity": "$current.outHumidity.formatted",
+    "barometer": "$current.barometer.formatted",
+    "windSpeed": "$current.windSpeed.formatted",
+    "windGust": "$current.windGust.formatted",
+    "rainRate": "$current.rainRate.formatted"
+  },
+  "sinceMidnight": {
+    "tempMaxValue": "$day.outTemp.max.formatted",
+    "tempMaxTime": "$day.outTemp.maxtime.format('%H:%M:%S')",
+    "tempMinValue": "$day.outTemp.min.formatted",
+    "tempMinTime": "$day.outTemp.mintime.format('%H:%M:%S')",
+    "windchillMinValue": "$day.windchill.min.formatted",
+    "windchillMinTime": "$day.windchill.mintime.format('%H:%M:%S')",
+    "humidityMaxValue": "$day.outHumidity.max.formatted",
+    "humidityMaxTime": "$day.outHumidity.maxtime.format('%H:%M:%S')",
+    "humidityMinValue": "$day.outHumidity.min.formatted",
+    "humidityMinTime": "$day.outHumidity.mintime.format('%H:%M:%S')",
+    "dewpointMaxValue": "$day.dewpoint.max.formatted",
+    "dewpointMaxTime": "$day.dewpoint.maxtime.format('%H:%M:%S')",
+    "dewpointMinValue": "$day.dewpoint.min.formatted",
+    "dewpointMinTime": "$day.dewpoint.mintime.format('%H:%M:%S')",
+    "barometerMaxValue": "$day.barometer.max.formatted",
+    "barometerMaxTime": "$day.barometer.maxtime.format('%H:%M:%S')",
+    "barometerMinValue": "$day.barometer.min.formatted",
+    "barometerMinTime": "$day.barometer.mintime.format('%H:%M:%S')",
+    "rainSum": "$day.rain.sum.formatted",
+    "rainRateMaxValue": "$day.rainRate.max.formatted",
+    "rainRateMaxTime": "$day.rainRate.maxtime.format('%H:%M:%S')",
+    "windMaxValue": "$day.windGust.max.formatted",
+    "windMaxTime": "$day.windGust.maxtime.format('%H:%M:%S')",
+    "windAvg": "$day.windSpeed.avg.formatted"
+  },
+  "almanac": {
+    "sun": {
+      "sunrise": "$almanac.sunrise.format('%H:%M:%S')",
+      "sunset": "$almanac.sunset.format('%H:%M:%S')"
+    },
+    "moon": {
+      "phase": "$almanac.moon_phase",
+      "fullness": "$almanac.moon_fullness%"
+    }
+  }
+}

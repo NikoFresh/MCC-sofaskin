@@ -1,4 +1,4 @@
-<div id="header" class="px-8 pt-6 mb-4 bg-header-bg">
+<div id="header" class="px-8 pt-6 mb-4 bg-header-bg border-b border-white/15">
     <div
     class="lg:max-w-[75%] mx-auto text-left relative z-10 text-white"
     >
@@ -14,41 +14,20 @@
             class="flex flex-wrap items-center gap-2 mb-2 text-sm text-white/85 font-medium"
         >
             <div class="flex items-center gap-1.5">
-            <svg
-                class="w-3.5 h-3.5 opacity-70"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-            >
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-            </svg>
+            <i class="fa-solid fa-map-pin"></i>
             <span class="font-mono"
                 >$station.latitude[0]°$station.latitude[1]'$station.latitude[2],
                 $station.longitude[0]°$station.longitude[1]'$station.longitude[2]</span
             >
             </div>
             <div class="flex items-center gap-1.5">
-            <svg
-                class="w-3.5 h-3.5 opacity-70"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-            >
-                <polyline points="17,10 12,15 7,10" />
-                <polyline points="19,15 12,22 5,15" />
-            </svg>
+            <i class="fa-solid fa-mountain"></i>
             <span class="font-mono">$station.altitude</span>
             </div>
         </div>
 
         <p class="text-base text-white/90 font-medium mb-4">
-            $obs.label.lastUpdate:
-            <span class="font-mono"
-            >$current.dateTime $current.dateTime.format("%Z")</span
-            >
+            $obs.label.lastUpdate: $current.dateTime $current.dateTime.format("%Z")
         </p>
 
         <div

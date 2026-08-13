@@ -45,7 +45,7 @@
               >
                 <!-- Tempeartura -->
                 <div
-                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-blue-200/70"
                 >
                   <div
                     class="flex items-center justify-between mb-2"
@@ -87,7 +87,7 @@
                 </div>
                 <!-- umidità -->
                 <div
-                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-blue-200/70"
                 >
                   <div
                     class="flex items-center justify-between mb-2"
@@ -124,7 +124,7 @@
 
                 <!-- Pressione -->
                 <div
-                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-blue-200/70"
                 >
                   <div
                     class="flex items-center justify-between mb-2"
@@ -160,7 +160,7 @@
 
                 <!-- Vento -->
                 <div
-                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-blue-200/70"
                 >
                   <div
                     class="flex items-center justify-between mb-2"
@@ -196,7 +196,7 @@
                 </div>
                 <!-- pioggia -->
                 <div
-                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-blue-200/70"
                 >
                   <div
                     class="flex items-center justify-between mb-2"
@@ -227,7 +227,7 @@
 
                 <!-- Dew Point -->
                 <div
-                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-blue-200/70"
                 >
                   <div
                     class="flex items-center justify-between mb-2"
@@ -277,7 +277,7 @@
 
                 <!-- Wind Chill -->
                 <div
-                  class="bg-weather-cool/6 rounded-2xl p-4 border border-gray-100"
+                  class="bg-weather-cool/6 rounded-2xl p-4 border border-blue-200/70"
                 >
                   <div
                     class="flex items-center justify-between mb-2"
@@ -329,7 +329,7 @@
             #if $has_either
             <div class="lg:col-span-1">
               <div
-                class="bg-gradient-to-br from-weather-cool/10 to-weather-warm/10 rounded-2xl p-4 flex flex-col"
+                class="bg-gradient-to-br from-weather-cool/10 to-weather-warm/10 rounded-2xl p-4 flex flex-col border border-blue-200/70"
               >
                 <!-- Radio buttons -->
                 <input
@@ -358,13 +358,13 @@
                         >
                           <label
                             for="webcam"
-                            class="webcam-btn px-3 py-1 rounded text-sm font-medium transition-colors cursor-pointer hover:bg-white/20 bg-white/30 text-gray-800"
+                            class="webcam-btn px-3 py-1 rounded text-sm font-medium transition-colors cursor-pointer hover:bg-white/20 bg-white/30 text-gray-800 border-blue-200/70"
                           >
                             📹 Webcam
                           </label>
                           <label
                             for="radar"
-                            class="radar-btn px-3 py-1 rounded text-sm font-medium transition-colors cursor-pointer hover:bg-white/20 text-gray-600"
+                            class="radar-btn px-3 py-1 rounded text-sm font-medium transition-colors cursor-pointer hover:bg-white/20 text-gray-600 border-blue-200/70"
                           >
                             🌦️ Radar
                           </label>
@@ -401,7 +401,7 @@
         <section>
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div
-              class="md:col-span-1 bg-weather-cool/6 rounded-2xl border border-gray-100"
+              class="md:col-span-1 bg-weather-cool/6 rounded-2xl border border-blue-200/70"
             >
               <!-- One year ago -->
               <!--Leap Year Code -->
@@ -571,7 +571,7 @@
 
             <!-- Almanac -->
             <div
-              class="lg:col-span-2 bg-weather-cool/6 rounded-2xl border border-gray-100"
+              class="lg:col-span-2 bg-weather-cool/6 rounded-2xl border border-blue-200/70"
             >
               
               #set $sun_altitude = $almanac.sun.alt
@@ -583,7 +583,7 @@
               
 
               <h1 class="text-xl px-4 pt-4">$obs.label.almanac</h1>
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+              <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-blue-200/70">
                 <div>
                   <h1 class="text-xl text-gray-800 px-4 pt-4">
                     $obs.label.sun
@@ -923,13 +923,13 @@
           <h1 class="text-xl p-4 md:p-4">
             <i class="fa fa-line-chart m-gruen"></i> $obs.label.charts
           </h1>
-          <div class="grid grid-cols-1 md:grid-cols-2 no-js">
-            <div id="outTempChart" class="h-[40vh]"></div>
-            <div id="rainChart" class="h-[40vh]"></div>
-            <div id="windChart" class="h-[40vh]"></div>
-            <div id="windDirChart" class="h-[40vh]"></div>
-            <div id="heatIndexChart" class="h-[40vh]"></div>
-            <div id="barometerChart" class="h-[40vh]"></div>
+          <div class="grid grid-cols-1 md:grid-cols-2 no-js gap-4">
+            <div id="outTempChart" class="h-[40vh] bg-weather-cool/6 rounded-2xl border border-blue-200/70 p-2"></div>
+            <div id="rainChart" class="h-[40vh] bg-weather-cool/6 rounded-2xl border border-blue-200/70 p-2"></div>
+            <div id="windChart" class="h-[40vh] bg-weather-cool/6 rounded-2xl border border-blue-200/70 p-2"></div>
+            <div id="windDirChart" class="h-[40vh] bg-weather-cool/6 rounded-2xl border border-blue-200/70 p-2"></div>
+            <div id="heatIndexChart" class="h-[40vh] bg-weather-cool/6 rounded-2xl border border-blue-200/70 p-2"></div>
+            <div id="barometerChart" class="h-[40vh] bg-weather-cool/6 rounded-2xl border border-blue-200/70 p-2"></div>
           </div>
           <noscript>
             <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
@@ -974,7 +974,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"
         type="text/javascript"
         ></script>
-        <script src="./js/liveUpdates.js?v2.05"></script>
+        <script src="./js/liveUpdates.js?v2.11"></script>
     #end if
     <script src="./js/charts.js?v1"></script>
   </body>
