@@ -1,41 +1,42 @@
 @import "tailwindcss";
 @config "./tailwind.config.js";
 
-/* Regole per il weather toggle */
-#webcam:checked ~ .weather-container .webcam-image {
-  display: block;
+/* Componenti del nuovo design minimal.
+   In Tailwind v4 le regole in @layer components vengono sempre incluse e le utility
+   (per esempio p-2) vincono sempre su di esse, quindi non serve il "!" per sovrascriverle. */
+@layer components {
+  .card  { @apply bg-white rounded-2xl p-4 sm:p-5; }
+  .lbl   { @apply text-sm text-neutral-800; }
+  .val   { @apply mt-1 text-3xl font-semibold tracking-tight tabular-nums text-neutral-700; }
+  .sub   { @apply mt-2 text-sm text-neutral-800 tabular-nums; }
+  .sub b { @apply font-medium text-neutral-700; }
+  .h2    { @apply text-lg font-semibold tracking-tight text-neutral-700; }
+
+  /* Liste etichetta/valore (dentro <dl>) */
+  .row   { @apply flex justify-between gap-4 py-2.5 text-sm border-b border-black/5; }
+  .row:last-child { @apply border-0; }
+  .row dt { @apply text-neutral-700; }
+  .row dd { @apply font-medium tabular-nums text-neutral-900 text-right; }
+
+  /* Tabelle di dati vere e proprie (settimana, mese, anno, storico): class="tbl" sulla <table> */
+  .tbl { @apply w-full text-sm tabular-nums; }
+  .tbl th { @apply py-2 pr-4 text-left font-medium text-neutral-700 border-b border-black/10; }
+  .tbl td { @apply py-2.5 pr-4 text-neutral-900 border-b border-black/5; }
+  .tbl tr:last-child td { @apply border-0; }
+
+  /* Navbar (su sfondo header-bg) */
+  .nav-a { @apply px-3 py-1.5 rounded-full text-sm text-white/80 transition-colors hover:text-white hover:bg-white/10; }
+  .nav-a[aria-current] { @apply font-medium text-white bg-white/20; }
+  .m-a   { @apply flex items-center h-12 text-base text-white/85; }
+  .m-a[aria-current] { @apply font-semibold text-white; }
+
+  /* Focus visibile (v4: outline-hidden al posto del vecchio outline-none) */
+  .focus-ring   { @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-sky-500; }
+  .focus-ring-w { @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white; }
 }
-#webcam:checked ~ .weather-container .radar-image {
-  display: none;
-}
-#webcam:checked ~ .weather-container .webcam-btn {
-  @apply bg-white/30 text-gray-800;
-}
-#webcam:checked ~ .weather-container .radar-btn {
-  @apply text-gray-600;
-}
-#radar:checked ~ .weather-container .radar-image {
-  display: block;
-}
-#radar:checked ~ .weather-container .webcam-image {
-  display: none;
-}
-#radar:checked ~ .weather-container .radar-btn {
-  @apply bg-white/30 text-gray-800;
-}
-#radar:checked ~ .weather-container .webcam-btn {
-  @apply text-gray-600;
-}
-/* header */
-.header-active-pc {
-  @apply px-3 py-2 text-white text-lg font-medium border-b-2 border-white/80 transition-colors hover:bg-white/10 rounded-t-md;
-}
-.header-inactive-pc {
-  @apply px-3 py-2 text-white/80 text-lg transition-colors hover:text-white hover:bg-white/10 rounded-t-md;
-}
-.header-active-mobile {
-  @apply block px-3 py-3 text-white text-lg bg-white/10 rounded-lg font-medium;
-}
-.header-inactive-mobile {
-  @apply block px-3 py-3 text-white/80 text-lg rounded-lg transition-colors hover:text-white hover:bg-white/10;
-}
+
+/* Rimossi: le regole #webcam:checked / #radar:checked ~ .weather-container e le classi
+   .header-active-pc / .header-inactive-pc / .header-active-mobile / .header-inactive-mobile.
+   Il toggle webcam/radar ora usa le varianti peer-checked di Tailwind e la navbar usa .nav-a / .m-a.
+   Prima di cancellarle dal tuo file, cerca nel progetto "weather-container", "webcam-btn" e "header-active"
+   per assicurarti che nessun altro template le usi. */

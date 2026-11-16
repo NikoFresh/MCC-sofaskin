@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="$lang">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webcam $station.location</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+      }
+
+      .webcam_link {
+        position: relative;
+        display: block;
+        line-height: 0; /* evita spazio bianco sotto l'img inline */
+      }
+
+      .responsive_image {
+        max-width: 100%;
+        max-height: calc(100vh - 100px); /* spazio per il bottone sotto */
+        width: auto;
+        height: auto;
+        display: block;
+      }
+
+      /* Badge dati live in basso a sinistra sull'immagine */
+      .live_badge {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-size: clamp(1rem, 1.7vw, 1.5rem);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        backdrop-filter: blur(2px);
+        white-space: nowrap;
+        z-index: 2;
+      }
+
+      .live_dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #2ecc71;
+        display: inline-block;
+        flex-shrink: 0;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.6); }
+        70% { box-shadow: 0 0 0 6px rgba(46, 204, 113, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+      }
+
+      /* Badge freschezza in basso a destra, in coppia con il badge dati.
+         Tenuto lontano dal timestamp già presente nell'immagine (in alto a destra). */
+      .freshness_badge {
+        position: absolute;
+        right: 14px;
+        bottom: 14px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #cfeffe;
+        padding: 7px 14px;
+        border-radius: 8px;
+        font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+        font-weight: 600;
+        white-space: nowrap;
+        z-index: 2;
+      }
+
+      /* Bottone statico sotto l'immagine, non fisso/floating */
+      .button {
+        margin: 12px;
+        padding: 12px 9px;
+        border: none;
+        border-radius: 8px;
+        background-color: #98f6fe;
+        text-decoration: none;
+        color: #2e4354;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      .button:hover {
+        background-color: #00d5f1;
+      }
+    </style>
+    #if $getVar('Extras.umami_enable', None) == 'true'
+    <!-- Umami -->
+    <script
+    async
+    src="https://analytics.umami.is/script.js"
+    data-website-id="$Extras.umami_id"
+    ></script>
+    #end if
+  </head>
+  <body>
+    <a href="/" class="webcam_link" data-umami-event="live-data-webcam-image">
+      <img
+        id="webcam_img"
+        class="responsive_image"
+        src="$Extras.webcam_url?$current.dateTime.raw"
+        alt="Webcam Live"
+        title="Webcam Live"
+      />
+      <span class="live_badge">
+        <span class="live_dot"></span>
+        <span>$current.outTemp &middot; $current.outHumidity &middot; $current.windSpeed</span>
+      </span>
+      <span id="freshness_badge" class="freshness_badge">aggiornamento...</span>
+    </a>
+
+    <a href="/" class="button" data-umami-event="live-data-webcam-button">$obs.label.webcam_go_to_index</a>
+
+    <script>
+      // Timestamp dell'ultimo dato disponibile, generato da weewx ad ogni ciclo di report
+      const lastDataTimestampMs = $current.dateTime.raw * 1000;
+
+      const img = document.getElementById('webcam_img');
+      const freshnessBadge = document.getElementById('freshness_badge');
+      const IMAGE_REFRESH_MS = 60000; // ricarica la foto ogni 60s
+
+      function refreshImage() {
+        img.src = '$Extras.webcam_url?' + Math.floor(Date.now() / 1000);
+      }
+
+      function updateFreshnessLabel() {
+        const seconds = Math.floor((Date.now() - lastDataTimestampMs) / 1000);
+        if (seconds < 0) {
+          freshnessBadge.textContent = 'aggiornata ora';
+        } else if (seconds < 60) {
+          freshnessBadge.textContent = 'aggiornata ' + seconds + 's fa';
+        } else {
+          const minutes = Math.floor(seconds / 60);
+          freshnessBadge.textContent = 'aggiornata ' + minutes + ' min fa';
+        }
+      }
+
+      updateFreshnessLabel();
+      setInterval(refreshImage, IMAGE_REFRESH_MS);
+      setInterval(updateFreshnessLabel, 1000);
+    </script>
+  </body>
+</html>
